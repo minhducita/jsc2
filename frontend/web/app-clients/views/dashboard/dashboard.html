@@ -1,0 +1,77 @@
+<div class="content">
+    <div id="member-chanels-boards-views">
+        <div class="chanels-boards-section">
+            <div class="chanels-boards-section-header">
+                <i class="fa fa-star-o"></i> <span class="chanel-name bold">Starred Boards</span>
+            </div>
+            <ul class="boards-list box-content">
+                <li class="col-sm-3 start" ng-repeat="board in filterBoard('boardStars') | filter:{closed:0}">
+                    <!--a class="board" href="#{{board._links.url.href}}" ng-style="{'background-color': board.prefs.backgroundColor}"-->
+					<a class="board" href="#{{board._links.url.href}}" ng-style="!board.prefs.backgroundType && {'background-color': board.prefs.backgroundColor} ||  board.prefs.backgroundType == 'color' && {'background-color': board.prefs.backgroundColor} || board.prefs.backgroundType == 'picture' && {'background-image': 'url(./assets/background/thumb/' + board.prefs.backgroundImage + ')'}">
+                        <span>{{board.displayName}}</span>
+					</a>
+					<span class="ico"><i ng-click="toggleBoardStar(board.id)" class="fa is-starred fa-star-o"></i></span>
+                </li>
+                <div class="clearfix"></div>
+            </ul>
+            <!-- <hr> -->
+        </div>
+        <div class="chanels-boards-section">
+            <div class="chanels-boards-section-header">
+                <i class="flaticon-user42"></i> <span class="chanel-name bold">My Boards</span>
+            </div>
+            <ul class="boards-list box-content">
+                <li class="col-sm-3" ng-repeat="board in filterBoard('myBoard') | filter:{closed:0} track by $index">
+					<!--a class="board" href="#{{board._links.url.href}}" ng-style="{'background-color': board.prefs.backgroundColor}"-->
+					<a class="board" href="#{{board._links.url.href}}" ng-style="!board.prefs.backgroundType && {'background-color': board.prefs.backgroundColor} ||  board.prefs.backgroundType == 'color' && {'background-color': board.prefs.backgroundColor} || board.prefs.backgroundType == 'picture' && {'background-image': 'url(./assets/background/thumb/' + board.prefs.backgroundImage + ')'}">
+                        <span> {{board.displayName}} </span>
+                    </a>
+					<span class="ico" ng-click="toggleBoardStar(board.id)"><i  class="fa {{(board.starsCount == 1)?'is-starred':''}} fa-star-o"></i></span>
+                </li>
+                <li class="col-sm-3 addboard" pop-pup open-type="popover" template-url="board/create-board.tpl.html">
+                    <p> Add new board....</p>
+                </li>
+                <div class="clearfix"></div>
+            </ul>
+            <!-- <hr> -->
+        </div>
+		
+        <div class="chanels-boards-section" ng-repeat="(i, organization) in dashBoardPageAssets.organizations track by $index">
+            <div class="chanels-boards-section-header">
+				<img class="organizationLogo" ng-if="organization.logo_preview[0].url" ng-src="{{organization.logo_preview[0].url}}">
+				<i ng-if="!organization.logo_preview[0].url" class="flaticon-group-users"></i> 
+				<span class="chanel-name bold">{{organization.displayName}} </span> <span class='dashboard_nameRole'> (Role: {{organization.role}}) </span>
+                
+				<div class="chanels-boards-header-options">
+                    <a class="" href="#/o/{{organization.name}}">
+                        <span><i class="fa fa-credit-card"></i></span>
+                        <span class="">Boards</span></a>
+                    <a class="" href="#/o/{{organization.name}}/members">
+                        <span><i class="fa fa-user"></i></span>
+                        <span class="boards-page-board-section-header-options-item-name">Members</span>
+                    </a>
+                    <a class="" href="#/o/{{organization.name}}/account">
+                        <span><i class="fa fa-cog"></i></span>
+                        <span class="boards-page-board-section-header-options-item-name">Settings</span>
+                    </a>
+                </div>
+            </div>
+            <ul class="boards-list box-content">
+                <li class="col-sm-3 start" ng-repeat="board in dashBoardPageAssets.boards | orderBy: 'id' | filter: {idOrganization: organization.id,closed:0}">
+                    <!--a class="board" href="#{{board._links.url.href}}" ng-style="{'background-color': board.prefs.backgroundColor}"-->
+					
+					<a class="board" href="#{{board._links.url.href}}" ng-style="!board.prefs.backgroundType && {'background-color': board.prefs.backgroundColor} ||  board.prefs.backgroundType == 'color' && {'background-color': board.prefs.backgroundColor} || board.prefs.backgroundType == 'picture' && {'background-image': 'url(./assets/background/thumb/' + board.prefs.backgroundImage + ')'}">
+                        <span>{{board.displayName}}</span>
+                    </a>
+					 <span class="ico" ng-click="toggleBoardStar(board.id)"><i class="fa {{(board.starsCount == 1)?'is-starred':''}} fa-star-o"></i></span>
+                </li>
+                <li class="col-sm-3 addboard" pop-pup open-type="popover" template-url="board/create-board.tpl.html">
+                    <p> Add new board.... </p>
+                </li>
+                <div class="clearfix"></div>
+            </ul>
+            <!-- <hr> -->
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>

@@ -1,0 +1,43 @@
+<div class="tabbed-pane-main-col-wrapper js-content">
+	<div class="window-module" ng-repeat="board in Profile.boards">
+		<div class="window-module-title">
+			<span class="window-module-title-icon">
+				<i class="fa fa-users cl-icon"></i>
+			</span>
+			<h3>{{board.displayName}}</h3>
+        </div>
+		<div class="js-list-orgs" >
+			<div class="float-cards u-clearfix" >
+				<div class="list-card-container" data-ng-repeat="card in cards | orderBy: pos |filter: {idBoard : board.id}">
+					<div class="list-card is-covered ui-droppable">
+					<img ng-if="card.attachments[0].previews[1].url" src="{{card.attachments[0].previews[1].url}}" style="height:200px;width:100%"> 
+						<div class="list-card-details"> 
+							<div class="list-card-labels">
+								<span ng-repeat = "label in board.labels | inArray: card.idLabels : 'id'" class="card-label label-color-{{label.color}}"> </span>
+							</div>
+							<a href="/#/b/{{board.id}}/{{board.name}}?card={{card.id}}" class="list-card-title" > <b> {{card.displayName}} </b> </a>
+							<p class="meTitleList"> <b> List: </b> <a href="/#/b/{{board.id}}/{{board.name}}"> {{card.lists.name}} </a></p>
+							<div class="badges">
+								<div class="badge" title="Comments">
+									<span class="badge-icon fa fa-comment"></span>
+									<span class="badge-text">{{card.comments.length}}</span> 
+								</div>
+								<div class="badge" title="Attachments">
+									<span class="badge-icon fa fa-paperclip"></span> 
+									<span class="badge-text">{{card.attachments.length}}</span>
+								</div>
+							</div>
+							<div class="list-card-members">
+								<div class="member" ng-repeat="member in card.members">
+									<span class="memberAvatar" ng-if="member.typeimg == 0" title="{{member.displayName}}"> {{member.initialsName}}</span>
+									<img ng-if="member.typeimg == 1" width="35" height="35" ng-src="{{member.avatarHash | memberAvatar}}" alt="{{member.displayName}}" title="{{member.displayName}}">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

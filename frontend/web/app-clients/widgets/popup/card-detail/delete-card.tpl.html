@@ -1,0 +1,16 @@
+<div class="popover" tabindex="-1">
+	<div class="popover-content popover-width popover-checklist">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Delete Card</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-contentcheck">
+			<p> All actions will be removed from the activity feed and you won’t be able to re-open the card. There is no undo. </p>
+			<!--button ng-click="deleteCard(cardDetail.id) ; btnBoardDelete = ''" class="btn-leave-board btn-color-red" type="button"> Delete </button-->
+			<button ng-click="updateCard(cardDetail.id, {closed: 1}) ; btnBoardDelete = 1" class="btn-leave-board btn-color-red" type="button"> Delete </button>
+		</div>                 
+	</div>
+</div>

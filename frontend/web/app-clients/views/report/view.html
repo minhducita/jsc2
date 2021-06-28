@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/daterangepicker.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/report.css"/>
+<link rel="stylesheet" type="text/css" href="/assets/css/select2.min.css"/>
+<link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+<script type="text/javascript" src="/assets/js/moment.min.js"></script>
+<script type="text/javascript" src="/assets/js/daterangepicker.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap-multiselect.min.js"></script>
+<script src="/assets/js/select2.min.js"></script>
+<script src="/assets/js/report-page.js"></script>
+
+<div class="container">
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2><b>Report</b> Details</h2>
+                </div>
+                <div class="col-sm-6">
+                    <div class="table-bottom">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dd-button"><img src="./assets/img/excel.svg">Export to Excel</button>
+                            <nav class="menu">
+                                <ul class="dropdown-show">
+                                    <li ng-click="onExport('card')" style="color: black;">
+                                        <a href="/#/export">Export by Card</a>
+                                    </li>
+                                    <li ng-click="onExport('member')" style="color: black;">
+                                        <a href="/#/export">Export by Member</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <a href="#" class="btn btn-info" ng-click="onRefresh()"><i class="material-icons"></i><span>Refresh List</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FILTER GROUP -->
+        <div class="table-filter">
+            <div class="row">
+                <div class="col-sm-8">
+                    <span class="filter-icon"><i class="fa fa-calendar"></i></span>
+                    <div class="filter-group date-fill">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="input-prepend input-group">
+                                            <input type="text" style="width: 200px" name="reservation" id="reservation" class="form-control" value="Select Datetime"/>
+                                            <input type="hidden" id="startDate"/>
+                                            <input type="hidden" id="endDate"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="filter-group">
+                        <label>Board</label>
+                        <select class="form-control" name="listBoard" ng-model='selectedBoard' ng-options="item.id as item.displayName for item in listBoardReport" ng-change="onChangeBoard()">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="chosen-group">
+                <div class="col-md-6">
+                    <h4>Choosen Card</h4>
+                    <select class="js-select2" multiple="multiple" name="listCard" ng-model="selectedCard" ng-options="card.id as card.displayName for card in listCardIdBoard">
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <h4>Choosen Member</h4>
+                    <select class="js-select2 placeholder-member" multiple="multiple" name="listMember" ng-model="selectedMember" ng-options="member.id as member.username for member in listMemberIdBoard">
+                    </select>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

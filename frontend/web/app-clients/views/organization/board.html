@@ -1,0 +1,26 @@
+<div class="tabbed-pane-main-col-wrapper js-content">
+	<div class="js-react-root">
+		<div class="boards-page-boards-section">
+			<ul class="col-md-12 boards-page-board-section-list">
+				<li class="col-md-4 boards-page-board-section-list-item" ng-repeat="board in organizationsPageAssets.boards | orderBy: 'id'">
+					<a class="board-tile" href="#{{board._links.url.href}}" ng-style="{'background-color': board.prefs.backgroundColor}">
+						<span class="board-tile-fade"></span>
+							<span class="board-tile-details is-badged">
+							<span class="board-tile-details-name">{{board.displayName}}</span>
+						</span>
+						<span class="board-tile-options">
+							<span ng-show="board.starsCount == 1" title="Click to star this board. It will show up at top of your boards list." class="fa fa-star-o is-starred board-tile-options-star-icon"></span>
+						</span>
+						<span class="board-tile-badges"></span>
+					</a>
+					<div class="board-tags u-clearfix"></div>
+				</li>
+				<li class="col-md-4 boards-page-board-section-list-item">
+					<a class="board-tile mod-add" href="#">
+						<span>Create new board</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

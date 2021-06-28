@@ -1,0 +1,47 @@
+<div id='contentpopup'>
+    <div class="form-header border-none">
+        <div class="profile-member">
+            <div class="profile-member-img member-large" ng-if="member.typeimg == 0">
+                <span class="profile-member-img-text">{{member.initialsName}}</span>
+               <!--  <a ng-click="getPopupover('change-avatar','info-member')" class="change-img"> change </a> -->
+            </div>
+            <div class="profile-member-img" ng-if="member.typeimg == 1">
+                <img ng-src="{{member.avatarHash | memberAvatar}}" width="50px">
+               <!--  <a ng-click="getPopupover('change-avatar')" class="change-img"> change </a> -->
+            </div>
+            
+            <div class="profile-member-info">
+                <p class='profile-name'><A href=""> {{member.displayName}} </a></p>
+
+                <p class='profile-quiet'> @{{member.username}} </a></p>
+
+                 <!--<p class='profile-edit' ng-if="appAssets.id === member.id">
+                    <a ng-click="getPopupover('profile')">Edit personal information</a>
+                </p> -->
+            </div>
+        </div>
+        <div class="modal-close">
+            <i class="flaticon-cross-mark1" ng-click="$hide()"></i>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="profile-fn" ng-if="(appAssets.id | memberRoles:boardPageAssets.memberShips) === 'Admin'">
+        <p><a ng-click="getPopupover('change_permissions')"> Change permissions ({{member.id | memberRoles:boardPageAssets.memberShips}}) </a></p>
+        <!--<p><a class="modal_popup" pop-pup="" open-type="dialog" template-url="board/member_board_active.tpl.html"-->
+              <!--href=""> View Member's Board Activity </a></p>-->
+        <p><a ng-click="getPopupover('leave_board')" ng-if="appAssets.id === member.id && (countByRoleMemberShips().admin !== 'undefined' && countByRoleMemberShips().admin >= 2)"> Leave Board... </a></p>
+        <p ng-if="appAssets.id !== member.id"><a ng-click="getPopupover('remove_member')"> Remove member</a></p>
+
+    </div>
+    <div class="profile-fn" ng-if="(appAssets.id | memberRoles:boardPageAssets.memberShips) === 'Normal'">
+        <!--<p><a class="modal_popup" pop-pup="" open-type="dialog" template-url="board/member_board_active.tpl.html"-->
+        <!--href=""> View Member's Board Activity </a></p>-->
+        <p><a class="disabled"> Change permissions ({{member.id | memberRoles:boardPageAssets.memberShips}}) </a></p>
+        <p ng-if="appAssets.id === member.id"><a ng-click="getPopupover('leave_board')"> Leave Board... </a></p>
+        <p ng-if="appAssets.id !== member.id && (member.id | memberRoles:boardPageAssets.memberShips) !== 'Admin'"><a ng-click="getPopupover('remove_member')"> Remove member</a></p>
+    </div>
+</div>
+
+
+
+

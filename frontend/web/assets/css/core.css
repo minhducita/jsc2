@@ -1,0 +1,329 @@
+@charset "UTF-8";
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+img, legend {
+    border: 0
+}
+
+@font-face {
+    font-family: trellicons;
+    src: url(https://d78fikflryjgj.cloudfront.net/fonts/052836931f05437ae8863a7bcaaeea72/trellicons.eot?#iefix) format('embedded-opentype'), url(https://d78fikflryjgj.cloudfront.net/fonts/f1c68e099d5441b2ec45d7a090fb0bbd/trellicons.woff) format('woff'), url(https://d78fikflryjgj.cloudfront.net/fonts/2748d210d8827e98f4a6740e97070e75/trellicons.ttf) format('truetype');
+    font-weight: 400;
+    font-style: normal
+}
+
+.icon-lg, .icon-sm {
+    display: inline-block;
+    font-family: trellicons;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-style: normal;
+    font-weight: 400;
+    text-decoration: none;
+    color: #BEBDBD;
+}
+.icon-lg {
+    height: 30px;
+    font-size: 16px;
+    line-height: 30px;
+    width: 30px;
+}
+
+.icon-b-lg {
+    height: 85px;
+    font-size: 43px;
+    line-height: 85px;
+    width: 85px;
+}
+
+.icon-lg.mod-inline, .icon-sm {
+    line-height: 18px;
+    width: 18px;
+    height: 18px
+}
+
+.icon-lg.mod-inline {
+    font-size: 18px;
+    vertical-align: bottom
+}
+
+.icon-sm {
+    font-size: 9pt
+}
+
+.icon-activity:before {
+    content: "\e900"
+}
+
+.icon-add-member:before {
+    content: "\e901"
+}
+
+.icon-add:before {
+    content: "\e902"
+}
+
+.icon-archive:before {
+    content: "\e903"
+}
+
+.icon-attachment:before {
+    content: "\e904"
+}
+
+.icon-back:before {
+    content: "\e905"
+}
+
+.icon-board:before {
+    content: "\e906"
+}
+
+.icon-business-class:before {
+    content: "\e907"
+}
+
+.icon-calendar:before {
+    content: "\e908"
+}
+
+.icon-camera:before {
+    content: "\e909"
+}
+
+.icon-card-cover:before {
+    content: "\e90a"
+}
+
+.icon-card:before {
+    content: "\e90b"
+}
+
+.icon-check:before {
+    content: "\e90c"
+}
+
+.icon-checklist:before {
+    content: "\e90d"
+}
+
+.icon-clock:before {
+    content: "\e90e"
+}
+
+.icon-close:before {
+    content: "\e90f"
+}
+
+.icon-comment:before {
+    content: "\e910"
+}
+
+.icon-description:before {
+    content: "\e911"
+}
+
+.icon-down:before {
+    content: "\e912"
+}
+
+.icon-download:before {
+    content: "\e913"
+}
+
+.icon-dropdown-menu:before {
+    content: "\e914"
+}
+
+.icon-edit:before {
+    content: "\e915"
+}
+
+.icon-email:before {
+    content: "\e916"
+}
+
+.icon-emoji:before {
+    content: "\e917"
+}
+
+.icon-external-link:before {
+    content: "\e918"
+}
+
+.icon-facebook:before {
+    content: "\e919"
+}
+
+.icon-filter:before {
+    content: "\e91a"
+}
+
+.icon-fogbugz:before {
+    content: "\e91b"
+}
+
+.icon-forward:before {
+    content: "\e91c"
+}
+
+.icon-gear:before {
+    content: "\e91d"
+}
+
+.icon-google:before {
+    content: "\e91f"
+}
+
+.icon-information:before {
+    content: "\e920"
+}
+
+.icon-label:before {
+    content: "\e921"
+}
+
+.icon-list:before {
+    content: "\e923"
+}
+
+.icon-member:before {
+    content: "\e925"
+}
+
+.icon-mention:before {
+    content: "\e926"
+}
+
+.icon-move:before {
+    content: "\e927"
+}
+
+.icon-notification:before {
+    content: "\e928"
+}
+
+.icon-organization-visible:before {
+    content: "\e929"
+}
+
+.icon-organization:before {
+    content: "\e92a"
+}
+
+.icon-overflow-menu-horizontal:before {
+    content: "\e92b"
+}
+
+.icon-power-up:before {
+    content: "\e92c"
+}
+
+.icon-private:before {
+    content: "\e92d"
+}
+
+.icon-public:before {
+    content: "\e92e"
+}
+
+.icon-refresh:before {
+    content: "\e92f"
+}
+
+.icon-remove:before {
+    content: "\e930"
+}
+
+.icon-search:before {
+    content: "\e931"
+}
+
+.icon-share:before {
+    content: "\e932"
+}
+
+.icon-star:before {
+    content: "\e933"
+}
+
+.icon-sticker:before {
+    content: "\e934"
+}
+
+.icon-subscribe:before {
+    content: "\e935"
+}
+
+.icon-trello-gold:before {
+    content: "\e936"
+}
+
+.icon-twitter:before {
+    content: "\e937"
+}
+
+.icon-up:before {
+    content: "\e938"
+}
+
+.icon-vote:before {
+    content: "\e939"
+}
+
+.dark-hover:hover .icon-lg, .dark-hover:hover .icon-sm, .icon-lg.dark, .icon-lg.dark-hover:hover, .icon-sm.dark, .icon-sm.dark-hover:hover {
+    color: #4d4d4d;
+    text-decoration: none
+}
+
+.icon-lg.light, .icon-lg.light-hover:hover, .icon-sm.light, .icon-sm.light-hover:hover, .light-hover:hover .icon-lg, .light-hover:hover .icon-sm {
+    color: #fff;
+    text-decoration: none
+}
+
+.icon-private {
+    color: #eb5a46
+}
+
+.dark-hover:hover .icon-private, .icon-private.dark-hover:hover {
+    color: #cf513d
+}
+
+.icon-organization-visible {
+    color: #f2d600
+}
+
+.dark-hover:hover .icon-organization-visible, .icon-organization-visible.dark-hover:hover {
+    color: #e6c60d
+}
+
+.icon-public {
+    color: #61bd4f
+}
+
+.dark-hover:hover .icon-public, .icon-public.dark-hover:hover {
+    color: #5aac44
+}
+
+.icon-star-active {
+    color: #f2d600
+}
+
+.icon-business-class-color {
+    color: #576a75
+}
+
+.icon-trello-gold-color {
+    color: #d9b51c
+}
+
+.icon-facebook-color {
+    color: #3B5998
+}
+
+.icon-google-color {
+    color: #e11a31
+}
+
+.icon-twitter-color {
+    color: #00aced
+}

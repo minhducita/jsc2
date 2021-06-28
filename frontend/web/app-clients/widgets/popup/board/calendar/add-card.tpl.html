@@ -1,0 +1,22 @@
+<div class="popover addCardCalendar" tabindex="-1">
+	<div class="popover-content popover-width popover-create-label">
+		<div class="form-header">
+			<div  class="modal-close" ng-click="$hide()">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Add Card</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-contentedit">
+			<form action="" method="post" >
+				<input type='hidden' ng-model='model.due'>
+				<label> Due Date: <span id="date"> </span> </label>
+				<label> Name Card </label>
+				<textarea ng-model="model.displayName" class="list-card-composer-textarea js-card-title ng-pristine" rows="5"></textarea>
+				<label> List </label>
+				<select ng-options="list.id as list.name for list in boardPageAssets.lists | filter:{closed:0}" ng-model='model.idList'></select>
+				<input type="button" ng-click="createCard(model)" class="btn btn-addchecklist" value="Create">
+			</form>
+		</div>  	
+	</div>
+</div>

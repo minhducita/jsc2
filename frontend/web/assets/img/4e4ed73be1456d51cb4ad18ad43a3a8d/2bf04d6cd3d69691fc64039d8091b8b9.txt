@@ -1,0 +1,6 @@
+kiem tra ram
+free -m
+kiem tra thong tin lien quan den kernel va bit
+uname -a
+kiem tra dung luong df -ah
+sudo yum list installed | grep 'something"

@@ -1,0 +1,23 @@
+<div class="popover" ng-init="popup_show = false" ng-hide="popup_show" tabindex="-1">
+	<div class="popover-content popover-width popup-add-list">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">List Actions</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-bodyacttach">
+			<p><a href=""> Add Card </a></p>
+			<p><a show-hide-popup popup-show="popup-copy" popup-hide='popup-add-list' href=""> Coppy List</a></p>
+			<p><a show-hide-popup popup-show="popup-move" popup-hide='popup-add-list' href=""> Move List</a></p>
+			<p><a href=""> Subscribe</a></p>
+			<hr>
+			<p><a show-hide-popup popup-show="popup-move-all" popup-hide='popup-add-list' href=""> Move All Cards in This List </a></p>
+			<p><a show-hide-popup popup-show="popup-archive-all" popup-hide='popup-add-list' href=""> Archive All Cards in This List </a></p>
+			<hr>
+			<p><a href ng-click="updateList(list.id, {closed:1})"> Archive This List</a> </p>
+		</div>
+	</div>
+
+</div>

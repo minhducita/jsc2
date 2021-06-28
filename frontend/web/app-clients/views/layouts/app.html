@@ -1,0 +1,12 @@
+<ng-include src="'/app-clients/views/layouts/components/header.html'"></ng-include>
+<!-- BEGIN CONTAINER -->
+<div id="content">
+    <!-- BEGIN SIDEBAR -->
+    <ng-include src="'/app-clients/widgets/nav-sidebar.html'"></ng-include>
+    <!-- END SIDEBAR -->
+    <toaster-container></toaster-container>
+    <!-- BEGIN PAGE CONTAINER-->
+    <ui-view></ui-view>
+    <!-- END PAGE -->
+</div>
+<!-- END CONTAINER -->

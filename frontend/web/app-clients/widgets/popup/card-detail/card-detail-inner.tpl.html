@@ -1,0 +1,357 @@
+<!--minhquyen-->
+	<div class="modal-content" ng-init="getCardDetail(card)">
+		<p class="cardid"> Card: {{cardDetail.id}} </p>
+					<div class="modal-header">
+						<button popup-extend pop-show="popup-show-priority" pop-hide="popup-card-detail" list-id="{{card.idList | number}}" class="close">&times;</button>
+						<!--button ng-click="$hide()" type="buttofcardDetail.attachmentSelected.urln" class="close" data-dismiss="modal" aria-hidden="true">&times;</button-->
+						<div ng-show="cardDetail.attachmentSelected.url" class="backgroud-board" ng-style="{'background-image': 'url('+cardDetail.attachmentSelected.url+')'}"></div>
+						<div class="title-modal list-box-header">
+							<div ng-if="!cardDetail.closed">
+								<i class="flaticon-tag25" style="float:left"></i>
+								<h4 class="update-list list-box-header-name"><span class="semi-bold">{{cardDetail.displayName | notnewline}}</span></h4>
+								<div class="clearfix"></div>
+								<div class="edit-title-list-box hide">
+									<form  ng-submit="updateCard(cardDetail.id, {displayName: displayNameCard })">
+										<textarea class='form-control list-name formCardName' type='text' ng-model="displayNameCard"></textarea>
+									</form>
+								</div>
+							</div>
+							<div ng-if="cardDetail.closed">
+								<i class="flaticon-movie5" style="float:left"></i>
+								<h4 class="list-box-header-name"><span class="title-semi-bold">This card is archived.</span></h4>
+							</div>
+							
+						</div>
+						
+					</div>
+					
+					<div class="modal-body">
+						<div class="col-md-12 modal-popup">
+							  <div class="col-md-9 nopadding">
+								<div class="memmber1" ng-show="cardDetail.members.length">
+								  <h5 class="bold">Member</h5>
+									<ul>
+									  <li  ng-repeat="member in cardDetail.members" pop-pup open-type="popover" template-url="card-detail/card-member.tpl.html">
+										<div class="profile-pic popup">
+										  <img ng-show="member.typeimg == 1" ng-src="{{member.avatarHash | memberAvatar}}" alt="{{member.displayName}}" title="{{member.displayName}}" width="35" height="35">
+										  <a ng-show="member.typeimg == 0" class="modalico" style="display: inline-block;font-weight: 700" title="{{member.displayName}}">
+											  {{member.initialsName}}
+										  </a>
+										</div>
+									  </li>
+									  <li class="modalico">
+										 <a  pop-pup open-type="popover" template-url="card-detail/card-member.tpl.html"> <i class="flaticon-plus79" data-placement="bottom" data-original-title="" title=""></i> </a>
+									  </li>
+									  <div class="clearfix"></div>
+									</ul>
+								</div>
+								<div class="modal-label"> 
+									  <h5 class="bold">Label</h5>
+									  <div pop-pup open-type="popover" template-url="card-detail/card-label.tpl.html" class="card-label-p label-color-{{label.color}}" ng-repeat="label in cardDetail.labels">{{label.name}}</div>
+									  <div pop-pup open-type="popover" template-url="card-detail/card-label.tpl.html" class="label add-label"><i class="flaticon-plus79"></i></div> 
+									   
+									  <div class="clearfix"></div>
+								</div> 
+							  
+								<div class="modal-update">
+									  <div class='time-last-update' ng-if='card.lastUpdated'>
+										  <h5 class="bold">Last update</h5>
+										  <p>{{card.lastUpdated}}</p>
+									  </div>
+									  <div ng-bind-html="cardDetail.desc" class="desc">
+											
+									  </div>
+									  <br>
+									  <div class="board-detail-des des" ng-click="modelCardDetail.desc = newlineTextarea(cardDetail.desc)" show-hide-popup popup-show="board-detail-des-write" popup-hide="board-detail-des">
+											<i class="flaticon-edition2"></i>
+											<span>Edit the description ...</span>
+											<div class="clearfix"></div>
+									  </div>
+									  
+									  <div class="board-detail-des-write des-write" style="display: none">
+											<form ng-submit="updateCard(cardDetail.id, {desc:modelCardDetail.desc})">
+												<textarea textarea-new-line id="text-editor" class="form-control" rows="10" ng-model="modelCardDetail.desc" placeholder="Enter text ..."></textarea>
+												<button  type="submit" class="btn btn-primary">Save</button>
+												<div class="hidebox1" show-hide-popup popup-show="board-detail-des" popup-hide="board-detail-des-write"><i class="flaticon-button18"></i></div>
+												<div class="clearfix"></div>
+											</form>
+									  </div> 
+									  <div class="clearfix"></div>
+								</div>
+								<div class="col-md-12 nopadding modal-attechment">
+								  <div class="header-modalacttachment">
+									<i class="flaticon-clip25"></i>
+									<h5> Attachment </h5>
+								  </div>
+								  <div ng-repeat="file in cardDetail.attachments track by $index" class="item-modal-attechment">
+									   <div class="col-md-3 nopadding imgupload imguploadImg">
+										 <img  ng-src="{{file.previews[0].url}}" alt="your image" height="100" />
+									   </div>
+									   <div class="col-md-9 img-upload">
+											<p class='nameImg'> {{file.name}} </p>
+											<p class='timeImg'>  added &nbsp;<time-ago from-time='{{ file.uploadedDate }}'></time-ago> </p>
+											<div class="btnpro">
+											  <a download="{{file.name}}" ng-href="{{file.url}}"  type="reset" class="btn btn-warning cancel">
+												  <i class="fa fa-download"></i>
+												  <span>Download</span>
+											  </a>
+											  <button ng-show='checkCover(file.mimeType)' ng-click="ActionConver(cardDetail.id,file.id,cardDetail.attachmentSelected.id)" type="button" class="btn btn-danger delete">
+												  <span ng-if="file.id == cardDetail.attachmentSelected.id"><i class="fa fa-trash"></i> Remove cover</span>
+												  <span ng-if="file.id != cardDetail.attachmentSelected.id"><i class="fa fa-plus-square"></i> Add cover</span>
+											  </button>
+											  
+											  <button pop-pup open-type="popover" template-url="card-detail/delete_attachment.tpl.html" type="submit" class="btn btn-upload start">
+												  <i class="fa fa-minus-circle"></i>
+												  <span>Delete</span>
+											  </button>
+											</div>
+										<div class="clearfix"></div>    
+										</div>
+										<div class="clearfix"></div>
+									  <div class="clearfix"></div>
+									</div>
+									<p pop-pup open-type="popover" template-url="card-detail/card-attact.tpl.html"  class="attachment-content">Add an Attachment...</p>
+								</div>
+								<div class="col-md-12 nopadding modal-relationShip">
+									<div class="header-relationShip">
+										<h5>  <i class="fa fa-users"></i> Card relationship </h5>
+									</div>
+									<div class="form-relationship" ng-if="hasMemberInBoard(appAssets.id)"> 
+										<form action="" class="ng-pristine ng-valid">
+											<p> <input type="text" class="searchNameCard ng-pristine ng-valid ng-touched" ng-model="search.displayName" placeholder="Search Card in Board {{board.displayName}}" style=""></p>
+										</form>
+										<ul class='listCard' ng-if="search.displayName" > 
+											<li  ng-repeat="card in boardPageAssets.cards | searchCardRelation:search.displayName  " ng-show="card.id != cardDetail.id">
+												<a class="itemCardRelation" ng-click="updateCard(cardDetail.id, {parentId:card.id})">
+													<span ng-if="checkparentCard(card.id,cardDetail.parentId)" class="icon-sm icon-check filter-cards-icon-check ng-scope"></span>
+													<p> 
+														<span class="spanCardDisplayName"> {{card.displayName  | notnewline}} </span>
+														<span class="spanlistName get-list" listid="{{card.idList}}"> 
+															<b> list: {{getlist.name}} </b>
+														</span>
+													</p>
+												</a>
+											<li>
+										</ul> 
+										<div class="noteSearchCard" ng-if="!search.displayName"> Search for the name card and click on the card to form relationships </div>
+									</div>
+									<div class="clear"></div>
+									<div ng-if="cardDetail.parentCard.length > 0" class="list-card-relationShip">
+										<div class="header-relationShip">
+											<h5>  List card relationship </h5>
+										</div>
+										<ul class='listCard'> 
+											<li  ng-repeat="card in cardDetail.parentCard" class="form-relationship">
+												<a class="itemCardRelation" change-card cardid="{{card.id}}" class="Namecard">
+													<span ng-if="checkparentCard(card.id,cardDetail.parentId)" class="fa fa-credit-card"></span>
+													<p> 
+														<span class="spanCardDisplayName"> {{card.displayName  | notnewline}} </span>
+														<span class="spanlistName get-list" listid="{{card.idList}}"> 
+															<b> list: {{getlist.name}} </b>
+														</span>
+													</p>
+												</a>
+												<a ng-click="updateCard(cardDetail.id, {parentId:card.id})" class="removeRelationship"> 
+													<i class="flaticon-cross-mark1"></i>
+												</a>
+											<li>
+										</ul> 
+										<div class='clear'></div>
+										<button class="btn btn-filter-relationship  btn-primary" ng-click="filterCardRelationShip(cardDetail.parentId)"> Filter Card Relationship </button>
+									</div>
+								</div>
+								<div class='showChecklist' ng-init="showEditCheckList = 0;showEditItemCheckList = 0;addItemChecklist = 0">
+									<div class="modal-check" ng-repeat="checklist in cardDetail.checklists track by $index">
+										<i class="flaticon-check33"></i>
+										<div class="header-modalcheck" ng-show='$parent.showEditCheckList !== checklist.id' >
+											<h5 ng-click='$parent.showEditCheckList = checklist.id'>{{checklist.name}}</h5>
+											<a pop-pup open-type="popover" template-url="card-detail/delete_check_list.tpl.html"  class="delete-check-list"> Delete </a>
+										</div>
+										<form class='edit-checklist' ng-show="$parent.showEditCheckList == checklist.id"> 
+											<input type='text' class="form-control" ng-model='checklist.name'>
+											<div class="save-checklist"> 
+												<input type="submit" ng-click="cardUpdateChecklists(checklist.id, {name: checklist.name})" value="Save" class="btn btn-primary btn-mini">
+												<a ng-click='$parent.showEditCheckList = 0' class="icon-lg flaticon-cross-mark1 js-cancel"></a>
+											</div>
+										</form>
+										<div class="checklist-progress">
+											<span class="checklist-progress-percentage">{{getChecklistProgress(checklist)}}%</span>
+											<div class="checklist-progress-bar">
+												<div class="checklist-progress-bar-current js-checklist-progress-bar" ng-style="{'width': getChecklistProgress(checklist) + '%'}"></div>
+											</div>
+										</div>
+										<ul class="list-checklist">
+											<li ng-repeat="checkItem in checklist.checkItems track by $index" >
+												<label>
+													<input check-item-checklist ng-click="cardUpdateChecklistItems(checkItem.id,{state : !checkItem.state ? 1 : 0 })" type="checkbox" class='input-checklist' ng-value="{{checkItem.id}}" ng-checked="checkItem.state"> 
+												</label> 
+												<form class="edit-item-checklist" ng-show="$parent.showEditItemCheckList === checkItem.id"> 
+													<input type='text' class="form-control" ng-model='checkItem.name'>
+													<div class='clear checklistDue'>
+														<div class="checkListItem-due">
+															<label> Due Date </label>
+															<input type="text" class="form-control" ng-model="checkItem.due" data-date-format="yyyy/MM/dd" name="date" bs-datepicker>
+														</div>
+														<div class="checkListItem-due">
+															<label> Due Time </label>
+															<input type="text" class="form-control" size="8" ng-model="checkItem.due" name="time" bs-timepicker>
+														</div>
+													</div>
+													<div class="save-item-checklist"> 
+														<button type="submit" ng-click="cardUpdateChecklistItems(checkItem.id,{ name: checkItem.name, due: checkItem.due })" class="btn btn-primary btn-mini"> Save </button>
+														<a ng-click='$parent.showEditItemCheckList = 0' class="icon-lg flaticon-cross-mark1 js-cancel"></a>
+													</div>
+													<a ng-click="cardDeleteChecklistItems(checkItem.id)" class='delete-item-checklist'> Delete </a>
+												</form>
+												<a ng-show="$parent.showEditItemCheckList !== checkItem.id" ng-click="$parent.showEditItemCheckList = checkItem.id"> {{checkItem.name}} <span ng-show="checkItem.due" class='time badge badge-important {{colorDue(checkItem,"checklistItem")}}' > {{checkItem.due | date:"yyyy/MM/dd 'at' h:mma"}}</span> </a>
+												
+											</li>
+										</ul>
+										<p ng-show='$parent.addItemChecklist !==  checklist.id' ng-click='$parent.addItemChecklist = checklist.id' class="add-item-check-list">Add a Item...</p>
+										<div ng-show='$parent.addItemChecklist ===  checklist.id' class="form-add-items-checklist" >
+											<p> Add Checklist Item </p>
+											<textarea class="form-control" rows="10" placeholder="Enter text ..." ng-model="addChecklistItem.name"></textarea>
+											<div class='clear checklistDue' >
+												<div class="checkListItem-due">
+													<label> Due Date</label>
+													<input type="text" class="form-control" ng-model="addChecklistItem.due" data-date-format="yyyy/MM/dd" name="date" bs-datepicker>
+												</div>
+												<div class="checkListItem-due">
+													<label> Due Time</label>
+													<input type="text" class="form-control" size="8" ng-model="addChecklistItem.due" name="time" bs-timepicker>
+												</div>
+											</div>
+											<button type="button" class="btn btn-primary" ng-click="cardAddChecklistItems(checklist.id, addChecklistItem)">Save</button>
+											<div ng-click='$parent.addItemChecklist = 0' class="hidebox2 form-checklist"><a class="icon-lg flaticon-cross-mark1 js-cancel"></a>
+			</div>
+											<div class="clearfix"></div>
+										</div> 
+										<div class="clearfix"></div>
+									</div>
+								</div>
+								<div class="model-comment">
+								  <div class="title-comment">
+									<i class="flaticon-chat9"></i>
+									<h5>Add comment</h5>
+								  </div>
+								  <form name="CardComment" ng-submit="cardComments(input.comment)">
+									  <div class="col-md-12 nopadding mem-comment" style="width:100%">
+										<div class="pull-left action-mem-img">
+											<span class='member' ng-if="appAssets.typeimg == 0" >
+												<span title="{{appAssets.displayName}}" class="ng-binding ng-scope"> {{appAssets.initialsName}}</span>
+											</span>
+											<img ng-if="appAssets.typeimg == 1" ng-src="{{appAssets.avatarHash | memberAvatar}}" alt="{{appAssets.displayName}}" title="{{appAssets.displayName}}" width="35" height="35">
+									   </div>
+										<div class="inline text-comment">
+										  <div class="icon-comment">
+											<i pop-pup open-type="popover" template-url="card-detail/card-attact.tpl.html"  class="flaticon-clip25"></i>
+											<i pop-pup open-type="popover" template-url="card-detail/card-member.tpl.html"  class="flaticon-avatar83"></i>
+											
+										  </div>
+										  <textarea id="text-editor-cmd" class="form-control" rows="10" placeholder="Write a comment..." ng-model="input.comment"></textarea>
+										</div>
+									  </div>
+									  <div class="save-comment">
+										<input type="submit" value="Save comment" id="submit" ng-disabled="!input.comment"/>
+									  </div>
+								  </form>
+								  <div class="model-activity" ng-init="showEditComment = 0">
+										<div class="activity">
+											<i class="glyphicon glyphicon-tasks"></i>
+											<span>&nbsp;Activity</span>
+										</div>
+											<div class="action-list" >
+												<div class="notifi-item" ng-class=" (activity.type == 10)?'notifycomment': '' " ng-repeat="activity in activitiesCard | messengernotify  track by $index " scroll-popover ng-if="(activity.type != 10) || (activity.type == 10 && activity.comment !== undefined) ">
+													<div ng-if="activity.type != 10">
+														<div class="notifi-item-avatar" >
+															<img ng-show="activity.members.typeimg == 1" ng-src="{{activity.members.avatarHash | memberAvatar}}" alt="{{activity.members.displayName}}" title="{{notification.members.displayName}}" width="35" height="35">
+															<span class="avatar-text modalico" ng-show="activity.members.typeimg == 0" style="display: inline-block;font-weight: 700" title="{{activity.members.displayName}}">
+																{{activity.members.initialsName}} 
+															</span>
+														</div>
+														<div class="notifi-item-content"  ng-bind-html='activity.temp'>
+														
+														</div>
+														<p class="notifi-item-time">
+															<time-ago from-time='{{ activity.addedDate }}'></time-ago>
+														</p>
+													</div>
+													<div ng-if="activity.type == 10">
+														<div class="action-item">
+															<div class="action-mem-img">
+																<span class='member' ng-if="activity.comment.members.typeimg == 0">
+																	<span title="{{activity.comment.members.displayName}}" class="ng-binding ng-scope"> {{activity.comment.members.initialsName}}</span>
+																</span>
+																<img ng-if="activity.comment.members.typeimg == 1" ng-src="{{activity.comment.members.avatarHash | memberAvatar}}" width="35px" height="35px">
+															</div>
+															<div class="action-mem-info" ng-show='$parent.showEditComment != activity.comment.id'>
+																	<span style="font-weight: bold; font-size: 15px; color: #777">{{activity.comment.members.displayName}} {{notification.data.idComment}}</span>
+																	<div class="action-current-comment">
+																		<p style="font-size: 13px; color: #666; padding-left: 10px;" ng-bind-html="activity.comment.content"></p>
+																	</div>
+															</div>
+															<div class="action-footer" ng-show='$parent.showEditComment != activity.comment.id'>
+																<p>&nbsp;<time-ago from-time='{{ activity.comment.addedDate }}'></time-ago></p>
+																<div class="action-edit-delete"  ng-show="activity.comment.idMember === appAssets.id">
+																	<p ng-click='$parent.showEditComment = activity.comment.id; modelActivity.content = newlineTextarea(activity.comment.content)'> Edit </p>
+																	<p pop-pup open-type="popover" template-url="card-detail/delete_comment.tpl.html"  class="delete-check-list"> Delete </p>
+																</div>
+															</div>
+															<form class="edit-command" ng-show='$parent.showEditComment === activity.comment.id' ng-submit="cardUpdateComments(activity.comment.id, modelActivity.content)">
+																<textarea textarea-new-line class="form-control" rows="10" class="form-control" ng-model='modelActivity.content'> </textarea>
+																<div class="save-item-checklist"> 
+																	<button type="submit" class="btn btn-primary btn-mini"> Save </button>
+																	<a ng-click='$parent.showEditComment = 0; modelActivity.content = activity.comment.content' class="icon-lg flaticon-cross-mark1 js-cancel"></a>
+																</div>
+															</form>
+														   <div class="clearfix"></div>
+														</div>
+													</div>
+												</div>
+										  </div>
+								</div>
+								</div>
+
+								<div class="clearfix"></div>  
+							</div>
+							<div class="col-md-3 button-group" ng-if="hasMemberInBoard(appAssets.id)">
+								<div class="selectbtn">
+									<div class="group-toggle">
+										<div class="popup-toggle-row clearfix">
+											<span class="toggle-label bold">Important</span>
+											<toggle ng-model="cardDetail.important" size="btn-sm" ng-change="updateCard(cardDetail.id, {important: {{cardDetail.important}} })" on="ON" off="OFF" onstyle="btn-success" ></toggle>
+										</div>
+										<div class="popup-toggle-row clearfix">
+											<span class="toggle-label bold">Urgent</span>
+											<toggle ng-model="cardDetail.urgent" size="btn-sm" ng-change="updateCard(cardDetail.id, {urgent: {{cardDetail.urgent}} })" on="ON" off="OFF" onstyle="btn-danger" ></toggle>
+										</div>
+									</div>
+									<div class="group-add">
+										<h5 class="bold">Add</h5>
+										<button class="btn btn-block btn-primary btn-member" pop-pup open-type="popover" template-url="card-detail/card-member.tpl.html" type="button"><i class="flaticon-avatar83"></i><span>&nbsp;Member</span></button>
+										<button class="btn btn-block btn-primary btn-label"  pop-pup open-type="popover" template-url="card-detail/card-label.tpl.html" type="button"><i class="flaticon-price14"></i><span>&nbsp;Labels</span></button>
+										<button class="btn btn-block btn-primary btn-checklist" pop-pup open-type="popover" template-url="card-detail/card-checklist.tpl.html" type="button"><i class="flaticon-round68"></i><span>&nbsp;Checklist</span></button>
+										<button class="btn btn-block btn-primary btn-calendar" pop-pup open-type="popover" template-url="card-detail/card-calender.tpl.html" type="button"><i class="flaticon-clock104"></i><span>&nbsp;Due Date</span></button>
+										<button class="btn btn-block btn-primary btn-calendar" pop-pup open-type="popover" template-url="card-detail/card-startdate.tpl.html" type="button"><i class="flaticon-clock104"></i><span>&nbsp;Start Date</span></button>
+										<button class="btn btn-block btn-primary btn-attachment" pop-pup open-type="popover" template-url="card-detail/card-attact.tpl.html" type="button"><i class="flaticon-clip25"></i><span>&nbsp;Attachment</span></button>
+									</div>
+									<div class="group-action">
+										<h5 class="bold">Action</h5>
+										<button class="btn btn-block btn-primary" pop-pup open-type="popover" template-url="card-detail/card-move.tpl.html"   type="button"><i class="flaticon-right11"></i><span>&nbsp;Move</span></button>
+										<button class="btn btn-block btn-primary" pop-pup open-type="popover" template-url="card-detail/card-copy.tpl.html"   type="button"><i class="flaticon-document28"></i><span>&nbsp;Copy</span></button>
+										
+										<button ng-show="!btnBoardDelete" class="btn btn-block btn-primary" type="button" 	ng-click="updateCard(cardDetail.id, {closed: 1}) ; btnBoardDelete = 1" style="margin-top: 10px;  margin-bottom: 20px;"><i class="flaticon-movie5"></i><span>&nbsp;Archive</span></button>
+										<button ng-show="btnBoardDelete == 1" class="btn btn-block btn-primary" type="button" ng-click="updateCard(cardDetail.id, {closed: 0}) ; btnBoardDelete = ''"><i class="icon-sm icon-refresh"></i><span>&nbsp;Send to board</span></button>
+										<button ng-show="btnBoardDelete == 1" class="btn btn-block btn-primary btn_red" type="button" 
+											pop-pup open-type="popover" template-url="card-detail/delete-card.tpl.html">
+											<i class="icon-sm icon-remove"></i>
+											<span>&nbsp;Delete</span>
+										</button>
+										
+									</div>
+								</div>
+							</div>
+				</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>

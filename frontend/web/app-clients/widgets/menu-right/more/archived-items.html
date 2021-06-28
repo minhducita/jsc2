@@ -1,0 +1,47 @@
+<div class='content_menu_right scrollbarchange' perfect-scrollbar  suppress-scroll-x="true">
+	<div class='menuright_archive_search'>
+		<input class="archive_search" ng-model="searchCard.displayName" type="text" placeholder="Search archive">
+		<a class="archive-controls-switch quiet-button show-archived"> Switch to lists </a>
+		<div class="clearfix"></div>
+	</div>
+	<div class='archive_content_full'>
+		<div ng-repeat="cardDetail in boardPageAssets.cards | filter:{closed:1} | filter:searchCard">
+			<div class="archive_item">
+				<img ng-if="cardDetail.attachmentSelected" ng-src="{{cardDetail.attachmentSelected.url}}">
+				<div class="list-card-labels" >
+					<span ng-repeat="label in cardDetail.labels" class="label-color-{{label.color}}"></span>
+				</div>
+				<a class="archived-item-title">
+					{{cardDetail.displayName}}
+				</a>
+				<div class="badges">
+					<div title="This card is archived." class="badge">
+						<span class="badge-icon icon-sm icon-archive"></span>
+						<span class="badge-text">Archived</span>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<p class="fn-card-arichive"> 
+				<a ng-click="updateCard(cardDetail.id, {closed: 0})"> Send to Board </a>
+				<span> - </span>
+				<a pop-pup open-type="popover" template-url="card-detail/delete-card.tpl.html" > Delete </a>
+			</p>
+		</div>
+	</div>
+	<div class='archive_content_list' >
+		<ul class="archive-list js-archive-items">
+			<li class="u-clearfix" ng-repeat="list in boardPageAssets.lists | filter:{closed:1}  | filter:searchCard">
+				<p class="item-name">
+					<span>{{list.name}}</span>
+				</p>
+				<div class="options">
+					<a ng-click="updateList(list.id, {closed: 0})" class="button-link js-reopen">
+						<span class="icon-sm icon-refresh"></span> 
+						Send to Board
+					</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,20 @@
+notification:
+ - Team:
+ 	. Add member: 'lyphuocnam added you to the team test thu team 1233 minutes ago'
+ 	. Remove member: 'lyphuocnam removed you from the team test thu team 123a minute ago'
+	. Change permision: 'lyphuocnam made you an admin of the team test thu team 123'
+ - Board:
+	. Add member: 'lyphuocnam added you to the board test'
+	. Change permision: 'lyphuocnam made you an admin on the board test'
+	. Remove member: 'lyphuocnam removed you from the board test'.
+	. Close board: 'lyphuocnam closed the board testjust now'
+ - Card	: Sau khi add member nhan thong bao
+	. Add member: 'lyphuocnam added you to the card test on test'
+	. Remove member: 'lyphuocnam removed you from the card test on testa few seconds ago'
+	. Comment: 'lyphuocnam commented on the card test on test
+		    dsfsdfsdf
+		    2 minutes ago'
+	. Add due: 'lyphuocnm  added a due date to the card on test 2 minutes ago'
+	. Move one : 'lyphuocnam removed you from the card test test on test2 minutes ago'
+	. attacment : 'lyphuocnam  added you to the card as on test a minute ago'
+	

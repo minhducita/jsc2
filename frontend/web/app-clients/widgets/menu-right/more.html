@@ -1,0 +1,76 @@
+<div class="menu-right-content menuright-default list-menu-right moremenu  scrollbarchange" perfect-scrollbar  suppress-scroll-x="true">
+	<div class="selection-list">
+		<ul>
+			<li class="board-menu-navigation-item">
+				<a ng-click="getMenuRight('setting','Setting','more')" class="board-menu-navigation-item-link js-open-settings">
+					<span class="icon-sm icon-gear board-menu-navigation-item-link-icon"></span> 
+					Settings
+				</a>
+			</li>
+			<li class="board-menu-navigation-item">
+				<a ng-click="getMenuRight('labels','Labels','more')" class="board-menu-navigation-item-link js-open-labels" >
+					<span class="icon-sm icon-label board-menu-navigation-item-link-icon"></span> 
+					Labels
+				</a>
+			</li>
+			<li class="board-menu-navigation-item">
+				<a ng-click="getMenuRight('archivedItems','Archived Items','more')" class="board-menu-navigation-item-link js-open-archive" >
+					<span class="icon-sm icon-archive board-menu-navigation-item-link-icon"></span> 
+					Archived Items
+				</a>
+			</li>
+			<li class="board-menu-navigation-item">
+				<a pop-pup open-type="popover" template-url="board/slackChanel_board.tpl.html" class="board-menu-navigation-item-link js-open-archive" >
+					<span class="icon-sm icon-archive board-menu-navigation-item-link-icon"></span> 
+					Slack Chanel
+				</a>
+			</li>
+		</ul>
+		<hr>
+		<ul class="board-menu-navigation">
+			<li class="board-menu-navigation-item">
+				<a pop-pup open-type='popover' template-url="board/add_cards_email_email.tpl.html" class="board-menu-navigation-item-link js-email" >
+					<span class="icon-sm icon-email board-menu-navigation-item-link-icon"></span> 
+					Email-to-board Settings
+				</a>
+			</li>
+			<li class="board-menu-navigation-item">
+				<a sclass="board-menu-navigation-item-link js-board-subscribe" >
+					<span class="icon-sm icon-subscribe board-menu-navigation-item-link-icon"></span>
+					<span class="js-subscribed-state">Subscribe </span>
+				</a>
+			</li>
+			<li class="board-menu-navigation-item">
+				<a pop-pup open-type='popover' template-url="board/copy_board.tpl.html" class="board-menu-navigation-item-link js-copy-board" >
+					<span class="icon-sm icon-board board-menu-navigation-item-link-icon"></span> 
+					Copy Board
+				</a>
+			</li>
+			<li class="board-menu-navigation-item">
+				<a pop-pup open-type='popover' template-url="board/print_and_export.tpl.html" class="board-menu-navigation-item-link js-share" >
+					<span class="icon-sm icon-share board-menu-navigation-item-link-icon"></span>
+					Print and Export
+				</a>
+			</li>
+		</ul>
+		<hr>
+		<ul class="board-menu-navigation">
+			<li class="board-menu-navigation-item">
+				<a pop-pup open-type='popover' template-url="board/leave_and_close_board.tpl.html" class="board-menu-navigation-item-link js-close-board" >
+					<span ng-if="appAssets.id !== boardPageAssets.idMember && hasMemberInBoard(appAssets.id)"> Leave Board... </span>
+					<span ng-if="appAssets.id !== boardPageAssets.idMember && !hasMemberInBoard(appAssets.id)"> Join Table... </span>
+					<span ng-if="appAssets.id === boardPageAssets.idMember"> Close Board... </span>
+				</a>
+			</li>
+		</ul>
+		<hr>
+		<form class="u-gutter">
+			<label for="id-short-url">Link to this board</label>
+			<input id="id-short-url" class="js-short-url" type="text" readonly="readonly" ng-model="LinkBoard">
+			<p class="quiet">
+				<span class="icon-sm icon-organization-visible" title="Visible to members in the team."></span>
+				Visible to members in the team.
+			</p>
+		</form>
+	</div>
+</div>

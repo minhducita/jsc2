@@ -1,0 +1,144 @@
+
+/*======CREATE CHANNEL======*/
+.nopadding{
+	padding-left: 0;
+	padding-right: 0;
+}
+.create-chanel{
+    background-color: #000 !important;
+}
+.grid{
+    margin-bottom: 0px !important;
+}
+.grid.simple .grid-body.no-border{
+    padding-bottom: 20px !important;
+}
+.page-sidebar {
+	background-color: #22262E !important;
+}
+.grid.simple .grid-title{
+	background-color: #F5F5F5 !important;
+}
+.grid.simple .grid-body{
+	background-color: #F5F5F5 !important;
+}
+.grid.simple .grid-title{
+	padding: 1px 15px 7px 15px !important;
+}
+.chanel-create h5{
+    margin-left: 10px;
+    font-weight: 600 !important;
+    text-align: center;
+    line-height: 15px;
+}
+.chanel-create hr{
+	margin-top: 0px !important;
+	margin-bottom: 0px !important;
+}
+.chanel-create .btn-create{
+	background-color: #0AA699 !important;
+    color: #fff !important;
+    padding: 6px 15px !important;
+    margin-top: 10px;
+    border-bottom: 1px solid #087F75;
+    
+}
+.chanel-create .btn-create:hover{
+	background-color: #087F75 !important;
+}
+.des-chanel{
+	padding-top: 7px;
+}
+.des-chanel textarea.form-control {
+    border-radius: 2px;
+    resize: none;
+    
+}
+.name-chanel .txtinput{
+	padding: 6px 16px !important;
+	min-height: 33px !important
+}
+.name-chanel .txtinput:focus{
+	background-color: #eee !important;
+	border-color: #66afe9;
+}
+.page-sidebar .page-sidebar-wrapper > ul > li > ul.sub-menu{
+    background-color: #F5F5F5 !important;
+    padding-top: 0px !important;
+}
+
+/*=====HEADER  CONTENT=====*/
+.pull-right{
+    margin-right: 15px;
+}
+.header-content{
+    margin-left: 190px;
+    line-height: 30px;
+}
+.header-content .setup .nameboard {
+    display: inline;
+    float: left;
+    font-size: 13px;
+    color: #fff;
+}
+.header-content .setup .trig {
+    float: left;
+    margin-left: 10px;
+    font-size: 13px;
+    color: #fff;
+} 
+.pull-right .calendar {
+    margin-right: 0px;
+    float: left;
+    color: #fff;
+}
+.menu-right {
+    display: inline-block;
+    margin-left: 10px;
+}
+.menu-right a{
+	color: #fff
+}
+.calendar a:hover{
+	color: #8AB0D1;
+	cursor: pointer;
+}
+.calen {
+    color: #fff;
+}
+.menu-right I:hover, .menu-right span:hover{
+	color: #8AB0D1; 
+}
+.setup:hover{
+	cursor: pointer;
+}
+.setup p:hover{
+	color: #8AB0D1;
+}
+/*==============LIST-BOX=================*/
+
+
+/*===============ALL POPUP================*/
+
+.popup-change-nameboard{
+	margin-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    border-radius: 3px;
+    width: 267px;
+    z-index: 10000000;
+    display: none;
+    float: left;
+    list-style: none;
+    text-shadow: none;
+    -webkit-box-shadow: 0px 0px 5px rgba(86, 96, 117, 0.2);
+    -moz-box-shadow: 0px 0px 5px rgba(86, 96, 117, 0.2);
+    box-shadow: 0px 0px 5px rgba(86, 96, 117, 0.2);
+    border: none;
+    border-radius: 3px;
+    font-size: 13px;
+    height: auto;
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgba(0,0,0,.15);
+} 

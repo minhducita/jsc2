@@ -1,0 +1,15 @@
+Options +FollowSymLinks
+IndexIgnore */*
+<ifModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header always set Access-Control-Allow-Headers "X-Requested-With, Content-Type"
+    Header always set Access-Control-Allow-Methods "POST, GET, PUT, DELETE, OPTIONS"
+    Header always set Access-Control-Max-Age "1728000"
+</ifModule>
+# use mod_rewrite for pretty URL support
+RewriteEngine on
+# if a directory or a file exists, use the request directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+# otherwise forward the request to index.php
+RewriteRule . index.php

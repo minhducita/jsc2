@@ -1,0 +1,45 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+			<div class="modal-header">
+				<button ng-click="$hide()" type="buttofcardDetail.attachmentSelected.urln" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<div ng-show="cardDetail.attachmentSelected.url" class="backgroud-board" ng-style="{'background-image': 'url('+cardDetail.attachmentSelected.url+')'}"></div>
+				<div class="title-modal list-box-header">
+					<div ng-if="!cardDetail.closed">
+						<h4 class="update-list list-box-header-name"><span class="semi-bold"> <i class="window-header-icon icon-lg icon-archive" ></i> Closed Boards</span></h4>
+					</div>
+					<div ng-if="cardDetail.closed">
+						<i class="flaticon-movie5" style="float:left"></i>
+						<h4 class="list-box-header-name"><span class="semi-bold">This card is archived.</span></h4>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+			<div class="modal-body" ng-if="menuBoard.boardCloses">
+				<div class="col-md-12 boards-close" ng-repeat="board in menuBoard.boardCloses">
+					<div class="close-board-title title-boards-close">
+						{{board.displayName}}
+					</div>
+					<div class="close-board-btn-reopen re-open-boards">
+						<a class="button-link js-reopen" ng-click="ReopenBoard(board)">
+							<span class="icon-sm icon-refresh"></span> Re-open
+						</a>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="modal-body" ng-if="menuBoard.boardCloses.length == 0"> 
+				<div class="col-md-12">
+					<div class="col-md-12 border-close-board-left"> 
+						No boards have been closed
+					</div>
+					<div class="col-md-3 border-close-board-right">
+						You have to have been a board admin to re-open a closed board.
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,123 @@
+<div class="popover" ng-init="popup_show = false" ng-hide="popup_show" tabindex="-1">
+	<div class="popover-content popover-width popup-add-list">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">List Actions</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-bodyacttach">
+			<p><a href=""> Add Card </a></p>
+			<p><a show-hide-popup popup-show="popup-copy" popup-hide='popup-add-list' href=""> Coppy List</a></p>
+			<p><a show-hide-popup popup-show="popup-move" popup-hide='popup-add-list' href=""> Move List</a></p>
+			<p><a href=""> Subscribe</a></p>
+			<hr>
+			<p><a show-hide-popup popup-show="popup-move-all" popup-hide='popup-add-list' href=""> Move All Cards in This List </a></p>
+			<p><a show-hide-popup popup-show="popup-archive-all" popup-hide='popup-add-list' href=""> Archive All Cards in This List </a></p>
+			<hr>
+			<p><a href=""> Archive This List</a> </p>
+		</div>
+	</div>
+	
+	<!-- popup copy -->
+	<div class="popover-content popover-width popup-copy popup-child">
+		<div class="form-header">
+			<a class='popup-back' show-hide-popup popup-show="popup-add-list" popup-hide='popup-copy' ><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Copy</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class=" ">
+				<p>Name List</p>
+				<input name="" class='form-control'> 
+				<button type="button" class="btn btn-addchecklist">Add</button>
+			</div>
+	</div>
+	<!-- popup move -->
+	<div class="popover-content popover-width popup-move popup-child">
+		<div class="form-header">
+			<a class='popup-back' show-hide-popup popup-show="popup-add-list" popup-hide='popup-move'><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Move</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="">
+			<form action="" method="post">
+				<p>Board</p>
+					<select class="js-select-board form-control">
+						<optgroup label="Boards">
+							<option value="568f1e03d4140aced704c5cd">Jooto</option>
+							<option value="55a466a057a02c2411057d3a">Welcome Board</option>
+						</optgroup>
+						<optgroup label="bluebloud group">
+							<option value="56933a4dada931509cbf7766">J00T0</option>
+							<option value="55c462016e30bc238eef102d">jobboard - PC</option>
+							<option value="55bb431f48bac375ec868d77">Jobboard mobile</option>
+						</optgroup>
+						<optgroup>
+							<option selected="selected" value="55a4687722bb191211facf13">vcbcv (current)</option>
+						</optgroup>
+					</select>
+				<p> Position </p>
+				<select class="js-select-position form-control">
+					<option value="top">1</option>
+					<option value="bottom" selected="selected">0 (current)</option>
+				</select>
+				<button type="button" class="btn btn-addchecklist">Move</button>
+			</form>
+		</div>
+	</div>
+	<!-- popup move All-->
+	<div class="popover-content popover-width popup-move-all popup-child">
+		<div class="form-header">
+			<a class='popup-back' show-hide-popup popup-show="popup-add-list" popup-hide='popup-move-all'><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Move</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="">
+			<ul class="select-list-card">
+				<li>
+					<a class="disabled" href="#">asdasd (current)</a>
+				</li>
+				<li>
+					<a>abc</a>
+				</li>
+				<li>
+					<a >dasdsa</a>
+				</li>
+				<li>
+					<a>asdas</a>
+				</li>
+				<li>
+					<a>sadas</a>
+				</li>
+				<li>
+					<a>asdsa</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- popup archive All-->
+	<div class="popover-content popover-width popup-archive-all popup-child">
+		<div class="form-header">
+			<a class='popup-back' show-hide-popup popup-show="popup-add-list" popup-hide='popup-archive-all'><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Move</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="">
+			This will remove all the cards in this list from the board. To view archived cards and bring them back to the board, click “Menu” > “Archived Items.”
+			<br><button type="button" class="btn btn-archive-all">Archive All</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,28 @@
+<div class="header-user">
+	<a class="header-btn js-open-add-menu" pop-pup="" open-type="popover" template-url="header/popup_plus.tpl.html"  aria-label="Create Board or Organization">
+		<i class="header-user-btn-icon light fa fa-plus"></i>
+	</a>
+	<a dropdown  show-class=".menu-profile"  class="header-btn header-member js-open-header-member-menu"  id="user-option"  href="#" >
+		<div  class="member">			
+			<img ng-show="identity.typeimg == 1" src="{{ identity.avatarHash | memberAvatar }}" width="35px">
+			<span ng-show="identity.typeimg == 0" class="avatar_header"> {{identity.initialsName}} </span>
+			<span class="member-gold-badge" title="This member has Trello Gold."></span>
+			<span class="hidden-xs header-btn-text js-member-name ">{{ identity.displayName }}</span>
+        </div>
+    </a>
+	<ul class="dropdown-menu pull-right menu-profile" role="menu" aria-labelledby="user-option">
+		<li><a href="#/me/{{identity.username}}"> Profile </a> </li>
+		<li><a href="#/me/{{identity.username}}/cards"> Cards </a> </li>
+		<li><a href="#/me/{{identity.username}}/account"> Setting </a> </li>
+		<li class="divider"></li>
+		<li><a ng-click="logout()"> <i class="fa fa-power-off"> </i> Logout</a></li>
+	</ul>
+	<a ng-show="countNotifcation  > 0" class="header-btn header-notifications js-open-header-notifications-menu"  ng-click="readNotification()" pop-pup="" open-type="popover" template-url="header/popup_notification.tpl.html" aria-label="Notifications">
+		<div class="fa fa-bell"></div>
+		<span class="badge animated bounceIn" id="msgs-badge">{{countNotifcation}}</span>
+	</a>
+
+	<a ng-show="countNotifcation == 0" class="header-btn header-notifications js-open-header-notifications-menu"  pop-pup="" open-type="popover" template-url="header/popup_notification.tpl.html" aria-label="Notifications">
+		<div class="fa fa-bell"></div>
+	</a>
+</div>

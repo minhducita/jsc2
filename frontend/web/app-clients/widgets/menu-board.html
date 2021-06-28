@@ -1,0 +1,110 @@
+<div id="boards-drawer" class="boards-drawer is-showns">
+    <div >
+        <div class="boards-drawer-header">
+            <h3>Boards</h3>
+        </div>
+        <div class="board-drawer-content u-fancy-scrollbar">
+            <input ng-model='searchBoard.displayName' class="js-search-boards" type="text" placeholder="Find boards by name…">
+            <div class="js-board-drawer-boards">
+                <div>
+                    <p class="quiet u-text-align-center hide" style="margin: 6px 4px 0 0; padding: 8px 12px;">No Boards</p>
+                    <div class="js-recent-boards">
+                        <div ng-init='showlist = true'>
+                            <div class="sidebar-section-header quiet js-sidebar-section-header bold">
+                                <i class="sidebar-section-header-icon fa fa-clock-o"></i>
+                                <span class="sidebar-section-header-title">Starred Boards</span>
+                                <i class="fa fa-minus sidebar-section-header-toggle-icon dark-hover js-collapse-section" ng-click='showlist = false' ng-show="showlist"></i>
+                                <i class="fa fa-plus sidebar-section-header-toggle-icon dark-hover js-expand-section" ng-click='showlist = true' ng-show="!showlist"></i>
+                            </div>
+                            <ul class="sidebar-boards-list js-board-list" ng-show="showlist">
+                                <li class="compact-board-tile" ng-repeat="board in filterBoard('boardStars') | filter:searchBoard">
+                                    <div class="compact-board-tile-wrapper">
+                                        <span class="compact-board-tile-background" ng-style="{'background-color': board.prefs.backgroundColor}"></span>
+                                        <span class="compact-board-tile-fade"></span>
+                                        <a class="js-open-board compact-board-tile-link dark" href="#{{board._links.url.href}}">
+                                            <span class="compact-board-tile-link-thumbnail" ng-style="{'background-color': board.prefs.backgroundColor}"></span>
+                                            <span class="compact-board-tile-link-text details">
+                                                <span class="compact-board-tile-link-text-name" title="J00T0">{{board.displayName}}</span>
+                                            </span>
+										</a>
+										<span class="ico">
+											<i ng-show="appAssets.id === board.idMember" pop-pup="" open-type="popover" template-url="menu-board/leave_and_close_board.tpl.html" class="fa fa-times"> </i> 
+											<i ng-click="toggleBoardStar(board.id)" class="fa is-starred fa-star-o"></i>
+										</span>
+									</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+					<div class="js-all-boards" ng-init='showlistmyboard = true'>
+                        <div class="" >
+                            <div class="sidebar-section-header quiet js-sidebar-section-header bold">
+                                <a class="dark-hover" href="/pegagroup">
+                                    <i class="fa fa-user"></i>
+                                    <span class="sidebar-section-header-title mod-clickable">My Board</span>
+                                    <span class="icon-sm icon-business-class sidebar-section-header-bc-icon hide js-has-business-class"></span>
+                                </a>
+								<i class="fa fa-minus sidebar-section-header-toggle-icon dark-hover js-collapse-section" ng-click='showlistmyboard = false' ng-show="showlistmyboard"></i>
+                                <i class="fa fa-plus sidebar-section-header-toggle-icon dark-hover js-expand-section" ng-click='showlistmyboard = true' ng-show="!showlistmyboard"></i>
+							</div>
+                            <ul class="sidebar-boards-list js-board-list" ng-show="showlistmyboard">
+                                <li class="compact-board-tile"  ng-repeat="board in filterBoard('myBoard') | filter:searchBoard | filter:{closed:0}">
+                                     <div class="compact-board-tile-wrapper">
+                                        <span class="compact-board-tile-background" ng-style="{'background-color': board.prefs.backgroundColor}"></span>
+                                        <span class="compact-board-tile-fade"></span>
+                                        <a class="js-open-board compact-board-tile-link dark" href="#{{board._links.url.href}}">
+                                            <span class="compact-board-tile-link-thumbnail" ng-style="{'background-color': board.prefs.backgroundColor}"></span>
+                                            <span class="compact-board-tile-link-text details">
+                                                <span class="compact-board-tile-link-text-name" title="J00T0">{{board.displayName}}</span>
+                                            </span>
+										</a>
+										 <span class="ico">
+											<i ng-show="appAssets.id === board.idMember" pop-pup="" open-type="popover" template-url="menu-board/leave_and_close_board.tpl.html" class="fa fa-times"> </i> 
+											<i ng-click="toggleBoardStar(board.id)" class="fa {{(board.starsCount == 1)?'is-starred':''}} fa-star-o"></i>
+										</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="js-recent-boards" ng-repeat="(i, organization) in menuBoard.organizations" ng-init='showlist = true'>
+                        <div>
+                            <div class="sidebar-section-header quiet js-sidebar-section-header bold">
+                                <i class="sidebar-section-header-icon fa fa-clock-o"></i>
+                                <span class="sidebar-section-header-title">{{organization.displayName}}</span>
+								<i class="fa fa-minus sidebar-section-header-toggle-icon dark-hover js-collapse-section" ng-click='showlist = false' ng-show="showlist"></i>
+                                <i class="fa fa-plus sidebar-section-header-toggle-icon dark-hover js-expand-section" ng-click='showlist = true' ng-show="!showlist"></i>
+                          </div>
+                            <ul class="sidebar-boards-list js-board-list" ng-show="showlist">
+                                <li class="compact-board-tile"  ng-repeat="board in menuBoard.boards | orderBy: 'id' | filter: {idOrganization: organization.id, displayName: searchBoard.displayName} track by $index ">
+                                     <div class="compact-board-tile-wrapper">
+                                        <span class="compact-board-tile-background" ng-style="{'background-color': board.prefs.backgroundColor}"></span>
+                                        <span class="compact-board-tile-fade"></span>
+                                        <a class="js-open-board compact-board-tile-link dark" href="#{{board._links.url.href}}">
+                                            <span class="compact-board-tile-link-thumbnail" ng-style="{'background-color': board.prefs.backgroundColor}"></span>
+                                            <span class="compact-board-tile-link-text details">
+                                                <span class="compact-board-tile-link-text-name" title="J00T0">{{board.displayName}}</span>
+                                            </span>
+										</a>
+										<span class="ico" >
+											<i ng-show="appAssets.id === board.idMember" pop-pup="" open-type="popover" template-url="menu-board/leave_and_close_board.tpl.html" class="fa fa-times"> </i> 
+											<i ng-click="toggleBoardStar(board.id)" class="fa {{(board.starsCount == 1)?'is-starred':''}} fa-star-o"></i>
+										</span>
+									</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="js-board-drawer-buttons">
+                <div>
+                    <a pop-pup="" open-type="popover" template-url="board/create-board.tpl.html" class="quiet-button js-add-board" href="#">Create new board…</a>
+                    <a class="quiet-button js-pin" href="#">Always keep this menu open.</a>
+                    <a class="quiet-button hide js-unpin" href="#">Don’t keep this menu open.</a>
+                    <a pop-pup="" open-type="dialog" template-url="board/see_closed_boards.tpl.html" class="quiet-button js-open-closed-boards" href="#">See closed boards…</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+-- phpMyAdmin SQL Dump
+-- version 4.0.10.18
+-- https://www.phpmyadmin.net
+--
+-- ホスト: bi.cekhenpprsiu.us-west-2.rds.amazonaws.com
+-- 生成日時: 2016 年 12 月 29 日 13:50
+-- サーバのバージョン: 5.6.27-log
+-- PHP のバージョン: 5.3.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+--
+-- データベース: `biuser`
+--
+
+-- --------------------------------------------------------
+
+--
+-- テーブルの構造 `気象情報`
+--
+
+CREATE TABLE IF NOT EXISTS `気象情報` (
+  `地点名` varchar(50) NOT NULL,
+  `年月日` date NOT NULL,
+  `降水量合計` double DEFAULT '0',
+  `降水量最大１時間` double DEFAULT '0',
+  `降水量最大１０分間` double DEFAULT '0',
+  `気温平均` double DEFAULT '0',
+  `気温最高` double DEFAULT '0',
+  `気温最低` double DEFAULT '0',
+  `風向風速平均風速` double DEFAULT '0',
+  `風向風速最大風速風速` double DEFAULT '0',
+  `風向風速最大風速風向` varchar(100) DEFAULT NULL,
+  `風向風速最大瞬間風速風速` double DEFAULT '0',
+  `風向風速最大瞬間風速風向` varchar(100) DEFAULT NULL,
+  `日照時間` double DEFAULT '0',
+  `雪降雪合計` double DEFAULT '0',
+  `雪最深積雪値` double DEFAULT '0',
+  `天気概要昼` varchar(100) DEFAULT NULL,
+  `天気概要夜` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`地点名`,`年月日`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

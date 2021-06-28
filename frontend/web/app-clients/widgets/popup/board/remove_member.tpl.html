@@ -1,0 +1,16 @@
+<div class='subProfile'>
+	<div class="menu-right-header">
+		<a ng-click="getPopupover('info-member')" class="backdefaul"> 
+			<i class="fa fa-arrow-left"></i> 
+		</a>
+		<h4>You want to remove a member?</h4>
+		<div class="modal-close">
+			<i class="flaticon-cross-mark1" ng-click="$hide()"></i>
+		</div>
+	</div>
+	<div class="content">
+		<hr>
+		<p style="font-weight: normal;"> The members will be removed from all of the cards in this table. They will get the message. </p>
+		<button class="btn-leave-board" type="button" ng-click="removeMemberOfBoard(member.id)"> Remove member </button>
+	</div>
+</div>

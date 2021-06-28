@@ -1,0 +1,47 @@
+<div class="popover" tabindex="-1">
+	<div class="popover-content popover-width popover-attachment">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Attachment</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-bodyacttach">
+			<div class="uploader">
+                <div class="realfile">
+                    <input type="file" class="file"  ngf-select="cardAttachments($files, $invalidFiles)"
+                          ngf-pattern = "'image/*,text/*,application/*,*.rar'" 
+						  ngf-accept = "'image/*, .doc, .docx, .pdf, .txt, .ppt, .pptx, .pps, .ppsx, .xls, .xlsx, .zip, .rar'" 
+						  ngf-max-height = "5000" 
+						  ngf-max-size = "100MB">
+                </div>
+                <a class="btn btn-addchecklist btn-a"> Computer </a>
+            </div>
+		</div>
+		<!-- <div class="txt-acttach">
+			<p>Attach a link</p>
+			<input type="text" class="col-md-12 txtinput" placeholder="Paste any link here">
+			<button type="button" class="btn btn-addchecklist">Acttach</button>
+		</div>
+		<br> -->
+	</div>
+	<div class="popover-content popover-width popover-attachment-browser" id="profile" style='display:none'>
+		<div class="form-header">
+			<a class="popup-back" show-hide-popup popup-show="popover-attachment" popup-hide="popover-attachment-browser"><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Upload file</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="content">
+			<div class="uploader">
+				<div class="realfile" method="POST" action="" enctype="multipart/form-data">
+					<input class="upload-avatar" type="file">
+				</div>
+				<a class="button-link fakefile"><span class="icon-sm icon-attachment"></span> Upload a new picture</a>
+			</div>
+		</div>
+	</div>
+</div>

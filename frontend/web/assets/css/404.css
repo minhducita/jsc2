@@ -1,0 +1,42 @@
+/*=================404===================*/
+.error-body {
+    background: url("../img/404_img.jpg") no-repeat center center fixed;
+    background-position: center bottom;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.error-body .btn-primary {
+    background-color: #0AA699;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 34px;
+}
+.error-container .error-number {
+    color: #fff;
+    font-size: 140px;
+    text-align: center;
+    font-weight: 600;
+    line-height: 130px;
+    text-shadow: rgba(0, 0, 0, 0.2) 2px 6px 5px, rgba(255, 255, 255, 0.4) 0px -4px 30px;
+}
+.error-container .error-description {
+    color: #fff;
+    font-size: 32px;
+    text-align: center;
+    font-weight: 300;
+}
+.error-container .error-description-mini {
+    color: #fff;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.error-container {
+    padding-top: 53px;
+    font-family: 'Open Sans';
+}
+/*================END 404==================*/

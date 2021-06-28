@@ -1,0 +1,46 @@
+●編集したであろうファイル
+
+■/usr/local/apache/htdocs/CLASSIFIED/src/designs/clsfd
+ここに入っている
+clsfd_accommo_list.tpl
+clsfd_circle_list.tpl
+clsfd_sell_list.tpl
+clsfd_work_list.tpl
+
+ここで、タイトルの前に【有料枠】【広告枠】つけるように書いてる
+
+■その他何書いてあるかわからないけどあやしそう
+/usr/local/apache/htdocs/CLASSIFIED/htdocs/js
+clsfd.js
+ads_clsfd.js
+
+●データベース
+
+mng_fixedpost ... 有料固定枠に登録されたレコードを管理するためのテーブルです。
+mst_fixedpost ... 各エリア各カテゴリの有料固定枠の上限数、価格が登録されているマスタです。値上げの際には、ここをいじって下さい。
+mng_prposts ... 広告枠に登録されたレコードを管理するためのテーブルです。manage.nichigopress.jpから入力されたデータが入ってます。
+
+※ 各カテゴリのテーブルに後付でつけたカラムがあります。以下、その説明です。
+pr_flg ... 広告枠か否かを判断するためのフラグです。
+fxp_flg... 有料固定枠か否かを判断するためのフラグです。
+ex_fxp_flg...過去に有料固定枠だったかを判断するためのフラグです。クラシファイドポストの管理画面で、表示されます。
+
+
+●有料固定枠申し込みページ ( /usr/local/apache/htdocs/SSL/payment/fixedpost/ )	
+※SPからPCに飛ばす部分になるので関係なさそうだけど一応by三品
+
+クラシファイドで投稿を新規作成後に、有料固定枠申し込みのボタンが有効になります。
+有料固定枠申し込みページは、申込みボタンクリック後にsslページにて実行されます。(Paypal連携のため、SSL必須)
+	
+テンプレートは、Smartyを使っています。
+	
+・apply.phpは、申し込み画面になります。
+
+・confirm.phpは、申込内容の確認画面になります。
+
+・paypal.phpは、Paypal支払い画面に必要な情報(掲載場所、期間、金額など)を渡して、Paypal支払い画面に飛ばすための処理になります。
+
+・receiver.phpは、Paypal支払い画面でユーザが支払い処理をした結果の情報(処理の終了ステータス、クレジット情報以外の個人情報)を受け取る処理になります。
+
+・confirm.phpは、すべての処理結果を最終的にユーザにお知らせするための画面になります。
+参考：https://ssl.nichigopress.jp/payment/fixedpost/instruction/

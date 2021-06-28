@@ -1,0 +1,57 @@
+.notification h3.aboutTitle {
+	font-weight:bold;
+}
+.notification h3.aboutTitle i {
+	font-size: 20px;
+}
+.notification .NotificationContent {
+	width:100%;
+}
+
+.notification .NotificationContent li {
+	width: 100%;	
+	float: left;
+	border-bottom: 1px solid #ede6e6;
+	margin-bottom: 15px;
+    padding-bottom: 15px;
+}
+.notification .NotificationContent li.lastchildLi {
+	border-bottom: none;
+}
+
+.notification .contentNotify p {
+	font-weight:bold;
+}
+.avatarNotify {
+	float: left;
+    margin-right: 10px;
+    background: #d6dadc;
+    width: 35px;
+    font-weight: bold;
+    border-radius: 3px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+}
+.contentNotify {
+	float: left;
+	width:85%;
+}
+.contentNotify p {
+	margin: 0px;
+}
+.contentNotify p span {
+	color: #079388;
+}
+.contentNotify p a {
+	text-decoration:underline;
+}
+.contentNotify .notifi-item-time {
+	font-style: italic;
+	font-size:11px;
+}
+.notifi-item-comment {
+	background-color: #e6e6e6;
+    padding: 10px;
+    margin: 10px 0px;
+}

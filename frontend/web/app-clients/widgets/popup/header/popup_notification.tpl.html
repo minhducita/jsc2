@@ -1,0 +1,31 @@
+<div class="popover notification"  tabindex="-1">
+	<div class="popover-content popover-width popover-label ">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Notifications</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-notifi-content u-fancy-scrollbar scrollbarchange"  perfect-scrollbar  suppress-scroll-x="true"  ng-show="notifications.length > 0" >
+			<div class="notifi-item" ng-repeat="notification in notifications | messengernotify " scroll-popover ng-if='notification.type > 0'>
+				<div class="notifi-item-avatar" >
+					<img ng-show="notification.members.typeimg == 1" ng-src="{{notification.members.avatarHash | memberAvatar}}" alt="{{notification.members.displayName}}" title="{{notification.members.displayName}}" width="30" height="30">
+                    <span class="avatar-text modalico" ng-show="notification.members.typeimg == 0" title="{{notification.members.displayName}}">
+                        {{notification.members.initialsName}} 
+					</span>
+				</div>
+				<div class="notifi-item-content" style="display: inline; margin: 0 6px 0 0; word-wrap: break-wor;" ng-bind-html='notification.temp'></div>
+				<p class="notifi-item-time">
+					<time-ago from-time='{{ notification.addedDate }}'></time-ago>
+				</p>
+			</div>
+			<div class="notifi-item"> 
+				<p> <a href="/#/notifications/{{menuBoard.username}}"> See all notifications </a> </p>
+			</div>
+		</div>
+		<div class="popup-notifi-content no_notification" id="scrollbar-1" ng-show="notifications.length == 0" >
+			<span> No Notifications </span>
+		</div>
+	</div>	
+</div>

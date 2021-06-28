@@ -1,0 +1,67 @@
+<div id="chanel-detail">
+    <div class="tabbed-pane-header">
+        <div class="tabbed-pane-header-wrapper u-clearfix">
+		    <a class="tabbed-pane-header-image profile-image is-editable js-change-avatar-profile">
+                <img ng-show="Profile.typeimg == 1" src="{{ Profile.avatarHash | memberAvatarBig }}" alt="{{Profile.displayName}}" title="{{Profile.displayName}}" width="85" height="85">
+                <span ng-show="Profile.typeimg == 0" class="initialsName">
+					{{Profile.initialsName}}
+				</span>
+                <span class="profile-image-change-text"  pop-pup open-type="popover" template-url="me/attact.tpl.html">Change</span>
+            </a>
+            <div class="tabbed-pane-header-details">
+                <div ng-show="!showProfile" class="js-current-details">
+                    <div class="tabbed-pane-header-details-name">
+                        <h1 class="u-inline">{{Profile.displayName}}</h1>
+                    </div>
+                    <div class="tabbed-pane-header-details-content">
+						{{Profile.initialsName}}
+					</div>
+                    <a  ng-click="showProfile = true; editProfile()" class="button-link tabbed-pane-header-details-edit js-edit-profile">
+                        <span class="fa fa-edit"></span> Edit Organization
+                    </a>
+                </div>
+                <form ng-show="showProfile" name="DetailBoard" class="js-profile-form" ng-submit="updateMeProfile(formProfile)">
+                    <p class="error js-profile-form-error hide"></p>
+					<div class="form_input">
+						<label>Full Name</label>
+						<input ng-class="{ 'error-control-input': errors['displayName'] && submitted}" type="text" ng-model="formProfile.displayName" name="displayName">
+						<span class="help-block error">{{errors.displayName}}</span>
+					</div>
+                    <div class="form_input">
+						<label>Initials</label>
+						<input ng-class="{ 'error-control-input': errors['initialsName'] && submitted}" type="text" ng-model="formProfile.initialsName" name="initialsName">
+						<span class="help-block error">{{errors.initialsName}}</span>
+					</div>
+					<input class="primary wide js-submit-profile" type="submit" value="Save">
+                    <input  ng-click="showProfile = false" class="js-cancel-edit-profile" type="button" value="Cancel">
+                </form>
+            </div>
+        </div>
+        <div class="tabbed-pane-nav u-clearfix">
+            <ul>
+                <li class="tabbed-pane-nav-item">
+                    <a class="tabbed-pane-nav-item-button js-member-profile" ng-class="{'active':!$stateParams.optionParams}" href="/#/me/{{Profile.username}}">Profile</a>
+                </li>
+                <li class="tabbed-pane-nav-item">
+                    <a class="tabbed-pane-nav-item-button js-member-cards" ng-class="{'active':$stateParams.optionParams == '/cards'}" href="/#/me/{{Profile.username}}/cards">Cards</a>
+                </li>
+                <li class="tabbed-pane-nav-item">
+                    <a class="tabbed-pane-nav-item-button js-member-account" ng-class="{'active':$stateParams.optionParams == '/account'}" href="/#/me/{{Profile.username}}/account">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tabbed-pane-main-col u-clearfix chanel-profile">
+            <div ng-if="!$stateParams.optionParams">
+                <ng-include src="'/app-clients/views/me/profile.html'"></ng-include>
+            </div>
+			
+            <div ng-if="$stateParams.optionParams == '/cards'">
+                <ng-include src="'/app-clients/views/me/cards.html'"></ng-include>
+            </div> 
+            <div ng-if="$stateParams.optionParams == '/account'">
+                <ng-include src="'/app-clients/views/me/account.html'"></ng-include>
+            </div>
+        </div><!-- body-->
+    </div>
+    <div class="clearfix"></div>
+</div>

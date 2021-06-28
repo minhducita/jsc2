@@ -1,0 +1,15 @@
+<div class='activity action-list u-fancy-scrollbar scrollbarchange' perfect-scrollbar  suppress-scroll-x="true">
+	<div class="notifi-item" ng-repeat="notification in boardPageAssets.notifications | messengernotify ">
+		<div class="notifi-item-avatar" >
+			<img ng-show="notification.members.typeimg == 1" ng-src="{{notification.members.avatarHash | memberAvatar}}" alt="{{notification.members.displayName}}" title="{{notification.members.displayName}}" width="35" height="35">
+			<span class="avatar-text modalico" ng-show="notification.members.typeimg == 0" style="display: inline-block;font-weight: 700" title="{{notification.members.displayName}}">
+				{{notification.members.initialsName}}
+			</span>
+		</div>
+		<div class="notifi-item-content" ng-bind-html='notification.temp'></div>
+		<p class="notifi-item-time">
+			<time-ago from-time='{{ notification.addedDate }}'></time-ago>
+		</p>
+	</div>
+	<p class='viewAll' ng-show="notifycount == notifyLimit"> <a ng-click="loadMoreNotify()" style='color:#333'> Load more Activity</a>
+</div>

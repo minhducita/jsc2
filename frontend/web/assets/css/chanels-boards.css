@@ -1,0 +1,220 @@
+#member-chanels-boards-views .chanels-boards-section {
+    margin-bottom: 20px;
+}
+#member-chanels-boards-views .chanels-boards-section hr {
+    margin-left: 15px;
+    margin-right: 10px;
+
+}
+#member-chanels-boards-views .chanels-boards-section .chanels-boards-section-header {
+    margin: 0 0 5px 10px;
+    padding: 0 0 11px;
+    position: relative;
+}
+#member-chanels-boards-views .chanels-boards-section .chanels-boards-section-header .chanel-name {
+    font-size: 14px;
+}
+#member-chanels-boards-views .chanels-boards-header-options {
+    display: inline-block;
+}
+#member-chanels-boards-views .chanels-boards-header-options a {
+     background-color: #e8e8e8;
+     border-radius: 3px;
+     color: #8c8c8c;
+     display: inline-block;
+     margin-left: 8px;
+     padding: 6px 9pt 6px 10px;
+     text-decoration: none;
+}
+
+/* popup calender card*/
+.model-calendar {
+	top: -25px !important;
+	width: 100%;
+    position: relative;	
+}
+.model-calendar .modal-close-calendar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    z-index: 1;
+}
+.model-calendar .modal-close-calendar i {
+	position: absolute;
+    top: 0px;
+    right: 0px;	
+	cursor:pointer;
+}	
+.model-calendar .fc-toolbar {
+	margin-right: 35px;
+    margin-top: 10px;
+}
+.model-calendar .modal-close-calendar i:before {
+    font-size: 18px !important;
+    color: #878787;
+}
+.model-calendar .modal-dialog {
+	width:100%;
+	margin:auto;
+}
+.model-calendar .fc-event {
+    border: none;
+    background-color: #FFF;
+    padding: 5px;
+    min-height: 20px;
+    color: #000;
+    margin: 0px 3px 10px 3px;
+    font-size: 14px;
+    font-weight: bold;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.model-calendar .activeHover {
+	z-index: 5
+}
+.model-calendar .activeHoverEvent {
+	min-height: 100%;
+	position: absolute;
+	width: 200px;
+	background: yellow;
+}
+.model-calendar .card-labels{
+	min-width: 10px;
+    height: 0px;
+}
+.model-calendar #addCardCalendar {
+	color:#f5f5f5;
+	position:absolute;
+}
+.model-calendar .fc th,.model-calendar .fc td {
+	cursor:pointer;
+}
+.model-calendar .fc-day.dayhover  {
+	background:#d6dadc !important;
+}
+/* CArd detail relationship */
+.relationship-item {
+	padding-left: 20px;
+}
+.form-relationship {
+	margin-top: 35px;
+	padding-top: 10px;
+	position: relative;
+	border: 1px solid #dfdfdf;
+	min-height: 50px;
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+	padding-bottom:10px;
+}
+.form-relationship .searchNameCard {
+	position: absolute;
+	top: -20px;
+	left:-2px;
+	outline:1 !important;
+}
+.form-relationship  input:not([type="file"]):focus {
+	background-color: #fff;
+}
+.form-relationship  ul {
+	margin-top: 10px;
+	padding-left: 10px;
+	width: 100%;
+	float: left;
+	max-height: 200px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.form-relationship ul li {
+	width:95%;
+	margin-left:10px;
+	margin-bottom: 10px;
+}
+.form-relationship ul li span.icon-check {
+	color: #009688;
+    float: left;
+    margin-top: 15px;
+	margin-right: 10px;
+}
+.form-relationship .spanCardDisplayName, .form-relationship .spanlistName {
+	display:block;
+	width:100%;
+	line-height: 20px;
+	text-transform:capitalize;
+}
+.form-relationship .noteSearchCard {
+	text-align: center;
+    color: #a0a0a0;
+    margin-top: 15px;
+}
+.list-relationship-item {
+	max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #dfdfdf;
+    position: relative;
+    padding-top: 15px;
+    top: -17px;
+}
+.itemCardRelation {
+	display: block;
+    border: 1px solid #dfdfdf;
+    line-height: 30px;
+    padding: 0px 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+.itemCardRelation:hover {
+	background-color:#dfdfdf
+}
+.itemCardRelation p {
+	margin:5px 0px;
+}
+.list-card-relationShip {
+	border: 1px solid #dfdfdf;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #dfdfdf;
+	padding: 15px 10px 0px 10px;
+	position: relative;
+}
+.list-card-relationShip .form-relationship {
+	margin-top:0px;
+	border:none;
+	position: relative;
+	padding:0px;
+}
+.list-card-relationShip .header-relationShip {
+	position: absolute;
+    z-index: 1;
+    background-color: #f5f5f5;
+    width: 160px;
+    top: -17px;
+}
+.list-card-relationShip .removeRelationship {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+.list-card-relationShip .fa-credit-card {
+	float: left;
+    margin-top: 20px;
+    margin-right: 15px;
+}
+.list-card-relationShip .listCard {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0px 10px 0px 0px;
+	margin: 10px 0px 0px 0px;
+}
+.model-calendar .fc-future{
+    background-color:#e2e4e6 
+}
+.model-calendar .fc-other-month{
+    background-color:#ebebeb ;
+}
+.btn-filter-relationship {
+	margin-bottom: 10px;
+}

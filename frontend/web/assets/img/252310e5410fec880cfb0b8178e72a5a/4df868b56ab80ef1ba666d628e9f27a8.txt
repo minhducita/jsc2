@@ -1,0 +1,117 @@
+﻿Những {{xyz}} trong nội dung email có giá trị tương ứng như phần giải thích dứoi như sau:
+------------------------------------------
+送信対象：đôi tượng send mail
+担当者、担当者メアドの項目が設定されているイベント情報 ( những event nào có nhập mục 担当者、担当者)
+
+送信時間：thời gian gửi
+イベント開催日の前日の１３時 vào 13h( time zone: Tokyo/Japan) trước 1 ngày event được tổ chức
+
+■但し、中継の場合は、東京以外のメールは送信しない
+------------------------------------------
+
+
+{{担当者}}		新規項目
+{{開催都市}}	セミナー開催都市名（東京、大阪、福岡等）
+{{開催日}}		セミナー開催日　YYYY/MM/DD
+{{曜日}}		セミナー開催曜日
+
+{{前セミナー開始時刻 ngày giờ của seminar trước đó}}　前セミナーの開始時刻  hh:mm ( dạng hiện thị)
+{{前セミナータイトル title seminar trước}}　前セミナーのセミナータイトル
+{{本セミナー開始時刻 ngày giờ seminar chính}}　該当セミナーの開始時刻  hh:mm
+{{本セミナータイトル title của seminar chính}}　該当セミナーのセミナータイトル
+
+■前セミナーの判定方法 
+該当セミナーと開催地が同じで、直前のセミナー（１つ前まで）
+seminar trước là những seminar cùng địa điểm, những khác giờ ví dụ:
+seminar hiện tại có giờ từ 11h-12h của ngày 20/7/2016 mà coi trên lịch có seminar khác cũng 
+có địa điểm là Tokyo mà có giờ 10h-11h của ngày 20/7/2016. Tức là cùng địa điểm ví dụ Tokyo
+và cùng ngày chỉ khác giờ. Nếu không có thì để trống( lập trình để xác định)
+
+
+{{中継案内}}
+④中継について
+当日は、○○との中継となりますためご協力をお願い申し上げます。
+
+■中継セミナーの判定方法
+１．開催地が東京
+２．同じ日時に、別の都市で、同じタイトルのセミナー
+（○○には、他都市の名前が入ります。（例：大阪、名古屋））
+biến {{中継案内}} trong nội dung email gọi là những seminar chuyển tiếp.
+Tức là cùng 1 loại seminar, cùng title cùng thời gian, chỉ khác nơi tổ chức.
+Ví dụ: một seminar có title là abc, time 9:30 địa điểm tổ chức tokyo, mà người phụ trách
+copy nhiều bản để tổ chức nhiều nơi như osaka,nagoya... gọi là seminar chuyển tiếp.
+Xử lý: xét có title, time giống, mà có nhiều địa điẻm tổ chức khác nhau thì gọi ra nội dung email như sau:
+biến {{中継案内}} sẽ có nội dung:
+④中継について
+当日は、○○との中継となりますためご協力をお願い申し上げます。
+( trong ○○ sẽ là tên của địa điểm tổ chức khác, ví dụ nếu có 2 thành phố osaka và nagoya cũng tổ
+chức sự kiện đó thì ghi như sau ( chỉ có 1 thành phố thì bỏ dấy phẩy ra là được):
+    ④中継について
+    当日は、大阪、名古屋との中継となりますためご協力をお願い申し上げます。
+
+{{参加予定者リスト}} danh sach nguoi dang ky 
+
+Hiện thị theo form dưới
+NO.　漢字氏名（ふりがな）様( tên) / 興味のある国( quốc gia) / 渡航予定次期( ngày xuất phát dự kiến 出発時期field) 
+
+例： ví dụ 
+1. 竹澤　直人(たけざわ　なおと) 様  / [アメリカ][オーストラリア][ニュージーランド][カナダ][イギリス] / 1年以内[2017年07月まで]
+2. 近藤　亮介(こんどう　りょうすけ) 様  / [カナダ][オーストラリア][ニュージーランド] / 1年以内[2017年07月まで]
+3. 齊藤　好(さいとう　このみ) 様  / [アメリカ][オーストラリア][ニュージーランド][カナダ] / 1年以内[2017年07月まで]
+4. 長井　一樹(ながい　かずき) 様  / [アメリカ][オーストラリア][ニュージーランド][香港] / 未選択
+
+
+
+
+------------------------------------------
+送信元：school@jawhm.or.jp ( from)
+送信先：担当者メアド ( gửi đến email của ngừoi phụ trách đã nhập khi đăng ký event)
+------------------------------------------
+件名：title
+【{{担当者}}】({{開催都市}}){{開催日}}({{曜日}})セミナー日程/参加者リストご案内
+Giải thích:
+【{{tên ngừoi phụ trách}}】({{nơi tổ chức}}){{ngày giờ}}({{Thứ}})セミナー日程/参加者リストご案内
+chú ý ngoài {{ thì các ký tự còn lại phải được giữ lại ví dụ như 】
+------------------------------------------
+本文：phan noi dung gui email
+{{担当者}}様 
+
+いつも大変お世話になっております。
+日本ワーキングホリデー協会です。
+
+明日、{{開催日ngay gio}}({{曜日}})のセミナーの当日のスケジュールと参加者リストをご案内いたします。
+
+以下ご確認下さいませ。
+
+【当日のスケジュール】
+{{前セミナー開始時刻}}　当協会による
+{{本セミナー開始時刻}}　御校による「{{本セミナータイトル}}」＆質疑応答 
+
+当日は、事前に確認をさせて頂けたらと思いますので
+15分程前にはオフィスへお越し下さいませ。
+
+【確認事項】
+①セミナー参加者への方の配布物　
+ブローシャー以外の配布物はございますでしょうか。
+その際は事前にデータで頂けますと幸いです。
+
+②セミナー資料
+セミナーに使用する資料はパワーポイントになりますでしょうか。
+その際は当日のトラブルを避けるため事前に送付頂けますようお願い申し上げます。
+
+③セミナーオファー
+図々しいお願いで申し訳ございませんがセミナーご参加の方に
+特別オファーをご提供していただける場合、
+・内容：
+・期限：
+をご教授くださいませ。
+
+{{中継案内}} 
+
+【セミナー参加者リスト】
+{{参加予定者リスト}} 
+
+それでは明日お会いできることを楽しみにしております。
+どうぞよろしくお願い致します。
+
+日本ワーキング・ホリデー協会

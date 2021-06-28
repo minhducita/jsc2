@@ -1,0 +1,45 @@
+<div class="popover" tabindex="-1" data-autoscroll="true">
+    <div class="popover-content">
+        <div class="form-header">
+            <div class="modal-close">
+                <i class="flaticon-cross-mark1" ng-click="$hide()"></i>
+            </div>
+            <h5><span class="semi-bold"><span class="bold">Create Board</span></span></h5>
+            <div class="clearfix"></div>
+        </div>
+        <div class="content-addboard">
+            <form id="board-form" class="form-helper" name="BoardForm" novalidate="novalidate" ng-submit="createBoard(board)">
+                <div class="new-add">
+                    <span>Title</span>
+                    <input type="text" class="col-md-12 txtinput" ng-model="board.displayName">
+                    <span class="help-block error">{{errors.displayName}}</span>
+                </div>
+                <div class="new-add" style="margin-top: 50px;">
+                    <span>Team</span>
+                    <select name="idOrganization" ng-model="board.idOrganization" ng-init="board.idOrganization=organization.id">
+                        <option value="">None</option>
+                        <option ng-repeat="o in dashBoardPageAssets.organizations" value="{{o.id}}" ng-selected="{{ o.displayName == organization.displayName }}">{{o.displayName}}</option>
+                    </select>
+                </div>
+                <p class="changeboard"><span class="flaticon-lock27"></span>This board will be <strong>Private</strong>.
+                    <a class="change-trg" href="#">Change.</a></p>
+                <!--  POPUP CHANGE TRIGGER -->
+                <div class="popup-change-trigger">
+                    <div class="tb priva">
+                        <p><i class="flaticon-lock27" style="color:#F35958 "></i><b>Private</b></p>
+                        <span>This board is private. Only people added to the board can view and edit it.</span>
+                    </div>
+                    <div class="tb tem">
+                        <p><i class="flaticon-users33" style="color:#FFDB14 "></i><b>Team</b></p>
+                        <span>This board is visible to members of the team. Only people added to the board can edit it. The board must be added to a team to enable this.</span>
+                    </div>
+                    <div class="tb pub">
+                        <p><i class="flaticon-world91" style="color:#2D80AC "></i><b>Public</b></p>
+                        <span>This board is public. It's visible to anyone with the link and will show up in search engines like Google. Only people added to the board can edit it.</span>
+                    </div>
+                </div> <!-- END THE POPUP CHANGE TRIGGER -->
+                <button type="submit" class="btn btn-addchecklist">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

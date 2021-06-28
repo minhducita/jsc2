@@ -1,0 +1,24 @@
+version: "3.2"
+services:
+    app:
+        ports:
+            - "86:80"
+        build: ./docker
+        container_name: app_frontend
+        volumes:
+            - ./:/var/www/html
+            - ./docker/php.ini:/usr/local/etc/php/php.ini
+            - ./docker/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+        networks:
+            - network_2
+            - network_nginx_proxy
+        restart: always
+        environment: 
+            VIRTUAL_HOST: "jsc.jawhm.org, api.jawhm.org"
+networks:
+    network_nginx_proxy:
+        external: 
+            name: nginx-proxy
+    network_2:
+        external: 
+            name: dbshared

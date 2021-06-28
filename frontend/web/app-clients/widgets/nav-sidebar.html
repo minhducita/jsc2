@@ -1,0 +1,66 @@
+<div class="page-sidebar mini" id="main-menu">
+    <!-- BEGIN MINI-PROFILE -->
+    <div class="page-sidebar-wrapper" id="main-menu-wrapper">
+        <ul id="create-chanel" nav-menu organizations>
+            <li>
+                <a href="javascript:;">
+                    <i class="fa fa-compass fa-spin"></i> <span class="title">TOOLS</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="flaticon-group-users"></i> <span class="title">TEAMS</span>
+                </a>
+                <ul class="sub-menu nav-main" ng-if="organizations.length > 0">
+                    <li class="c-item" data-ng-repeat="organization in organizations track by $index">
+                        <strong>
+                            <a href="#/o/{{organization.name}}"><i ng-class="{0:'fa fa-lock', 1: 'fa fa-globe'}[organization.permission]"></i> {{organization.displayName}}</a>
+                        </strong>
+                    </li>
+                </ul>
+                <ul class="sub-menu nav-main" ng-if="organizations.length == 0">
+                    <li class="c-item"><strong><a>No team</a></strong></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#/export">
+                    <i class="fa fa-print"></i> <span class="title">PRINT</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:;">
+                    <i class="fa fa-plus-square"></i> <span class="title">TEAMS</span> <span
+                        class="selected"></span>
+                </a>
+                <ul class="sub-menu">
+                    <li>
+                        <div class="grid simple chanel-create">
+                            <div class="grid-title no-border">
+                                <h5>Create Team</h5>
+                                <hr>
+                            </div>
+                            <div class="grid-body no-border">
+                                <form id="chanel-form" name="ChanelForm" novalidate ng-submit="createOrganization()">
+                                    <div class="content-create">
+                                        <div class="name-chanel form-group">
+                                            <input type="text" class="form-control" ng-model="Model.displayName" placeholder="Team Name">
+                                            <p class="help-block error">{{errors.displayName}}</p>
+                                        </div>
+                                        <div class="des-chanel form-group">
+                                                <textarea id="text-editor" class="form-control" rows="3" placeholder="Descriptions" ng-model="Model.desc"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-create">Create</button>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+        <!-- END SIDEBAR MENU -->
+    </div>
+</div>

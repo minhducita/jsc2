@@ -1,0 +1,125 @@
+<div class="content">
+	<div id="member-chanels-boards-views" class='pageSearch'>
+		<input ng-keydown="searchAll($event,model,0)" type='text' ng-model='model.search' class="inputSearch">
+		<button ng-click="searchAll($event,model,1)" class="buttonSearch"> <i class="fa fa-search"> </i> </button>
+		<div class="contentSearch"> 
+			<div class="card" ng-if='search.cards && search.cards.length > 0'>
+				<h4> Card </h4>
+				<div class='content'>
+					<div class="search-result-card" ng-repeat='card in search.cards'>
+						<div class="search-result-card-container search-hover">
+							<div class="search-result-card-container-fade"></div>
+							<div class="list-card ui-droppable">
+								<div class="list-card-cover"></div>
+								<div class="list-card-stickers-area hide">
+									<div class="stickers"></div>
+								</div>
+								<div class="list-search-card-details">
+									<div class="list-card-labels"></div>
+									<ul class='labels'> 
+										<li class='card-labels label-color-{{label.color}}' ng-repeat='label in card.labels' > </li>
+									</ul>
+									<img ng-if="card.attachments" ng-src="{{card.attachments.url}}">
+									<a class="list-card-title" dir="auto" href="{{card.href}}" ng-bind-html="card.displayName"></a>
+									<div class="badges">
+										<span title="Comments" ng-show="card.badges.comments > 0"><i class="fa fa-comment"></i> {{card.badges.comments}}</span>
+										<span title="Attachments" ng-show="card.badges.attachments > 0"><i class="fa fa-paperclip"></i> {{card.badges.attachments}}</span>
+										<span title="Checklist" class="badge badge-success" ng-show="card.badges.checkItems > 0">
+											<i class="fa fa-check-square-o"></i> {{card.badges.checkItemsChecked}}/{{card.badges.checkItems}}
+										</span>
+										<span title="Start Date" class="badge badge-important {{colorDue(card,'startDate')}}" ng-show="card.badges.startDate">
+											<b> Start Date: </b> <i class="fa fa-clock-o"></i> {{card.badges.startDate | date:"yyyy/MM/dd 'at' h:mma"}}
+										</span>
+										<span title="Due" class="badge badge-important {{colorDue(card,'Due')}}" ng-show="card.badges.due">
+											<b>Due:</b> <i class="fa fa-clock-o"></i> {{card.badges.due | date:"yyyy/MM/dd 'at' h:mma"}}
+										</span>
+									</div>
+									<div class="card-list-member">
+										<ul class="my-friends no-margin pull-right">
+											<li ng-repeat="member in card.members">
+												<div class="profile-pic">
+													<span ng-if="member.typeimg == 0" title="{{member.displayName}}"> {{member.initialsName}}</span>
+													<img ng-if=" member.typeimg == 1" width="35" height="35"
+														 ng-src="{{member.avatarHash | memberAvatar}}" alt="{{member.displayName}}" title="{{member.displayName}}">
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="search-result-card-details">
+							<p class="u-bottom">
+								<a class="search-result-card-details-name" href="{{card.href}}"> <span ng-bind-html="card.displayName"> </span></a>
+							</p>
+							<p class='parentCard'> 
+								<span> Team: <a href="{{card.organizationsHref}}"> {{card.organizationName}}</a> <span> 
+							</p>
+							<p class='parentCard'> 
+								<span> Board: <a href="{{card.boardHref}}"> {{card.boardName}}</a> <span> 
+							</p>
+							<p class='parentCard'> 
+								<span> List: <a href="{{card.boardHref}}"> {{card.list.name}}</a> <span> 
+							</p>
+						</div>
+						<a class="search-result-card-hover-target searchHover" href="{{card.href}}"></a>
+					</div>
+				</div>
+			</div>
+			<div class="board" ng-if="search.boards && search.boards.length > 0"> 
+				<h4> Board </h4>
+				<div class="content"> 
+					<ul>
+						<li class="" ng-repeat='board in search.boards'>
+							<a href="{{board.href}}"  class='searchHeaderBoard'> 
+								<span class='color' style='background-color:{{board.prefs.backgroundColor}}'>  </span>
+								<span class='name'> {{board.displayName}} </span>
+							</a>
+						</li>
+					</ul>
+					<div class='clear'></div>
+				</div>
+			</div>
+			<div class="card" ng-if='search.organizations && search.organizations.length > 0'>
+				<h4> Team </h4>
+				<div class='content'>
+					<ul class='searchTeam'>
+						<li ng-repeat='team in search.organizations'>
+							<a href="{{team.href}}"> {{team.displayName}} </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class='not_search' ng-if='!search'> 
+			<div class="board" ng-if="menuBoard.boards && menuBoard.boards.length > 0"> 
+				<h4> Board </h4>
+				<div class="content"> 
+					<ul>
+						<li class="" ng-repeat='board in menuBoard.boards'>
+							<a href="{{board.href}}"  class='searchHeaderBoard'> 
+								<span class='color' style='background-color:{{board.prefs.backgroundColor}}'>  </span>
+								<span class='name'> {{board.displayName}} </span>
+							</a>
+						</li>
+					</ul>
+					<div class='clear'></div>
+				</div>
+			</div>
+			<div class="card" ng-if='menuBoard.organizations && menuBoard.organizations.length > 0'>
+				<h4> Team </h4>
+				<div class='content'>
+					<ul class='searchTeam'>
+						<li ng-repeat='team in menuBoard.organizations'>
+							<a href="{{team.href}}"> {{team.displayName}} </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="notFind" ng-if='search.cards.length == 0 && search.boards.length == 0 && search.organizations.length == 0'>
+			We couldn't find any cards or boards that matched your search.
+		</div>
+		</div>
+	</div>
+</div>

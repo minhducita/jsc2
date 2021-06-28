@@ -1,0 +1,40 @@
+<!-- BEGIN HEADER -->
+<ng-include src="'/app-clients/widgets/menu-board.html'" ></ng-include>
+<div class="header navbar-inverse">
+    <!-- BEGIN TOP NAVIGATION BAR -->
+    <a class="header-logo js-home-via-logo" href="#">
+        <img src="/assets/img/logo.png" alt="" data-src="assets/img/logo.png" data-src-retina="assets/img/logo2x.png" width="106" height="21"/>
+    </a>
+    <!-- BEGIN NAVIGATION HEADER -->
+    <div class="header-boards-button">
+        <a dropdown show-class="#boards-drawer" class="header-btn header-boards js-boards-menu" href="#">
+            <i class="header-btn-icon fa fa-tachometer"></i>
+            <span class="header-btn-text hidden-xs">Boards</span>
+        </a>
+    </div>
+    <div class="header-btn header-boards header-search-button-mobile hidden-lg hidden-md hidden-sm">
+          <a href="/#/search">  <span class="header-btn-icon icon-lg icon-search light"></span> </a>
+    </div>
+    <div class="header-search-button hidden-xs">
+        <a class="header-btn open-search-btn js-open-search-page" href="/search" title="Search for boards, cards, members, and teams.">
+            <span class="header-btn-icon icon-lg icon-search light"></span>
+        </a>
+        <div class="header-search">
+            <input ng-keydown="searchAll($event,model,0)" ng-model='model.search'  pop-pup="" open-type="popoverinput" template-url="header/popup_search.tpl.html" class="header-search-input" type="text">
+            <input style="display: none;" class="header-search-input focus" type="text" autocomplete="off" autocorrect="off" spellcheck="false" value="">
+            <span style="display: none;" class="header-search-icon header-search-icon-close icon-lg icon-close light js-close-icon js-search-close header-search-icon-dark"></span>
+            <i style="display: none;" class="header-search-icon header-search-icon-open fa fa-share-square-o s-open-button js-open-search-page header-search-icon-dark"></i>
+
+            <i class="header-search-icon fa fa-search" ng-click='searchAll($event, model, 1)'></i>
+            <span class="header-search-icon  icon-lg icon-close light hide"></span>
+            <a class="header-search-icon header-search-icon-open icon-lg icon-external-link light hide" href="#"></a>
+        </div>
+    </div>
+    <!-- END NAVIGATION HEADER -->
+    <!-- BEGIN CONTENT HEADER -->
+    <me-profile> </me-profile>
+    <!-- END CONTENT HEADER -->
+</div>
+<!-- END TOP NAVIGATION BAR -->
+</div>
+<!-- END HEADER -->

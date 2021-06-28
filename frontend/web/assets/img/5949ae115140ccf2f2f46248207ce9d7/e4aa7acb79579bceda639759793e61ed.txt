@@ -1,0 +1,4 @@
+<!-- UA new code -->
+<a href="javascript:show_nextlist(1)" title="次の10件を表示" class="clsfd_next_btn" onclick="ga('send','event','next10articles','click','classified-events', true);">次の10件を表示</a>
+
+

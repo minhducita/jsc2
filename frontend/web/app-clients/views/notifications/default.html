@@ -1,0 +1,28 @@
+<div id="chanel-detail" class="notification">
+	<div class="tabbed-pane-main-col">
+		<div class="tabbed-pane-main-col-wrapper contentpage">
+			<h3 class="aboutTitle"> <i class="fa fa-bell-o" aria-hidden="true"></i> Notification </h3>
+			<hr>
+			<ul class="NotificationContent"> 
+				<li ng-repeat="notification in notificationPageAssets.notifications | messengernotify"> 
+					<div class="avatarNotify"> 
+						<img ng-show="notification.members.typeimg == 1" ng-src="{{notification.members.avatarHash | memberAvatar}}" alt="{{notification.members.displayName}}" title="{{notification.members.displayName}}" width="30" height="30">
+						<span class="avatar-text modalico" ng-show="notification.members.typeimg == 0" title="{{notification.members.displayName}}">
+							{{notification.members.initialsName}} 
+						</span>
+					</div>
+					<div class="contentNotify"> 
+						<p ng-bind-html='notification.temp'> </p>
+						<p class="notifi-item-time">
+							<time-ago from-time='{{ notification.addedDate }}'></time-ago>
+						</p>
+					</div>
+				</li>
+				<li class="lastchildLi" ng-if="notifyActiveMore"> 
+					<p> <a  ng-click="loadMoreNotify()" >	Load more notification </a></p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>

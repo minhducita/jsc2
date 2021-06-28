@@ -1,0 +1,163 @@
+<div class="board-wrapper" ng-if="boardPageAssets.closed === 0">
+    <div class="board-main-content" >
+        <div class="board-header u-clearfix js-board-header">
+            <a ng-if="boardPageAssets.idMember == appAssets.id" class="board-header-btn board-header-btn-name no-edit"
+				pop-pup="" open-type="popover" template-url="board/rename_board.tpl.html">
+				<span class="board-header-btn-text">{{boardPageAssets.displayName}}</span>
+			</a>
+			
+			<a ng-if="boardPageAssets.idMember != appAssets.id" class="board-header-btn board-header-btn-name no-edit">
+				<span class="board-header-btn-text">{{boardPageAssets.displayName}}</span>
+			</a>
+				
+			<a  class="board-header-btn board-header-btn-org-name js-open-org-menu board-header-btn-without-icon"
+               pop-pup="" open-type="popover" template-url="lists/default.tpl.html"><span class="board-header-btn-text">{{getOrganization(boardPageAssets.idOrganization,'displayName')}}</span></a>
+
+            <div class="board-header-btns mod-left">
+        		<a class="board-header-btn js-star-board " ng-click="toggleBoardStar(boardPageAssets.id)"  title="Click to star or unstar this board. Starred boards show up at the top of your boards list.">
+					<span class="ico icoBoardStar" style ="color: #fff;"> <i class="fa {{(boardPageAssets.starsCount == 1)?'is-starred	':''}} fa-star-o"> </i></span>
+				</a>
+				
+				<a  class="board-header-btn hide js-open-desc js-fill-desc" href="#">
+                    <span  class="icon-sm icon-description board-header-btn-icon"></span>
+                </a>
+            </div>
+            <div class="board-header-btns mod-right">
+					<a show-menu-right menu-show='filter' ng-show="filterCard['label'][0] || filterCard['member'][0] || filterCard['date'][0] || filterCard['relation'][0]" class="board-header-btn board-header-btn-filter-indicator  js-filter-cards-indicator">
+						<span  class="icon-sm icon-filter board-header-btn-icon"></span>
+						<span  backMenu='default' class="board-header-btn-text u-text-underline ">Filtering is on.</span>
+					</a>
+					<a ng-show="filterCard['label'][0] || filterCard['member'][0] || filterCard['date'][0] || filterCard['relation'][0]" ng-click="removeFilterCard()" class="board-header-btn board-header-btn-remove-filter  js-filter-cards-indicator">
+						<span   class="icon-sm icon-close board-header-btn-icon-close js-filter-card-clear"></span>
+					</a>
+					<a
+                    class="board-header-btn sub-btn hide js-board-header-subscribed" href="#"><span
+                    class="icon-sm icon-subscribe board-header-btn-icon"></span><span
+                    class="board-header-btn-text u-text-underline">Subscribed</span></a>
+					
+					<span
+                    class="js-plugin-header-btns"><span class="board-header-plugin-btns hide"></span></span><a
+                    class="board-header-btn mod-show-menu js-show-sidebar" ng-click="setCloseCalendar()" ><span
+                    class="icon-sm icon-calendar board-header-btn-icon"></span><span
+                    class="board-header-btn-text u-text-underline show_menu_right">Calendar</span></a>
+					
+					<span
+                    class="js-plugin-header-btns"><span class="board-header-plugin-btns hide"></span></span><a
+					show-menu-right
+                    class="board-header-btn mod-show-menu js-show-sidebar" href="#"><span
+                    class="icon-sm icon-overflow-menu-horizontal board-header-btn-icon"></span><span
+                    class="board-header-btn-text u-text-underline show_menu_right">Show Menu</span></a>
+					
+            </div>
+        </div>
+        <div class="board-canvas" ng-show="closedCalendar == 1">
+            <div id="board" class="u-fancy-scrollbar js-no-higher-edits js-list-sortable ui-sortable "  >
+                <div id="boardfix" ui-sortable="sortableOptions.lists" ng-model="boardPageAssets.lists">
+                    <div class="list-column" id="boardList{{list.id}}" ng-repeat="(k, list) in boardPageAssets.lists " listId="{{list.id}}" ng-show="list.closed === 0">
+                        <div class="list-box" style="background-color:{{list.prefs.backgroundColor}}">
+                            <div class="list-box-header">
+								<div class='title-list-box'>
+									<h4 class="list-box-header-name"><span style="color:{{list.prefs.color}}" class="semi-bold update-list">{{list.name}}</span></h4>
+									<div class="tools">
+										<a class="list-box-action" pop-pup open-type='popover' template-url='lists/lists-action.tpl.html' ng-if="hasMemberInBoard(appAssets.id)">
+											<i style="color:{{list.prefs.color}}" class="cc-opt icon-sm icon-dropdown-menu dark-hover"></i>
+										</a>
+									</div>
+                                    <div class="edit-title-list-box hide">
+                                        <form name="ListForm" ng-init='modellist.name = list.name' ng-submit="updateList(list.id, {name: modellist.name})">
+                                            <input class='form-control list-name' type='text' ng-model="modellist.name">
+                                        </form>
+                                    </div>
+								</div>
+                            </div>
+							
+								<div class="u-fancy-scrollbar list-box-content grid-body-custom clearfix scrollbarchange" ui-sortable="sortableOptions.cards" ng-model="boardPageAssets.lists[k].cards">
+									<div class="card-item showdialog" ng-repeat="card in list.cards | filterCard:filterCard | limitTo :80" cards cardId="{{card.id}}" ng-show="card.closed  === 0">
+										<div class="card-item-details" pop-pup open-type="dialog" template-url="card-detail/card-detail.tpl.html">
+											<p class="boardCardNum"> Card: {{card.id}} 
+												<!-- Show menu on card items ----->
+												<a class="card-menu" pop-pup open-type="popover" template-url="lists/lists-menu-card.tpl.html" ng-if="hasMemberInBoard(appAssets.id)" ng-click="give_buff_card(card)"> 
+													<i class="fa fa-bars icon-card-dropdown-menu"></i> 
+												</a>
+												<!--card 1503: checked move card-->
+												<input type='checkbox' ng-click="checkboxOption($event, card.id, list.id)" value='{{card.id}}' name='CardId' onclick='checkMoveCard(event)' class='CheckMoveCard'>
+											</p>
+											<img ng-if="card.attachmentSelected" ng-src="{{card.attachmentSelected.url}}">
+											<div class="card-list-title" ng-bind-html='card.displayName'></div>
+											<div class="badges">
+												<span title="Comments" ng-show="card.badges.comments > 0"><i class="fa fa-comment"></i> {{card.badges.comments}}</span>
+												<span title="Attachments" ng-show="card.badges.attachments > 0"><i class="fa fa-paperclip"></i> {{card.badges.attachments}}</span>
+												<span title="Checklist" class="badge badge-success" ng-show="card.badges.checkItems > 0">
+													<i class="fa fa-check-square-o"></i> {{card.badges.checkItemsChecked}}/{{card.badges.checkItems}}
+												</span>
+												<span title="Start Date" class="badge badge-important {{colorDue(card,'startDate')}}" ng-show="card.badges.startDate">
+													<b> Start Date: </b> <i class="fa fa-clock-o"></i>{{card.badges.startDate | date:"yyyy/MM/dd 'at' h:mma"}}
+												</span>
+												<span title="Due" class="badge badge-important {{colorDue(card,'due')}}" ng-show="card.badges.due">
+													<b>Due:</b> <i class="fa fa-clock-o"></i> {{card.badges.due | date:"yyyy/MM/dd 'at' h:mma"}}
+												</span>
+											</div>
+											<div class="card-list-member">
+												<ul class="my-friends no-margin pull-right">
+													<li ng-repeat="member in card.members">
+														<div class="profile-pic">
+															<span ng-if="member.typeimg == 0" title="{{member.displayName}}"> {{member.initialsName}}</span>
+															<img ng-if=" member.typeimg == 1" width="35" height="35"
+																 ng-src="{{member.avatarHash | memberAvatar}}" alt="{{member.displayName}}" title="{{member.displayName}}">
+														</div>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</div>
+							
+                            <div class="list-box-footer"  ng-show="hasMemberInBoard(appAssets.id)">
+                                <a href style="color:{{list.prefs.color}}" add-card>Add a card… {{showaddlist}}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="add-list-column mod-add is-hidden" add-list ng-show="hasMemberInBoard(appAssets.id)">
+                        <form id="list-form" name="listForm" ng-submit="createList(input)">
+                            <span class="placeholder js-open-add-list">Add a list…</span>
+                            <input ng-model="input.name" class="list-name-input" type="text" name="name" placeholder="Add a list…">
+                            <div class="edit-controls keep u-clearfix">
+                                <button type="submit" class="btn btn-primary btn-xs btn-mini"><i class="fa fa-paste"></i> Save</button>
+                                <a href="javascript:;" class="remove"></a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>	
+		<div class="model-calendar" ng-if="closedCalendar == 0 "> <!-- calendar card -->
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-close-calendar" ng-click="setCloseCalendar()">
+						<i class="flaticon-cross-mark1"></i>
+					</div>
+					<div class="modal-body">
+						<a ng-if='boardPageAssets.lists.length > 0' id='addCardCalendar' pop-pup open-type="popovercalendar" template-url='board/calendar/add-card.tpl.html'> show popup</a>
+						<div id="calendar" ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="calendar"> </div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+	<ng-include class="menuright" src="'/app-clients/widgets/menu-right.html'"> </ng-include>
+</div>
+<div class="closeBoard" ng-if="boardPageAssets.closed === 1 && boardPageAssets.idMember == appAssets.id"> 
+	<div class="board-main-content board-re-open"> 
+		<p style="font-size: 24px; font-weight: bold;"> {{boardPageAssets.displayName}} is closed.
+		<p> <a ng-click="ReopenBoard(boardPageAssets)"> Click here to re-open it. </a> </p>
+	</div>
+</div>
+<div class="closeBoard" ng-if="boardPageAssets.closed === 1 && boardPageAssets.idMember != appAssets.id"> 
+	<div class="board-main-content board-re-open"> 
+		<p> {{boardPageAssets.displayName}} is closed.
+		<p> You’re a member of this board, but only board admins are able to re-open it.</p>
+	</div>
+</div>
+
+
+

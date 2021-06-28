@@ -1,0 +1,16 @@
+<div class="popover" tabindex="-1">
+	<div class="popover-content popover-width popover-checklist">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Add checklist</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-contentcheck">
+			<p>Title</p>
+			<input type="text" class="col-md-12 txtinput" placeholder="Checklist" ng-model="input.name">
+			<button type="button" class="btn btn-addchecklist" ng-click="cardAddChecklists(input.name)">Add</button>
+		</div>                 
+	</div>
+</div>

@@ -1,0 +1,31 @@
+<div class="popover" tabindex="-1">
+	<div class="popover-content popover-width">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Change Due Date</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="calendar-content">
+			<form name="timepickerForm" ng-init="badgesDue = (!card.badges.due)?'':card.badges.due * 1"  class="timepickerForm" role="form" >
+				<div class="col-md-6">
+					<label class="control-label"><i class="fa fa-calendar"></i> Date picker</label>
+					<input class="form-control" ng-model="badgesDue" data-date-format="yyyy/MM/dd"  data-autoclose="1" placeholder="Date" bs-datepicker type="text" string-to-timestamp>
+				</div>
+					
+				<div class="col-md-6">
+					<label class="control-label"><i class="fa fa-calendar"></i> Time picker</label>
+					<input type="text" size="8" class="form-control" ng-model="badgesDue" data-time-format="h:mm:ss a" placeholder="Time" bs-timepicker string-to-timestamp>
+				</div>
+				<div class="clear"></div>
+				
+				<div class="col-md-12" pickadate format="yyyy/MM/dd" ng-model='badgesDue'   string-to-timestamp bs-datepicker data-date-format="yyyy/MM/dd" ></div>
+				<p class='btn-save'> 
+					<button type="submit" ng-click="updateCard(card.id, {due: badgesDue})" class="btn btn-addchecklist">Save</button> 
+					<button type="submit" ng-click="updateCard(card.id, {due: null})" class="btn remove-date js-remove-date"> Delete </button> 
+				</p>
+			</form>
+		</div>
+	</div>
+</div>

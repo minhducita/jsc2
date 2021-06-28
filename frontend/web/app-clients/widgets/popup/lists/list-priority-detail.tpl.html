@@ -1,0 +1,192 @@
+<!--minhquyen-->
+<div class="modal-header">
+	<button ng-click="hidePopup();" class="close">&times;</button>
+	<h5><span class="semi-bold"><span class="bold"> List Card Sort By Priority</span></span></h5>
+	<div class="clearfix"></div>
+</div>
+<div class="modal-body">
+	<div class="row border-bottom">
+			<div class="col-xs-6 card-group overflowX border-right u-fancy-scrollbar"> <!-- PRIORITY CONDITION 1-->
+				<div class="card-list" ng-init="getList(listid)">
+					<div class="card-list-group" ng-repeat="card in listDetail.cards" cards cardid="{{card.id}}" ng-show="card.closed  === 0" ng-if="card.important == 1 && card.urgent == 1">
+						<!--div class="card-item" popup-extend pop-show="popup-card-detail" pop-hide="popup-show-priority" id-card="{{card.id}}"-->
+						<div class="card-item">
+							<div class="card-item-details" popup-extend pop-show="popup-card-detail" pop-hide="popup-show-priority" card-id="{{card.id}}">
+							
+							<!--div class="card-item-details"-->
+								<p class="boardCardNum"> Card: {{card.id}}
+									<input type='checkbox' ng-click="checkboxOption($event, card.id, list.id)" value='{{card.id}}' name='CardId' onclick='checkMoveCard(event)' class='CheckMoveCard'>
+								</p>
+								<img ng-if="card.attachmentSelected" ng-src="{{card.attachmentSelected.url}}">
+								<div class="card-list-labels">
+									<div ng-repeat="label in card.labels" class="card-labels card-label label-color-{{label.color}}"></div>
+								</div>
+								<div class="card-list-title" ng-bind-html='card.displayName'></div>
+								<div class="badges">
+									<span title="Comments" ng-show="card.badges.comments > 0"><i class="fa fa-comment"></i> {{card.badges.comments}}</span>
+									<span title="Attachments" ng-show="card.badges.attachments > 0"><i class="fa fa-paperclip"></i> {{card.badges.attachments}}</span>
+									<span title="Checklist" class="badge badge-success" ng-show="card.badges.checkItems > 0">
+										<i class="fa fa-check-square-o"></i> {{card.badges.checkItemsChecked}}/{{card.badges.checkItems}}
+									</span>
+									<span title="Start Date" class="badge badge-important {{colorDue(card,'startDate')}}" ng-show="card.badges.startDate">
+										<b> Start Date: </b> <i class="fa fa-clock-o"></i>{{card.badges.startDate | date:"yyyy/MM/dd 'at' h:mma"}}
+									</span>
+									<span title="Due" class="badge badge-important {{colorDue(card,'due')}}" ng-show="card.badges.due">
+										<b>Due:</b> <i class="fa fa-clock-o"></i> {{card.badges.due | date:"yyyy/MM/dd 'at' h:mma"}}
+									</span>
+								</div>
+								<div class="card-list-member">
+									<ul class="my-friends no-margin pull-right">
+										<li ng-repeat="member in card.members">
+											<div class="profile-pic">
+												<span ng-if="member.typeimg == 0" title="{{member.displayName}}"> {{member.initialsName}}</span>
+												<img ng-if=" member.typeimg == 1" width="35" height="35"
+													 ng-src="{{member.avatarHash | memberAvatar}}" alt="{{member.displayName}}" title="{{member.displayName}}">
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 card-group overflowX border-left u-fancy-scrollbar"><!-- PRIORITY CONDITION 2-->
+				<div class="card-list" ng-init="getList(listid)">
+					<div class="card-list-group" ng-repeat="card in listDetail.cards" cards cardid="{{card.id}}" ng-show="card.closed  === 0" ng-if="card.important == 1 && card.urgent == 0">
+						<!--div class="card-item" popup-extend pop-show="popup-card-detail" pop-hide="popup-show-priority" id-card="{{card.id}}"-->
+						<div class="card-item">
+							<div class="card-item-details" popup-extend pop-show="popup-card-detail" pop-hide="popup-show-priority" card-id="{{card.id}}">
+							
+							<!--div class="card-item-details"-->
+								<p class="boardCardNum"> Card: {{card.id}}
+									<input type='checkbox' ng-click="checkboxOption($event, card.id, list.id)" value='{{card.id}}' name='CardId' onclick='checkMoveCard(event)' class='CheckMoveCard'>
+								</p>
+								<img ng-if="card.attachmentSelected" ng-src="{{card.attachmentSelected.url}}">
+								<div class="card-list-labels">
+									<div ng-repeat="label in card.labels" class="card-labels card-label label-color-{{label.color}}"></div>
+								</div>
+								<div class="card-list-title" ng-bind-html='card.displayName'></div>
+								<div class="badges">
+									<span title="Comments" ng-show="card.badges.comments > 0"><i class="fa fa-comment"></i> {{card.badges.comments}}</span>
+									<span title="Attachments" ng-show="card.badges.attachments > 0"><i class="fa fa-paperclip"></i> {{card.badges.attachments}}</span>
+									<span title="Checklist" class="badge badge-success" ng-show="card.badges.checkItems > 0">
+										<i class="fa fa-check-square-o"></i> {{card.badges.checkItemsChecked}}/{{card.badges.checkItems}}
+									</span>
+									<span title="Start Date" class="badge badge-important {{colorDue(card,'startDate')}}" ng-show="card.badges.startDate">
+										<b> Start Date: </b> <i class="fa fa-clock-o"></i>{{card.badges.startDate | date:"yyyy/MM/dd 'at' h:mma"}}
+									</span>
+									<span title="Due" class="badge badge-important {{colorDue(card,'due')}}" ng-show="card.badges.due">
+										<b>Due:</b> <i class="fa fa-clock-o"></i> {{card.badges.due | date:"yyyy/MM/dd 'at' h:mma"}}
+									</span>
+								</div>
+								<div class="card-list-member">
+									<ul class="my-friends no-margin pull-right">
+										<li ng-repeat="member in card.members">
+											<div class="profile-pic">
+												<span ng-if="member.typeimg == 0" title="{{member.displayName}}"> {{member.initialsName}}</span>
+												<img ng-if=" member.typeimg == 1" width="35" height="35"
+													 ng-src="{{member.avatarHash | memberAvatar}}" alt="{{member.displayName}}" title="{{member.displayName}}">
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+	<div class="row">
+			<div class="col-xs-6 card-group overflowX border-right u-fancy-scrollbar"> <!-- PRIORITY CONDITION 3 -->
+				<div class="card-list" ng-init="getList(listid)">
+					<div class="card-list-group" ng-repeat="card in listDetail.cards" cards cardid="{{card.id}}" ng-show="card.closed  === 0" ng-if="card.important == 0 && card.urgent == 1">
+						<!--div class="card-item" popup-extend pop-show="popup-card-detail" pop-hide="popup-show-priority" id-card="{{card.id}}"-->
+						<div class="card-item">
+							<div class="card-item-details" popup-extend pop-show="popup-card-detail" pop-hide="popup-show-priority" card-id="{{card.id}}">
+							
+							<!--div class="card-item-details"-->
+								<p class="boardCardNum"> Card: {{card.id}}
+									<input type='checkbox' ng-click="checkboxOption($event, card.id, list.id)" value='{{card.id}}' name='CardId' onclick='checkMoveCard(event)' class='CheckMoveCard'>
+								</p>
+								<img ng-if="card.attachmentSelected" ng-src="{{card.attachmentSelected.url}}">
+								<div class="card-list-labels">
+									<div ng-repeat="label in card.labels" class="card-labels card-label label-color-{{label.color}}"></div>
+								</div>
+								<div class="card-list-title" ng-bind-html='card.displayName'></div>
+								<div class="badges">
+									<span title="Comments" ng-show="card.badges.comments > 0"><i class="fa fa-comment"></i> {{card.badges.comments}}</span>
+									<span title="Attachments" ng-show="card.badges.attachments > 0"><i class="fa fa-paperclip"></i> {{card.badges.attachments}}</span>
+									<span title="Checklist" class="badge badge-success" ng-show="card.badges.checkItems > 0">
+										<i class="fa fa-check-square-o"></i> {{card.badges.checkItemsChecked}}/{{card.badges.checkItems}}
+									</span>
+									<span title="Start Date" class="badge badge-important {{colorDue(card,'startDate')}}" ng-show="card.badges.startDate">
+										<b> Start Date: </b> <i class="fa fa-clock-o"></i>{{card.badges.startDate | date:"yyyy/MM/dd 'at' h:mma"}}
+									</span>
+									<span title="Due" class="badge badge-important {{colorDue(card,'due')}}" ng-show="card.badges.due">
+										<b>Due:</b> <i class="fa fa-clock-o"></i> {{card.badges.due | date:"yyyy/MM/dd 'at' h:mma"}}
+									</span>
+								</div>
+								<div class="card-list-member">
+									<ul class="my-friends no-margin pull-right">
+										<li ng-repeat="member in card.members">
+											<div class="profile-pic">
+												<span ng-if="member.typeimg == 0" title="{{member.displayName}}"> {{member.initialsName}}</span>
+												<img ng-if=" member.typeimg == 1" width="35" height="35"
+													 ng-src="{{member.avatarHash | memberAvatar}}" alt="{{member.displayName}}" title="{{member.displayName}}">
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-6 card-group overflowX border-left u-fancy-scrollbar"> <!-- PRIORITY CONDITION 4 -->
+				<div class="card-list" ng-init="getList(listid)">
+					<div class="card-list-group" ng-repeat="card in listDetail.cards" cards cardid="{{card.id}}" ng-show="card.closed  === 0" ng-if="card.important == 0 && card.urgent == 0">
+						<!--div class="card-item" popup-extend pop-show="popup-card-detail" pop-hide="popup-show-priority" id-card="{{card.id}}"-->
+						<div class="card-item">
+							<div class="card-item-details" popup-extend pop-show="popup-card-detail" pop-hide="popup-show-priority" card-id="{{card.id}}">
+							
+							<!--div class="card-item-details"-->
+								<p class="boardCardNum"> Card: {{card.id}}
+									<input type='checkbox' ng-click="checkboxOption($event, card.id, list.id)" value='{{card.id}}' name='CardId' onclick='checkMoveCard(event)' class='CheckMoveCard'>
+								</p>
+								<img ng-if="card.attachmentSelected" ng-src="{{card.attachmentSelected.url}}">
+								<div class="card-list-labels">
+									<div ng-repeat="label in card.labels" class="card-labels card-label label-color-{{label.color}}"></div>
+								</div>
+								<div class="card-list-title" ng-bind-html='card.displayName'></div>
+								<div class="badges">
+									<span title="Comments" ng-show="card.badges.comments > 0"><i class="fa fa-comment"></i> {{card.badges.comments}}</span>
+									<span title="Attachments" ng-show="card.badges.attachments > 0"><i class="fa fa-paperclip"></i> {{card.badges.attachments}}</span>
+									<span title="Checklist" class="badge badge-success" ng-show="card.badges.checkItems > 0">
+										<i class="fa fa-check-square-o"></i> {{card.badges.checkItemsChecked}}/{{card.badges.checkItems}}
+									</span>
+									<span title="Start Date" class="badge badge-important {{colorDue(card,'startDate')}}" ng-show="card.badges.startDate">
+										<b> Start Date: </b> <i class="fa fa-clock-o"></i>{{card.badges.startDate | date:"yyyy/MM/dd 'at' h:mma"}}
+									</span>
+									<span title="Due" class="badge badge-important {{colorDue(card,'due')}}" ng-show="card.badges.due">
+										<b>Due:</b> <i class="fa fa-clock-o"></i> {{card.badges.due | date:"yyyy/MM/dd 'at' h:mma"}}
+									</span>
+								</div>
+								<div class="card-list-member">
+									<ul class="my-friends no-margin pull-right">
+										<li ng-repeat="member in card.members">
+											<div class="profile-pic">
+												<span ng-if="member.typeimg == 0" title="{{member.displayName}}"> {{member.initialsName}}</span>
+												<img ng-if=" member.typeimg == 1" width="35" height="35"
+													 ng-src="{{member.avatarHash | memberAvatar}}" alt="{{member.displayName}}" title="{{member.displayName}}">
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>

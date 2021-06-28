@@ -1,0 +1,133 @@
+<div class="error-body no-top lazy"  data-original="/assets/img/work.jpg"  style="background-image: url('/assets/img/work.jpg');background-size: contain;overflow: hidden;">
+<div class="row login-container animated fadeInUp">
+    <div class="col-md-4 col-md-offset-4 tiles white loginJooto">
+        <div class="row form-row">
+            <div class="grid simple">
+                <div class="grid-title no-border">
+                    <h4><span class="semi-bold">{{Tabname}}</span></h4>
+                </div>
+                <div class="grid-body no-border">
+                    <div class="row-fluid">
+                        <form id="login-form" class="login-member" name="LoginForm" novalidate="novalidate" ng-submit="login()">
+                            <div class="">
+                                <div class="input-group" ng-class="{ 'error-control': errors['username'] && submitted}">
+                                    <input type="text" class="form-control" name="username" ng-model="Model.LoginForm.username" placeholder="Username" required>
+                                    <span class="input-group-addon primary">
+                                    <span class="arrow"></span>
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                                <span class="help-block error">{{errors.username}}</span>
+                            </div>
+                            <div class="">
+                                <div class="input-group" ng-class="{ 'error-control': errors['password'] && submitted }">
+                                    <input type="password" class="form-control" name="password" ng-model="Model.LoginForm.password" placeholder="Password" required>
+                                    <span class="input-group-addon primary">
+                                    <span class="arrow"></span>
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                                <span class="help-block error">{{errors.password}}</span>
+                            </div>
+							<div class="">
+								<div class="input-group">
+									<p>
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                        <a class="change-form" ng-click="clear();Tabname = 'Jooto Forgot'" class-show="forgot-form">Forgot password </a>
+                                    </p>
+								</div>
+							</div>
+                            <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary btn-cons-md"> Login </button>
+                                    <button type="button" ng-click="clear()" class="btn btn-white btn-cons-md">Clear</button>
+									<button type="button" ng-click="clear() ;Tabname = 'Jooto Register'" class-show="signup-member" class="btn btn-white btn-cons-md change-form">Register </button>
+                            </div>
+                        </form>
+						<form id="signup-form" class="signup-member" name="SignupForm" novalidate="novalidate" ng-submit="register()">
+							<div class="">
+                                <div class="input-group" ng-class="{ 'error-control': SignupErrors['displayName'] && submitted}">
+                                    <input type="text" class="form-control" name="displayName" ng-model="Model.SignupForm.displayName" placeholder="Display Name" required>
+                                    <span class="input-group-addon primary">
+                                    <span class="arrow"></span>
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                                <span class="help-block error">{{SignupErrors.displayName}}</span>
+                            </div>
+							<div class="">
+                                <div class="input-group" ng-class="{ 'error-control': SignupErrors['username'] && submitted}">
+                                    <input type="text" class="form-control" name="username" ng-model="Model.SignupForm.username" placeholder="Username" required>
+                                    <span class="input-group-addon primary">
+                                    <span class="arrow"></span>
+                                        <i class="fa fa-user"></i>
+                                    </span>
+                                </div>
+                                <span class="help-block error">{{SignupErrors.username}}</span>
+                            </div>
+							<div class="">
+                                <div class="input-group" ng-class="{ 'error-control': SignupErrors['password'] && submitted}">
+                                    <input type="password" class="form-control" name="password" ng-model="Model.SignupForm.password" placeholder="Password" required>
+                                    <span class="input-group-addon primary">
+										<span class="arrow"></span>
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+                                <span class="help-block error">{{SignupErrors.password}}</span>
+                            </div>
+							<div class="">
+								<div class="input-group" ng-class="{ 'error-control': SignupErrors['password'] && submitted}">
+                                    <input type="password" class="form-control" name="passwordRepeat" ng-model="Model.SignupForm.passwordRepeat" placeholder="Password confirm " required>
+                                    <span class="input-group-addon primary">
+										<span class="arrow"></span>
+                                        <i class="fa fa-lock"></i>
+                                    </span>
+                                </div>
+								<span class="help-block error">{{SignupErrors.passwordRepeat}}</span>
+							</div>
+							<div class="">
+                                <div class="input-group" ng-class="{ 'error-control': SignupErrors['email'] && submitted}">
+                                    <input type="text" class="form-control" name="email" ng-model="Model.SignupForm.email" placeholder="Email" required>
+                                    <span class="input-group-addon primary">
+                                    <span class="arrow"></span>
+                                        <i class="fa fa-envelope-o"></i>
+                                    </span>
+                                </div>
+                                <span class="help-block error">{{SignupErrors.email}}</span>
+                            </div>
+							
+							 <div class="form-actions">
+                                <div class="pull-right">
+                                    <button type="submit" class="btn btn-primary btn-cons-md"> Register </button>
+                                    <button type="button" ng-click="clear()" class="btn btn-white btn-cons-md btn-clear">Clear</button>
+									<button type="button" ng-click="clear();Tabname = 'Jooto Login'" class-show="login-member" class="btn btn-white btn-cons-md change-form" > Sign in </button>
+								</div>
+                            </div>
+						</form>
+						<form id="forgot-form" class="forgot-form" name="ForgotForm"  novalidate="novalidate" ng-submit="forgot()">
+							<p class="message-box message-box-success" ng-show="ForgotSuccess"> {{ForgotSuccess}} </p>
+							<p class="message-box message-box-error" ng-show="ForgotError"> {{ForgotError}}   </p>
+							<div class="">
+                                <div class="input-group" ng-class="{ 'error-control': SignupErrors['email'] && submitted}">
+                                    <input type="text" class="form-control" name="email" ng-model="Model.ForgotForm.email" placeholder="Email" required>
+                                    <span class="input-group-addon primary">
+                                    <span class="arrow"></span>
+                                        <i class="fa fa-envelope-o"></i>
+                                    </span>
+                                </div>
+                                <span class="help-block error">{{SignupErrors.email}}</span>
+                            </div>
+							<div class="form-actions">
+								<div class="pull-right">
+									<button type="submit" class="btn btn-primary btn-cons-md"> Forgot </button>
+									<button type="button" ng-click="clear();Tabname = 'Jooto Login'" class-show="login-member" class="btn btn-white btn-cons-md change-form" > Sign in </button>
+									<button type="button" ng-click="clear();Tabname = 'Jooto Register'" class-show="signup-member" class="btn btn-white btn-cons-md change-form" > Register </button>
+								</div>
+							</div>
+						</form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

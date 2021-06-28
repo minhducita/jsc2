@@ -1,0 +1,9 @@
+#chanel-detail {
+    padding: 40px 0px 0px 0px;
+    min-height: 100%;
+	
+}
+#chanel-detail .tabbed-pane-header {
+    height: 100%;
+    background-color: #edeff0;
+}

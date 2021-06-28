@@ -1,0 +1,78 @@
+<div class="tabbed-pane-main-col-wrapper js-content">
+	<div class="window-module">
+		<div class="window-module-title">
+			<span class="window-module-title-icon">
+				<i class="fa fa-users cl-icon"></i>
+			</span>
+			<h3>Teams</h3>
+        </div>
+		<div class="u-gutter js-list-orgs" >
+			<ul class="org-list">
+				<li data-ng-repeat="organization in Profile.organizations">
+					<a href="#/o/{{organization.name}}">
+						<span class="item-name"> {{organization.displayName}}</span>
+						<i ng-class="{0:'fa fa-lock', 1: 'fa fa-globe'}[organization.permission]"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--
+	<div class="window-module">
+		<div class="window-module-title">
+			<span class="window-module-title-icon">
+				<i class="fa fa-list cl-icon"></i>
+			</span>
+			<h3>Activity</h3>
+		</div>
+		<div class="list-actions">
+			<div class="phenom phenom-action u-clearfix phenom-other">
+				<div class="creator member js-show-mem-menu">
+					<img class="member-avatar" height="30" width="30" src="https://trello-avatars.s3.amazonaws.com/74a9d62fab21a270fe51f6bf22f030bd/30.png" srcset="https://trello-avatars.s3.amazonaws.com/74a9d62fab21a270fe51f6bf22f030bd/30.png 1x, https://trello-avatars.s3.amazonaws.com/74a9d62fab21a270fe51f6bf22f030bd/50.png 2x" alt="Zinky (zinky)" title="Zinky (zinky)">
+					<span class="member-gold-badge" title="This member has Trello Gold."></span>
+				</div>
+				<div class="phenom-desc">
+					<span class="inline-member js-show-mem-menu" idmember="521306caeddf608f2300121a">
+						<span class="u-font-weight-bold">Zinky</span>
+					</span> 
+					added 
+					<a class="action-card" href="">ccccc</a> 
+					to Doing
+				</div>
+				<p class="phenom-meta quiet">
+					<span class="date js-hide-on-sending" dt="2015-12-24T05:04:33.969Z" title="24 December 2015 12:04">24 Dec at 12:04</span>
+					<span class="js-spinner hide">
+						<span class="spinner spinner--inline mod-left small"></span> Sending…
+					</span> 
+					- on board 
+					<a class="u-font-weight-bold ufw" href="https://trello.com/b/DaI9DydU/ebook">Ebook</a>
+					<span title="This board is visible to members of the PEGAGROUP team. Only people added to the board can edit it." class="fa fa-users fa-invisible"></span>
+				</p>
+			</div>
+			<div class="phenom phenom-action u-clearfix phenom-other">
+				<div class="creator member js-show-mem-menu">
+					<img class="member-avatar" height="30" width="30" src="https://trello-avatars.s3.amazonaws.com/74a9d62fab21a270fe51f6bf22f030bd/30.png" srcset="https://trello-avatars.s3.amazonaws.com/74a9d62fab21a270fe51f6bf22f030bd/30.png 1x, https://trello-avatars.s3.amazonaws.com/74a9d62fab21a270fe51f6bf22f030bd/50.png 2x" alt="Zinky (zinky)" title="Zinky (zinky)">
+					<span class="member-gold-badge" title="This member has Trello Gold."></span>
+				</div>
+				<div class="phenom-desc">
+					<span class="inline-member js-show-mem-menu" idmember="521306caeddf608f2300121a">
+						<span class="u-font-weight-bold">Zinky</span>
+					</span> 
+					added 
+					<a class="action-card" href="#">aaaaa</a> to To Do
+				</div>
+				<p class="phenom-meta quiet">
+					<span class="date js-hide-on-sending" dt="2015-12-24T05:04:04.722Z" title="24 December 2015 12:04">24 Dec at 12:04</span>
+					<span class="js-spinner hide">
+						<span class="spinner spinner--inline mod-left small"></span> Sending…
+					</span> - on board 
+					<a class="u-font-weight-bold ufw" href="https://trello.com/b/7UeRQJ6A/busmap">BusMap</a>
+					<span title="This board is visible to members of the PEGAGROUP team. Only people added to the board can edit it." class="fa fa-users fa-invisible"></span>
+				</p>
+			</div>
+		</div>
+		<p class="u-bottom">
+			<a class="show-more js-more-actions" href="#">Load More Activity</a>
+		</p>
+	</div> -->
+</div>

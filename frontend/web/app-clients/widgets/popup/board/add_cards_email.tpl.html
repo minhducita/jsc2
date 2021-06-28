@@ -1,0 +1,44 @@
+<div class='subProfile'>
+	<div class="menu-right-header">
+		<h4>Add Cards via Email</h4>
+		<div class="modal-close">
+			<i class="flaticon-cross-mark1" ng-click="$hide()"></i>
+		</div>
+	</div>
+	<div class="content">
+		<div class='field'>
+			<label> Your email address for this board</label>
+			<input type="text" name='email' class='form-control'>
+		</div>
+		<div class="create-enable-color add-cards-enable" style='margin-top:10px'>
+			<a class="create-label" ng-click="getPopupover('generate_new_email_address')">
+				<span>Generate a new email address.</span>
+			</a>
+			<hr>
+			<a class="create-label">
+				<span>Email me this address.</span>
+			</a>
+		</div>
+		<hr>
+		<div class="list_email">
+			<p>Your emailed cards appear in ... </p>
+			<div class="feild">
+				<label> List </label>
+				<select class='form-control' name="list">
+					<option> list 1 </option>
+					<option> list 2 </option>
+					<option> list 3 </option>
+				</select>
+			</div>
+			<div class="feild">
+				<label> Position </label>
+				<select class='form-control' name="list">
+					<option> bottom </option>
+					<option> top </option>
+				</select>
+			</div>
+		</div>
+		<hr>
+		<p> <b>Tip:</b> Don't share this email address. Anyone who has it can add cards as you. When composing emails, the card title goes in the subject and the card description in the body. More email formatting tips.</p>
+	</div>
+</div>

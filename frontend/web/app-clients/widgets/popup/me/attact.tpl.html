@@ -1,0 +1,46 @@
+<div class="popover" tabindex="-1">
+	<div class="popover-content popover-width popover-attachment">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Attachment</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<ul class="list-item pop-over-list borderBottomLi">
+			<li ng-show="Profile.avatarHash" class="item js-member-item-header">
+				<a class="left full" ng-click="updateMeProfile({typeimg:1})"> 
+					<img width="30" src="{{ Profile.avatarHash | memberAvatar }}" alt="{{Profile.displayName}}" title="{{Profile.displayName}}">
+					Uploaded Picture
+					<span ng-if="Profile.typeimg == 1" class="icon-sm icon-check filter-cards-icon-check ng-scope"></span>
+				</a>
+			</li>
+			<li class="item js-member-item-header">
+				<a class="left full header-member" ng-click='updateMeProfile({typeimg:0})'> 
+					<span class="avatar_header">
+						{{Profile.initialsName}}
+					</span>
+					Initials (no avatar) 
+					<span ng-if="Profile.typeimg == 0" class="icon-sm icon-check filter-cards-icon-check ng-scope"></span>
+				</a>				
+			</li>
+			<div class="clear"></div>
+		</ul>
+		<div class="popup-bodyacttach">
+			<div class="uploader">
+                <div class="realfile">
+                    <input type="file" class="file"  ngf-select="meAttachments($files, $invalidFiles)"
+                            ngf-accept="'.jpg,.png,.gif'" ngf-pattern="'image/*'"  ngf-max-width="800" ngf-max-height="800" ngf-max-size="1MB">
+                </div>
+                <a class="btn btn-addchecklist btn-a"> Computer </a>
+            </div>
+		</div>
+		<!-- <div class="txt-acttach">
+			<p>Attach a link</p>
+			<input type="text" class="col-md-12 txtinput" placeholder="Paste any link here">
+			<button type="button" class="btn btn-addchecklist">Acttach</button>
+		</div>
+		<br> -->
+	</div>
+	
+</div>

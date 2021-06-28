@@ -1,0 +1,54 @@
+<div class="tabbed-pane-main-col-wrapper">
+	<div class="window-module u-gutter u-bottom u-clearfix">
+		<input class="u-float-left" placeholder="Find members by name?" style="margin-bottom: 8px;" type="text" ng-model="searchMember.displayName">
+		<div class="org-members-options">
+			<a class="button-link u-gutter" href pop-pup="" open-type="popover" template-url="organization/add-member.tpl.html"><span class="fa fa-user"></span> Add Members </a>
+		</div>
+	</div>
+	<hr>
+	<div class="window-module">
+		<div class="member-list-item-detail u-clearfix" ng-repeat="member in organizationsPageAssets.members | filter:searchMembersearchMember">
+			<div class="member member-no-menu">
+				<span class="member-initials" title="{{member.initialsName}}">{{member.initialsName}}</span>
+				<span class="member-type" title="This member is an member of this team."></span>
+			</div>
+			<div class="details">
+				<p class="name-line">
+					<span class="full-name">{{member.displayName}}</span>
+				</p>
+				<p class="u-bottom quiet">
+					<span class="quiet u-inline-block">{{member.username}}</span>
+				</p>
+			</div>
+
+			<div class="options" style="position:relative;" ng-if="getOrganizationMemberRoleLabel(appAssets.id) == 'Normal'">
+				<a dropdown show-class=".member-role{{member.username}}" class="option button-link role-button" href="#" ng-show="getOrganizationMemberRoleLabel(appAssets.id) == 'Admin'"> {{getOrganizationMemberRoleLabel(member.id)}}
+					<span class="fa fa-sort-desc"></span>
+				</a>
+                <h6 style="float: left;" ng-show="getOrganizationMemberRoleLabel(appAssets.id) == 'Normal'"> {{getOrganizationMemberRoleLabel(member.id)}}</h6>
+				<ul class="dropdown-menu pull-left member-role{{member.username}}" role="menu" aria-labelledby="user-option">
+					<li ng-repeat="(role, label) in MEMBER_ROLES" ng-click="changeMemberRole(member.id, role)"><a> {{label}} </a> </li>
+				</ul>
+				<a ng-if="getOrganizationMemberRoleLabel(appAssets.id) == 'Normal' && appAssets.id === member.id" class="option button-link remove-button" ng-class="{'disabled': getOrganizationMemberRoleLabel(member.id) == 'Admin'}" ng-click="removeMemberOfOrganization(member.id)">
+					<span class="fa fa-times"></span> Leave
+				</a>
+			</div>
+
+            <div class="options" style="position:relative;" ng-if="getOrganizationMemberRoleLabel(appAssets.id) == 'Admin'">
+                <a dropdown show-class=".member-role{{member.username}}" class="option button-link role-button" href="#" ng-show="!isOwner(member.id)"> {{getOrganizationMemberRoleLabel(member.id)}}
+                    <span class="fa fa-sort-desc"></span>
+                </a>
+                <h6 style="float: left;" ng-show="getOrganizationMemberRoleLabel(appAssets.id) == 'Admin' && isOwner(member.id)"> {{getOrganizationMemberRoleLabel(member.id)}}</h6>
+				<ul class="dropdown-menu pull-left member-role{{member.username}}" role="menu" aria-labelledby="user-option">
+                    <li ng-repeat="(role, label) in MEMBER_ROLES" ng-click="changeMemberRole(member.id, role)"><a> {{label}} </a> </li>
+				</ul>
+                <a ng-if="getOrganizationMemberRoleLabel(appAssets.id) == 'Admin' && isOwner(member.id)" class="option button-link remove-button" ng-class="{'disabled': getOrganizationMemberRoleLabel(member.id) == 'Admin'}">
+                    <span class="fa fa-times"></span> Leave
+                </a>
+                <a ng-if="!isOwner(member.id)" class="option button-link remove-button" ng-click="removeMemberOfOrganization(member.id)">
+                    <span class="fa fa-times"></span> {{getOrganizationMemberRoleLabel(member.id) == 'Admin' && !isOwner(member.id) && !isOwner(appAssets.id) && appAssets.id == member.id ? 'Leave' : 'Remove' }}
+                </a>
+            </div>
+		</div>
+	</div>
+</div>

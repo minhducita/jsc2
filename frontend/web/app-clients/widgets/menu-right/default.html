@@ -1,0 +1,86 @@
+<div class="menu-right-content menuright-default contentPopup " id='popupdefault'>
+	<div class="scrollbar u-fancy-scrollbar scrollbarchange" perfect-scrollbar  suppress-scroll-x="true" >
+		<p class="group-name-team"> Team Members </p>
+		<div class="member-list-menuright" >
+			<div ng-repeat="member in boardPageAssets.members | filter:group_team" class="member-text" pop-pup="" open-type="popover" template-url="board/info-member-main.tpl.html" >
+				<span ng-if="member.typeimg == 0" title="{{member.displayName}}"> {{member.initialsName}} </span>
+				<img ng-if="member.typeimg == 1" ng-src="{{member.avatarHash | memberAvatar}}" width="35px" title="{{member.displayName}}">
+				<span ng-show="(member.id | memberRoles:boardPageAssets.memberShips) === 'Admin'" class="leader-board"></span>
+			</div>
+		</div>
+		<div ng-if ="NonTeam()">
+			<p class="group-name-team"> Non-Team Members </p>
+			<div class="member-list-menuright" >
+			<div ng-repeat="member in boardPageAssets.members | filter:non_group_team" class="member-text" pop-pup="" open-type="popover" template-url="board/info-member-main.tpl.html" >
+				<span ng-if="member.typeimg == 0" title="{{member.displayName}}"> {{member.initialsName}} </span>
+				<img ng-if="member.typeimg == 1" ng-src="{{member.avatarHash | memberAvatar}}" width="35px" title="{{member.displayName}}">
+				<span ng-show="(member.id | memberRoles:boardPageAssets.memberShips) === 'Admin'" class="leader-board"></span>
+			</div>
+		</div>
+		</div>
+		<div class="add-member-menuright" pop-pup="" open-type="popover" template-url="board/add-member.tpl.html" ng-if="hasMemberInBoard(appAssets.id)">
+			<i class="flaticon-add184"></i>
+			<span>&nbsp;Add Member...</span>
+		</div>
+		<div class="add-member-menuright" ng-if="!hasMemberInBoard(appAssets.id)" ng-click="addMemberToBoard({id: appAssets.id})">
+			<i class="flaticon-add184"></i>
+			<span>&nbsp;Join table...</span>
+		</div>
+		<div class="selection-list">
+			<ul>
+				<a class="change-bg" ng-click="getMenuRight('changeBackground','Change Background')" ng-show="hasMemberInBoard(appAssets.id)">
+					<li>
+						<span class="bg-color" style=" width: 25px; height: 25px; background-color: #0AAA9B; padding: 3px 11px; border-radius: 4px; margin-right: 5px;"></span>
+						<span class="change-background">Change Background</span>
+					</li>
+				</a>
+				<a class="filter" ng-click="getMenuRight('filterCards','Filter Cards')" ng-show="hasMemberInBoard(appAssets.id)">
+					<li>
+						<i class="glyphicon glyphicon-filter"></i>
+						<span>&nbsp;Filter Card</span>
+					
+					</li>
+				</a>
+				<!--
+				<li>
+					<a class="powers-up" ng-click="getMenuRight('powerUps','Power Ups')" >
+						<i class="glyphicon glyphicon-flash"></i>
+						<span>&nbsp;Power-Ups</span>
+					</a>
+				</li>
+				<li>
+					<a class="sticker" ng-click="getMenuRight('stickers',' Sticker ')" >
+						<i class="glyphicon glyphicon-tag"></i>
+						<span>&nbsp;Sticker</span>
+					</a>
+				</li> -->
+				<li>
+					<a ng-click="getMenuRight('more',' More ')">
+						<i class="glyphicon glyphicon-option-horizontal"></i>
+						<span>&nbsp;More</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<hr>
+		<div class="activity">
+			<i class="glyphicon glyphicon-tasks"></i>
+			<span>&nbsp;Activity</span>
+		</div>
+		<div id="activity" class="action-list">
+			<div class="notifi-item" ng-repeat="notification in boardPageAssets.notifications | messengernotify" scroll-popover>
+					<div class="notifi-item-avatar" >
+						<img ng-show="notification.members.typeimg == 1" ng-src="{{notification.members.avatarHash | memberAvatar}}" alt="{{notification.members.displayName}}" title="{{notification.members.displayName}}" width="35" height="35">
+						<span class="avatar-text modalico" ng-show="notification.members.typeimg == 0" style="display: inline-block;font-weight: 700" title="{{notification.members.displayName}}">
+							{{notification.members.initialsName}} 
+						</span>
+					</div>
+					<div class="notifi-item-content" ng-bind-html='notification.temp'></div>
+					<p class="notifi-item-time">
+						<time-ago from-time='{{ notification.addedDate }}'></time-ago>
+					</p>
+			</div>
+			<p class='viewAll'> <a ng-click="getMenuRight('activity','Activity')" style='color:#333'> View all activity</a></p>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,29 @@
+<div class='subProfile'>
+	<div class="menu-right-header">
+		<a ng-click="getPopupover('info-member')" class="backdefaul"> 
+			<i class="fa fa-arrow-left"></i> 
+		</a>
+		<h4>Change Permission</h4>
+		<div class="modal-close">
+			<i class="flaticon-cross-mark1" ng-click="$hide()"></i>
+		</div>
+	</div>
+	<div class="content">
+		<hr>
+		<ul class="pop-over-list">
+			<li ng-repeat="(role, label) in MEMBER_ROLES">
+				<a ng-class="{'disabled': appAssets.id === member.id && (appAssets.id | memberRoles:boardPageAssets.memberShips) === 'Admin' && countByRoleMemberShips().admin !== 'undefined' && countByRoleMemberShips().admin < 2}" ng-click="changeMemberRole(member.id, role)">
+                    {{label}}
+					<span class="icon-sm icon-check" ng-show="(member.id | memberRoles:boardPageAssets.memberShips) === label"></span>
+					<span class="sub-name">
+						{{role === 'admin' ? 'Can view and edit cards, remove members, and change settings for the board.' : 'Can view and edit cards. Can\'t change settings.'}}
+					</span>
+				</a>
+			</li>
+		</ul>	
+		<hr >
+		<p class="quiet u-bottom" ng-show="appAssets.id === member.id && countByRoleMemberShips().admin !== 'undefined' && countByRoleMemberShips().admin < 2 && (appAssets.id | memberRoles:boardPageAssets.memberShips) === 'Admin'">
+			You can't change roles because there must be at least one admin.
+		</p>
+	</div>
+</div>

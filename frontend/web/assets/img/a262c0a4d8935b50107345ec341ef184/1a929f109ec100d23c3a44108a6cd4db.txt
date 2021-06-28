@@ -1,0 +1,57 @@
+hostftp: 52.26.204.220 server chinh
+phpmyadmin: jawhm.tokyo/phpmyadmin/
+
+FTP: jawhm.tokyo: tokyooffice / jawhm!@#   || database: dbname:tokyo_office \ dbuser: jawhm_tokyo \ dbpass: @!!!jawhm@235_2015
+
+FTP: jawhm.nagoya: nagoya / jawhm!@#   || database: dbname:nagoya_office \ dbuser:root \ dbpass: 303pittstr2d2c3po
+
+FTP: jawhm.okinawa: okinawa / jawhm!@#   || database: dbname:okinawa_office \ dbuser:root \ dbpass: 303pittstr2d2c3po
+
+FTP: jawhm.domannaka: domannaka/ jawhm!@#   || database: dbname:domannaka_office \ dbuser:root \ dbpass: 303pittstr2d2c3po
+
+FTP: jawhm.fukuoka.jp: fukuoka / jawhm!@#   || database: dbname:fukuoka_office \ dbuser:root \ dbpass: 303pittstr2d2c3po
+
+FTP: jawhm.osaka: osaka / jawhm!@#   || database: dbname:osaka_office \ dbuser:root \ dbpass: 303pittstr2d2c3po
+
+
+**********************************************************************************************
+
+
+Hostftp: 52.10.147.150 server bluecloud
+
+Pass vao mysql tren server: mysql -u root -p phuongdung330
+
+FTP: jawhm.bluecloud.tokyo: jawhm / jawhm!@#
+
+FTP: jooto.bluecloud.tokyo: yooto / jawhm!@# 
+link api: apijooto.bluecloud.tokyo			
+
+FTP: jobboard.bluecloud.tokyo: jobboard / jawhm!@#  		|| 	database: dbname: bluehost\ dbuser: phuong\ dbpass: !A@phuong!
+
+FTP: tokyo.bluecloud.tokyo: tokyo / jawhm!@#   			|| 	database: dbname: office \ dbuser: jawhm\ dbpass: !A@phuong!
+
+FTP: nagoya.bluecloud.tokyo: nagoya / jawhm!@#   		|| 	database: dbname: nagoya_office \ dbuser:jawhm \ dbpass: !A@phuong!
+
+FTP: okinawa.bluecloud.tokyo: okinawa / jawhm!@#A!okinawa   	|| 	database: dbname: okinawa_office \ dbuser:jawhm \ dbpass: !A@phuong!
+	
+FTP: fukuoka.bluecloud.tokyo: fukuoka / jawhm!@#   		|| 	database: dbname: fukuoka_office \ dbuser:jawhm \ dbpass: !A@phuong!
+
+FTP: osaka.bluecloud.tokyo: osaka / jawhm!@#   			|| 	database: dbname: osaka_office \ dbuser:jawhm \ dbpass: !A@phuong!
+
+---------------------
+
+Acount mysql other:
+
+database: dbname: jawhm_page \ dbuser: jawhmpage \ dbpass: jawhm!@#
+
+
+***********************************************************************************************
+
+Hostftp: 52.40.86.150
+link phpmyadmin: http://jsc.jawhm.info/phpmyadmin/
+link api: http://api.jawhm.info
+file service: /etc/rc.d/init.d/
+file socket PATH (server ec2): /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+
+FTP: jsc.jawhm.info: ftp_vnjsc/303pittftp			||	database:: dbname: jsc \ dbuser: jsc_bluecloud \ dbpass:  jawhmjsc!@#

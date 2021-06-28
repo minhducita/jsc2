@@ -1,0 +1,14 @@
+<div class="popover"  tabindex="-1" data-autoscroll="true" >
+    <div class="popover-content">
+		<div class="form-header">
+            <div class="modal-close">
+                <i class="flaticon-cross-mark1" ng-click="$hide()"></i>
+            </div>
+			<h5 ng-if="appAssets.id === board.idMember"><span class="semi-bold"><span class="bold">Close Board</span></span></h5>
+        </div>
+		<div class="content" ng-if="appAssets.id === board.idMember">
+			<p> {{member}} You can re-open the board by clicking the “Boards” menu from the header, selecting “View Closed Boards,” finding the board and clicking “Re-open.” </p>
+			<input class="btn-leave-board" type="submit" ng-click="ReopenBoard(board)" value="Close">
+		</div>
+	</div>
+</div>

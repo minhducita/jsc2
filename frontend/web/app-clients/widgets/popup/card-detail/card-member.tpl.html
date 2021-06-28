@@ -1,0 +1,48 @@
+<div class="popover" tabindex="-1">
+	<div class="popover-content popover-width">
+	<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Member</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<p> <input type="text" class="member-input-search" placeholder="Search member" ng-model="searchParam" ng-keypress="cardSearchMembers()"> </p>
+        <div class="form-header">
+            <span class="semi-bold"><span class="bold">Member in Board</span></span>
+            <div class="clearfix"></div>
+        </div>
+        <ul class="list-item">
+            <li class="item js-member-item" ng-repeat="member in boardPageAssets.members | filter:{displayName: searchParam} as results" ng-click="cardToggleMember(member)">
+                <a class="left full">
+						<span class="member js-member">
+                            <span ng-if="member.typeimg == 0">{{member.initialsName}}</span>
+							<img ng-if="member.typeimg == 1" class="member-avatar" height="30" width="30" ng-src="{{member.avatarHash | memberAvatar}}" title="{{member.displayName}} ({{member.initialsName}})">
+						</span>
+                    <span class="full-name" name="{{member.displayName}}"> {{member.displayName}} (<span class="username">{{member.username}}</span>)</span>
+					<span ng-if="idMemberActiveCard.indexOf(member.id) > -1" class="icon-sm icon-check filter-cards-icon-check ng-scope"></span>
+				</a>
+            </li>
+            <li ng-show="results.length == 0" class="empty" style="padding: 24px 6px"> No result</li>
+            <div class="clear"></div>
+        </ul>
+        <div class="form-header" ng-if="cardSeachMembers">
+            <h5><span class="semi-bold"><span class="bold">Member in Organization</span></span></h5>
+            <div class="clearfix"></div>
+        </div>
+        <ul class="list-item" ng-if="cardSeachMembers">
+            <li class="item js-member-item" ng-repeat="member in cardSeachMembers | filter:{displayName: searchParam} as results" ng-click="cardToggleMember(member)">
+                <a class="left full">
+						<span class="member js-member">
+                            <span ng-if="member.typeimg == 0">{{member.initialsName}}</span>
+							<img ng-if="member.typeimg == 1" class="member-avatar" height="30" width="30" ng-src="{{member.avatarHash | memberAvatar}}" title="{{member.displayName}} ({{member.initialsName}})">
+						</span>
+                    <span class="full-name" name="{{member.displayName}}"> {{member.displayName}} (<span class="username">{{member.username}}</span>)</span>
+					<span ng-if="idMemberActiveCard.indexOf(member.id) > -1" class="icon-sm icon-check filter-cards-icon-check ng-scope"></span>
+				</a>
+            </li>
+            <li ng-show="results.length == 0" class="empty" style="padding: 24px 6px"> No result</li>
+            <div class="clear"></div>
+        </ul>
+	</div>
+</div>

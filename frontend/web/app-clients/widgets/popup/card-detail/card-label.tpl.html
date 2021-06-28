@@ -1,0 +1,84 @@
+<div class="popover" tabindex="-1">
+	<div class="popover-content popover-width popover-label">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Label</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<input type="text" class="col-md-12 txtinput" placeholder="Search labels" ng-model="labelSearch.name">
+		<div class="popup-contentedit">
+			<ul class="form-addlabel selectcolorlabel">
+				<li ng-repeat="label in boardPageAssets.labels | filter:labelSearch" >
+					<span ng-click="cardToggleLabel(label)" type-select='multi' class="select-color-label label-color label-color-{{label.color}}">{{label.name}}
+					<span ng-if="card.idLabels.indexOf(label.id) > -1" class='icon-sm'></span>
+					</span>
+					<a  show-hide-popup popup-hide="popover-label" popup-show='popover-create-label' ng-click="cardDetailLabels(label)">
+						<i class="flaticon-pencil91"></i>
+					</a>
+					<div class="clearfix"></div>
+				</li>
+				<div class="clearfix"></div>
+			</ul>
+		</div>  
+		<div class='create-enable-color'>
+			<a show-hide-popup popup-hide="popover-label" popup-show='popover-create-label' class="create-label" ng-click="cardDetailLabels()">
+				<span>Create new label</span>
+			</a>
+		</div>		
+	</div>
+	<!-- popup create label -->
+	<div class="popover-content popover-width popover-create-label popup-child">
+		<div class="form-header">
+			<a class='popup-back' show-hide-popup popup-show=" popover-label" popup-hide='popover-create-label' ><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Create Label</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-contentedit">
+			<form class="formlabel" ng-init="colorSelected = ''">
+				<div class="form-group">
+					<label> Name </label>
+					<input type="text" class="form-control" ng-model="model.name">
+				</div>
+				<div  class="form-group selectcolorlabel">
+					<label> select a color </label>
+					<span ng-if="!isNewRecord" ng-repeat="(color, name) in boardPageAssets.labelNames" class="label-color label-color-{{color}}" ng-click="model.colorSelected = color ; model.color = color">
+						<span ng-if="color == model.color"  class='icon-sm'></span>
+					</span>
+					<span ng-if="isNewRecord" ng-repeat="(color, name) in boardPageAssets.labelNames" class="select-color-label label-color label-color-{{color}}" ng-click="model.color = color"></span>
+				</div>
+				<div class="form-group info-nocolor">
+					<span class="label-color label-color-default"></span>
+					<div>
+						<p> No color. </p>
+						<p> This won't show up on the front of cards.</p>
+					</div>
+				</div>
+				<button ng-if="isNewRecord"  show-hide-popup popup-show="popover-label" popup-hide='popover-delete-label' class="btn btn-addchecklist" ng-click="cardCreateLabel(model.name, model.color)">Create</button>
+				<button ng-if="!isNewRecord" show-hide-popup popup-show="popover-label" popup-hide='popover-delete-label' class="btn btn-edit" ng-click="cardUpdateLabel(model)">Save</button>
+				<button ng-if="!isNewRecord" class="btn btn-delete" show-hide-popup popup-hide="popover-create-label" popup-show='popover-delete-label'>Delete</button>
+			</form>
+		</div>  	
+	</div>
+	<!-- popup delete label -->
+	<div class="popover-content popover-width popover-delete-label popup-child">
+		<div class="form-header">
+			<a class='popup-back' show-hide-popup popup-show="popover-create-label" popup-hide='popover-delete-label' ><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Create Label</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-contentedit">
+			<p>There is no undo. This will remove this label from all cards and destroy its history.</p>
+			<form class="formlabel">
+				<button  ng-click="cardDeleteLabel(model.id)" show-hide-popup popup-show="popover-label" popup-hide='popover-delete-label' class="btn btn-delete btn-full">Delete</button>
+			</form>
+		</div>  	
+	</div>
+</div>

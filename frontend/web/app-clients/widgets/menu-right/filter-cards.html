@@ -1,0 +1,61 @@
+	<div class="menu-right-content menuright-default filter-card list-menu-right scrollbarchange" perfect-scrollbar  suppress-scroll-x="true">
+		<input class="js-input js-autofocus" type="text" attr="title" value="" style="margin-bottom: 0;">
+		<div class="js-filter-search-results">
+			<p class="quiet" style="padding: 10px 8px 2px; margin-bottom: 0;">Type to filter by term or search for labels, members, or due times.</p>
+			<hr>
+			
+			<ul class="label-list-color">
+				<li ng-repeat="label in boardPageAssets.labels" class="label-list-item is-matches-filter">
+					<a ng-click="filterCheckCard(label.id,'label')" class="label-list-item-link js-toggle-label-filter"   data-name="{{label}}" >
+						<div class="label-list-item-link-label">
+							<span class="filter-card-bg label-color-{{label.color}}"></span>
+						</div>
+						<span ng-if="label.name" class="filter-cards-color-label">{{label.name}}</span>
+						<span ng-if="!label.name" class="filter-cards-color-label">{{label.color}} label</span>
+						<span ng-if="filterCard['label'].indexOf(label.id) > -1" class="icon-sm icon-check filter-cards-icon-check"></span>
+					</a>
+				</li>
+			</ul>
+			<hr>
+			<ul class="list-item">
+				<li ng-repeat='member in boardPageAssets.members' class="item js-member-item">
+					<a class="" ng-click="filterCheckCard(member.id,'member')">
+						<span class="member js-member">
+							<img ng-if="member.typeimg == 1" width="30" title="{{member.displayName}}" ng-src="{{ member.avatarHash | memberAvatar }}" width="35px">
+							<span ng-if="member.typeimg == 0" class="avatar_header"> {{member.initialsName}} </span>
+						</span>
+						<span class="full-name" name="{{member.displayName}}"> {{member.displayName}} (<span class="username">{{member.username}}</span>)</span>
+						<span ng-if="filterCard['member'].indexOf(member.id) > -1"   class="icon-sm icon-check filter-cards-icon-check"></span>
+					</a>
+				</li>
+			</ul>
+			<hr>
+			<ul class="list-item-filter-card">
+				<li class="item">
+					<a ng-click="filterCheckCard('day','date')" class="js-due-filter" time="day" style="padding-left: 40px;">Due in the next day
+						<span ng-if="filterCard['date'] == 'day'"  class="icon-sm icon-check"></span>
+					</a>				
+				</li>
+				<li class="item">
+					<a ng-click="filterCheckCard('week','date')" class="js-due-filter" time="week" style="padding-left: 40px;">
+						Due in the next week
+						<span ng-if="filterCard['date'] == 'week'"  class="icon-sm icon-check"></span>
+					</a>
+				</li>
+				<li class="item">
+					<a ng-click="filterCheckCard('month','date')" class="js-due-filter" time="month" style="padding-left: 40px;">
+						Due in the next month
+						<span ng-if="filterCard['date'] == 'month'"  class="icon-sm icon-check"></span>
+					</a>
+				</li>
+			</ul>
+			<hr>
+			<ul class="list-item">
+				<li>
+					<a class="js-clear-all" ng-click="removeFilterCard()" style="padding-left: 45px;">
+						Clear Filter
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>

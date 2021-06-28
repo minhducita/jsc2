@@ -1,0 +1,32 @@
+<div class='subProfile'>
+	<div class="menu-right-header">
+		<a ng-click="getPopupover('info-member')" class="backdefaul"> 
+			<i class="fa fa-arrow-left"></i> 
+		</a>
+		<h4>Change Name and Bio</h4>
+		<div class="modal-close">
+			<i class="flaticon-cross-mark1" ng-click="$hide()"></i>
+		</div>
+	</div>
+	<div class="content">
+		<div class='field'>
+			<label> Full Name</label>
+			<input type="text" name='fullname' class='form-control'>
+		</div>
+		<div class='field'>
+			<label> Initials</label>
+			<input type="text" name='initials' class='form-control'>
+		</div>
+		<div class='field'>
+			<label> Username</label>
+			<input type="text" name='username' class='form-control'>
+		</div>
+		<div class='field'>
+			<label> Bio</label>
+			<textarea type="text" name='username' class='form-control'> </textarea>
+		</div>
+		<input class="primary js-save-changes" type="submit" value="Save">
+		<hr>
+		<p class="quiet u-bottom">Your initials are used in place of your avatar if your avatar is not set. Usernames require a minimum of 3 characters, alphanumeric only.</p>
+	</div>
+</div>

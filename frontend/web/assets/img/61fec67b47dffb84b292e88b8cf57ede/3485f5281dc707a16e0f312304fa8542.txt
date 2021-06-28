@@ -1,0 +1,118 @@
+スクエアバナー１
+<?php
+  //<!--/*
+  *
+  * Revive Adserver Local Mode Tag
+  * - Generated with Revive Adserver v4.0.1
+  *
+  */-->
+
+  // The MAX_PATH below should point to the base of your Revive Adserver installation
+  define('MAX_PATH', '/var/www/nichigopress.bluecloudvn.com/public_html/htdocs/reviveadserver');
+  if (@include_once(MAX_PATH . '/www/delivery/alocal.php')) {
+    if (!isset($phpAds_context)) {
+      $phpAds_context = array();
+    }
+    // function view_local($what, $zoneid=0, $campaignid=0, $bannerid=0, $target='', $source='', $withtext='', $context='', $charset='')
+    $phpAds_raw = view_local('', 1, 0, 0, '', '', '0', $phpAds_context, '');
+    $phpAds_context[] = array('!=' => 'bannerid:'.$phpAds_raw['bannerid']);
+    $phpAds_context[] = array('!=' => 'campaignid:'.$phpAds_raw['campaignid']);
+  }
+  echo $phpAds_raw['html'];
+?>
+
+
+スクエアバナー２
+<?php
+  //<!--/*
+  *
+  * Revive Adserver Local Mode Tag
+  * - Generated with Revive Adserver v4.0.1
+  *
+  */-->
+
+  // The MAX_PATH below should point to the base of your Revive Adserver installation
+  define('MAX_PATH', '/var/www/nichigopress.bluecloudvn.com/public_html/htdocs/reviveadserver');
+  if (@include_once(MAX_PATH . '/www/delivery/alocal.php')) {
+    if (!isset($phpAds_context)) {
+      $phpAds_context = array();
+    }
+    // function view_local($what, $zoneid=0, $campaignid=0, $bannerid=0, $target='', $source='', $withtext='', $context='', $charset='')
+    $phpAds_raw = view_local('', 3, 0, 0, '', '', '0', $phpAds_context, '');
+    $phpAds_context[] = array('!=' => 'bannerid:'.$phpAds_raw['bannerid']);
+    $phpAds_context[] = array('!=' => 'campaignid:'.$phpAds_raw['campaignid']);
+  }
+  echo $phpAds_raw['html'];
+?>
+
+
+スクエアバナー３
+<?php
+  //<!--/*
+  *
+  * Revive Adserver Local Mode Tag
+  * - Generated with Revive Adserver v4.0.1
+  *
+  */-->
+
+  // The MAX_PATH below should point to the base of your Revive Adserver installation
+  define('MAX_PATH', '/var/www/nichigopress.bluecloudvn.com/public_html/htdocs/reviveadserver');
+  if (@include_once(MAX_PATH . '/www/delivery/alocal.php')) {
+    if (!isset($phpAds_context)) {
+      $phpAds_context = array();
+    }
+    // function view_local($what, $zoneid=0, $campaignid=0, $bannerid=0, $target='', $source='', $withtext='', $context='', $charset='')
+    $phpAds_raw = view_local('', 4, 0, 0, '', '', '0', $phpAds_context, '');
+    $phpAds_context[] = array('!=' => 'bannerid:'.$phpAds_raw['bannerid']);
+    $phpAds_context[] = array('!=' => 'campaignid:'.$phpAds_raw['campaignid']);
+  }
+  echo $phpAds_raw['html'];
+?>
+
+
+スクエアバナー４
+<?php
+  //<!--/*
+  *
+  * Revive Adserver Local Mode Tag
+  * - Generated with Revive Adserver v4.0.1
+  *
+  */-->
+
+  // The MAX_PATH below should point to the base of your Revive Adserver installation
+  define('MAX_PATH', '/var/www/nichigopress.bluecloudvn.com/public_html/htdocs/reviveadserver');
+  if (@include_once(MAX_PATH . '/www/delivery/alocal.php')) {
+    if (!isset($phpAds_context)) {
+      $phpAds_context = array();
+    }
+    // function view_local($what, $zoneid=0, $campaignid=0, $bannerid=0, $target='', $source='', $withtext='', $context='', $charset='')
+    $phpAds_raw = view_local('', 5, 0, 0, '', '', '0', $phpAds_context, '');
+    $phpAds_context[] = array('!=' => 'bannerid:'.$phpAds_raw['bannerid']);
+    $phpAds_context[] = array('!=' => 'campaignid:'.$phpAds_raw['campaignid']);
+  }
+  echo $phpAds_raw['html'];
+?>
+
+
+スクエアバナー５
+<?php
+  //<!--/*
+  *
+  * Revive Adserver Local Mode Tag
+  * - Generated with Revive Adserver v4.0.1
+  *
+  */-->
+
+  // The MAX_PATH below should point to the base of your Revive Adserver installation
+  define('MAX_PATH', '/var/www/nichigopress.bluecloudvn.com/public_html/htdocs/reviveadserver');
+  if (@include_once(MAX_PATH . '/www/delivery/alocal.php')) {
+    if (!isset($phpAds_context)) {
+      $phpAds_context = array();
+    }
+    // function view_local($what, $zoneid=0, $campaignid=0, $bannerid=0, $target='', $source='', $withtext='', $context='', $charset='')
+    $phpAds_raw = view_local('', 6, 0, 0, '', '', '0', $phpAds_context, '');
+    $phpAds_context[] = array('!=' => 'bannerid:'.$phpAds_raw['bannerid']);
+    $phpAds_context[] = array('!=' => 'campaignid:'.$phpAds_raw['campaignid']);
+  }
+  echo $phpAds_raw['html'];
+?>

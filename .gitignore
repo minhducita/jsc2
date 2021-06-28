@@ -1,0 +1,14 @@
+api/runtime/debug/
+api/runtime/cache/
+api/runtime/logs/
+common/config/
+frontend/web/app-clients/constants/constants.js
+vendor/
+.DS_Store
+.idea/*
+.vagrant/
+.settings/
+.project
+.buildpath
+composer.lock
+

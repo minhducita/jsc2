@@ -1,0 +1,21 @@
+<div class="popover" ng-init="popup_show = false" ng-hide="popup_show" tabindex="-1">
+	<div class="popover-content popover-width popup-add-list">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Rename Board</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-body">
+			<form id="board-form" class="form-helper" name="BoardForm" ng-init="board.displayName = boardPageAssets.displayName" ng-submit="updateBoard(board)">
+                <div class="new-add">
+                    <span> Name </span>
+                    <input type="text" class="col-md-12 txtinput" ng-model="board.displayName">
+                    <span class="help-block error">{{errors.displayName}}</span>
+                </div>
+                <button type="submit" class="btn btn-addchecklist"> Rename </button>
+            </form>
+		</div>
+	</div>
+</div>

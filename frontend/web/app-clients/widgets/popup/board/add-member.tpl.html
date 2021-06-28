@@ -1,0 +1,41 @@
+<div class="popover" tabindex="-1" ng-init="getOrganizationMembers(boardPageAssets.organizations.id)">
+	<div class="popover-content popover-width list-menu-right add-member">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Member</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+        <autocomplete ng-model="searchParam" data="organizationSeachMembers" on-search="searchMembers" on-select="addMemberToBoard" disabled-member-exits="boardPageAssets.members"></autocomplete>
+		<ul class="list-item  ">
+				<li class="item js-member-item" ng-repeat="member in organizationMembers.members" ng-click="addMemberToBoard(member)">
+					<a class="left full">
+						<span class="member js-member">
+                            <span ng-if="member.typeimg == 0">{{member.initialsName}}</span>
+							<img ng-if="member.typeimg == 1" class="member-avatar" height="30" width="30" ng-src="{{member.avatarHash | memberAvatar}}" title="{{member.displayName}} ({{member.initialsName}})">
+						</span>
+						<span class="full-name" name="{{member.displayName}}"> {{member.displayName}} (<span class="username">{{member.username}}</span>)</span>
+					</a>
+				</li>
+				<div class="clear"></div>
+			</ul>
+			<a class='all-team'  show-hide-popup="" popup-show="popover-add-all-member" popup-hide="add-member">
+				Add All Team Members ({{organizationMembers.members.length}} member)
+			</a>
+	</div>
+	<div class="popover-content popover-width popover-add-all-member popup-child" style="display: none;">
+		<div class="form-header">
+			<a class="popup-back" show-hide-popup="" popup-show="add-member" popup-hide="popover-add-all-member"><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Add All Team Members?</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-contentedit">
+			<p>This will add all remaining members of the team ({{organizationMembers.members.length}} ) to this board.</p>
+			<button class="js-confirm primary full" type="button" ng-click="addAllMemberToBoad(organizationMembers.members)">Add All Members</button>
+		</div>  	
+	</div>
+</div>

@@ -1,0 +1,220 @@
+<div class="popover" ng-init="popup_show = false" ng-hide="popup_show" tabindex="-1">
+	<div class="popover-content popover-width popup-add-list">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">List Actions</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-bodyacttach">
+			<p>
+				<a show-add-list listid='{{list.id}}' href=""> Add Card </a>
+			</p>
+			<p>
+				<a show-hide-popup popup-show="popup-copy" popup-hide='popup-add-list' href=""> Copy List</a>
+			</p>
+			<p>
+				<a show-hide-popup popup-show="popup-move" popup-hide='popup-add-list' href=""> Move List</a>
+			</p>
+			<p>
+				<a show-hide-popup popup-show="popup-background-color" popup-hide='popup-add-list' href=""> Change background color </a>
+			</p>
+			<p>
+				<a href="" ng-click="sortByPriority(list.id, {sort: list.sort})" class="ng-binding"> <i class="fa fa-check" ng-if="list.sort"></i> Sort By Priority</a>
+			</p>
+			<p>
+				<a pop-pup open-type="dialog" template-url="lists/list-priority.tpl.html"> Show By Priority</a>
+			</p>
+			<p class="hidden"><a href=""> Subscribe</a></p>
+			<hr>
+			<p class=><a show-hide-popup popup-show="popup-move-selected-card" popup-hide='popup-add-list' href=""> Move Selected Cards in This List </a></p>
+			<p class=><a show-hide-popup popup-show="popup-move-all-card" popup-hide='popup-add-list' href=""> Move All Cards in This List </a></p>
+			<p class=><a show-hide-popup popup-show="popup-move-all-card-board" popup-hide='popup-add-list' href=""> Move All Cards to Another Board </a></p>
+			<p><a show-hide-popup popup-show="popup-delete-card-all" popup-hide='popup-add-list'> Archive All Cards in This List </a></p>
+			<hr>
+			<p><a href ng-click="updateList(list.id, {closed:1})"> Archive This List</a> </p>
+		</div>
+	</div>
+	<!-- popup child copy -->
+	<div class="popover-content popover-width popup-copy" style="display:none"> 
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-add-list" popup-hide='popup-copy' class="backdefaul"> 
+				<i class="fa fa-arrow-left"></i> 
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Copy List</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-body" ng-init="input.name = list.name">
+			<form ng-submit="CopyList(list.id,input)" class="ng-pristine ng-valid">
+				<textarea ng-model="input.name" class="list-card-composer-textarea js-card-title ng-pristine ng-valid ng-touched" rows="5">vdfgdgf</textarea>
+				<div class="cc-controls u-clearfix">
+					<input type="submit" value="Add" class="btn btn-primary btn-mini">
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="popover-content popover-width popup-move" style="display:none"> 
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-add-list" popup-hide='popup-move' class="backdefaul"> 
+				<i class="fa fa-arrow-left"></i> 
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Move List</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-body">
+			<form ng-submit='moveList(list.id,model,list)' >
+				<div class="feild">
+					<label> List </label>
+					<select  class="form-control"  ng-model="model.idBoard">
+						<optgroup  label="Board">
+							<option ng-repeat="board in appAssets.boards | filter:{closed:0, id: '!'+ boardPageAssets.id} | filter:myBoard" value="{{board.id}}"> {{board.displayName}} </option>
+						</optgroup>
+						<optgroup  ng-repeat="origination in appAssets.organizations" label="{{origination.displayName}}">
+							<option ng-repeat="board in appAssets.boards | filter:{closed:0,id: '!'+ boardPageAssets.id,idOrganization:origination.id}" value="{{board.id}}"> {{board.displayName}} </option>
+						</optgroup>
+					</select>
+				</div>
+				<div class="feild">
+					<label> Position  </label>
+					<select ng-model="model.pos" class="form-control">
+						<option ng-selected="pos" ng-repeat="pos in listpos(model.idBoard)" value="{{pos}}">{{pos}} </option >
+					</select> 
+				</div>
+				<input type="submit" value="Move" class="btn btn-primary btn-mini">
+			</form>
+		</div>
+	</div>
+	<!-- move selected card ---------------------TA------------------------------>
+	<div class="popover-content popover-width popup-move-selected-card" style="display: none">
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-add-list" popup-hide='popup-move-selected-card' class="backdefaul">
+				<i class="fa fa-arrow-left"></i>
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Move Selected Cards in List</span></span></h5>
+			<div class="clearfix"></div>
+		</div>
+
+		<div class="popup-body" ng-init="listDetail = list">
+			<p ng-repeat="(k, list) in boardPageAssets.lists  | orderBy: 'pos'" ng-init="model.idchange=list.id">
+				<a ng-show="listDetail.id != list.id" ng-click="updateCardSelected(listDetail.id,model,listDetail.cards)"> {{list.name}}</a>
+			</p>
+		</div>
+	</div>
+	<!-- move all card -->
+	<div class="popover-content popover-width popup-move-all-card" style="display:none"> 
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-add-list" popup-hide='popup-move-all-card' class="backdefaul"> 
+				<i class="fa fa-arrow-left"></i> 
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Move All Cards in List</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		
+		<div class="popup-body" ng-init="listDetail = list">
+			<p ng-repeat="(k, list) in boardPageAssets.lists  | orderBy: 'pos'" ng-init="model.idchange=list.id"> 
+				<a ng-show="listDetail.id != list.id" ng-click="updateCardAll(listDetail.id,model)"> {{list.name}}</a>
+			</p>
+		</div>
+	</div>
+	<!-- move all card board ---------------------TA-----------------Another Board------------->
+    <div class="popover-content popover-width popup-move-all-card-board" style="display:none">
+        <div class="form-header">
+            <a show-hide-popup popup-show="popup-add-list" popup-hide='popup-move-all-card-board' class="backdefaul">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+            <div ng-click="$hide()" class="modal-close">
+                <i class="flaticon-cross-mark1"></i>
+            </div>
+            <h5><span class="semi-bold"><span class="bold">Move All Cards To Another Board</span></span></h5>
+            <div class="clearfix"></div>
+        </div>
+
+        <div class="popup-body anotherBoard" ng-init="anotherGetList(list)">
+            <form action="">
+                <div class="feild">
+                    <label> Board </label>
+                    <select class="form-control"
+                            ng-options="board.id as board.displayName group by board.groupName for board in anotherBoards"
+                            ng-model="modelAnother.idBoard"
+                            ng-change="getAnotherBoard()"></select>
+                </div>
+                <div class="feild" ng-if='anotherLists.length > 0'>
+                    <label> List </label>
+                    <select class="form-control"
+                            ng-options="list.id as list.name for list in anotherLists"
+                            ng-model="modelAnother.idList"
+                            ng-change='getAnotherList()'></select>
+                </div>
+                <button ng-click="updateCardAnotherBoard(list.id,modelAnother,list)" type="button" class="btn btn-primary btn-mini"> Move </button>
+                <p ng-if='anotherLists.length == 0'  class='error'> Please create a list for the board are selected to Move .</p>
+            </form>
+        </div>
+    </div>
+	
+	<div class="popover-content popover-width popup-delete-card-all" style='display:none'>
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-add-list" popup-hide='popup-delete-card-all' class="backdefaul"> 
+				<i class="fa fa-arrow-left"></i> 
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Archive All Cards in this List ?</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-bodyacttach">
+			This will remove all the cards in this list from the board. To view archived cards and bring them back to the board, click “Menu” > “Archived Items.”
+			<p>
+				<button  class="btn btn-block btn-primary btn_red" type="button" ng-click="updateCardAll(list.id,{closed:1})">
+					<span> Archive All </span>
+				</button>		
+			</p>
+		</div>
+	</div>
+	<!-- move all card -->
+	<div class="popover-content popover-width popup-background-color" style="display:none"> 
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-add-list" popup-hide='popup-background-color' class="backdefaul"> 
+				<i class="fa fa-arrow-left"></i> 
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold"> Change background color</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-body colorPiker" >			
+			<form ng-init="modelColorPicker.id = list.id; modelColorPicker.color = list.prefs.backgroundColor; modelColorPicker.fontColor='#333'" ng-submit='changeByColorPicker(modelColorPicker)'>
+				<p> 
+					<label> Background color</label>
+					<color-picker ng-model="modelColorPicker.color" options="ColorPickeroptions" event-api="eventApi"> </color-picker> <p>
+				<p> 
+					<label> Font color</label>
+					
+					<p class='fontColor' style='background-color:{{modelColorPicker.fontColor}}'></p>
+					<select class='selectFontColor' ng-model='modelColorPicker.fontColor'> 
+						<option ng-repeat="background in prefsBackground" ng-selected="background.backgroundColor == modelColorPicker.fontColor"  value="{{background.backgroundColor}}"> 
+							 {{background.background}}
+						</option>
+					</select> 
+					<div class="clear"></div>
+				</p>
+				<p> <input type="submit" value="Choose" class="btn btn-primary btn-mini"> <p>
+				
+			</form>
+		</div>
+	</div>
+</div>

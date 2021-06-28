@@ -1,0 +1,227 @@
+<div class="popover" ng-init="popup_show = false" ng-hide="popup_show" tabindex="-1">
+	<div class="popover-content popover-width popup-menu-card">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<ul class="list-menu-card clearfix">
+			<li><a show-hide-popup popup-show="popup-member" popup-hide='popup-menu-card' href="">Member</a></li>
+			<li><a show-hide-popup popup-show="popup-checklist" popup-hide='popup-menu-card' href="">Checklist</a></li>
+			<li><a show-hide-popup popup-show="popup-label" popup-hide='popup-menu-card' href="">Labels</a></li>
+			<li><a show-hide-popup popup-show="popup-move" popup-hide='popup-menu-card' href="">Move</a></li>
+			<li>
+				
+					<span>Comment</span>
+					<form name="CardComment" ng-submit="cardComments(input.comment)">
+						  <div class="text-comment">
+								<textarea id="text-editor-cmd" rows="5" placeholder="Write a comment..." ng-model="input.comment"></textarea>
+							
+						  </div>
+						  <div class="save-comment" ng-if="input.comment">
+							<input type="submit" value="Save comment" id="submit"  ng-disabled="!input.comment"/>
+						  </div>
+					</form>
+				
+			</li>
+			
+		</ul>
+	</div>
+	<!-- popup child member -->
+	<div class="popover-content popover-width popup-member" style="display:none">
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-menu-card" popup-hide='popup-member' class="backdefaul">
+				<i class="fa fa-arrow-left"></i>
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Member</span></span></h5>
+			<div class="clearfix"></div>
+		</div>
+		
+		<div class="popup-body">
+			<p> <input type="text" class="member-input-search" placeholder="Search member" ng-model="searchParam" ng-keypress="cardSearchMembers()"> </p>
+			<div class="form-header">
+				<span class="semi-bold"><span class="bold">Member in Board</span></span>
+				<div class="clearfix"></div>
+			</div>
+			 <ul class="list-item">
+				<li class="item js-member-item" ng-repeat="member in boardPageAssets.members | filter:{displayName: searchParam} as results" ng-click="cardToggleMember(member)">
+					<a class="left full">
+							<span class="member js-member">
+								<span ng-if="member.typeimg == 0">{{member.initialsName}}</span>
+								<img ng-if="member.typeimg == 1" class="member-avatar" height="30" width="30" ng-src="{{member.avatarHash | memberAvatar}}" title="{{member.displayName}} ({{member.initialsName}})">
+							</span>
+						<span class="full-name" name="{{member.displayName}}"> {{member.displayName}} (<span class="username">{{member.username}}</span>)</span>
+						<span ng-if="idMemberActiveCard.indexOf(member.id) > -1" class="icon-sm icon-check filter-cards-icon-check ng-scope"></span>
+					</a>
+				</li>
+				<li ng-show="results.length == 0" class="empty" style="padding: 24px 6px"> No result</li>
+				<div class="clear"></div>
+			</ul>
+			<div class="form-header" ng-if="cardSeachMembers">
+				<h5><span class="semi-bold"><span class="bold">Member in Organization</span></span></h5>
+				<div class="clearfix"></div>
+			</div>
+			<ul class="list-item" ng-if="cardSeachMembers">
+				<li class="item js-member-item" ng-repeat="member in cardSeachMembers | filter:{displayName: searchParam} as results" ng-click="cardToggleMember(member)">
+					<a class="left full">
+							<span class="member js-member">
+								<span ng-if="member.typeimg == 0">{{member.initialsName}}</span>
+								<img ng-if="member.typeimg == 1" class="member-avatar" height="30" width="30" ng-src="{{member.avatarHash | memberAvatar}}" title="{{member.displayName}} ({{member.initialsName}})">
+							</span>
+						<span class="full-name" name="{{member.displayName}}"> {{member.displayName}} (<span class="username">{{member.username}}</span>)</span>
+						<span ng-if="idMemberActiveCard.indexOf(member.id) > -1" class="icon-sm icon-check filter-cards-icon-check ng-scope"></span>
+					</a>
+				</li>
+				<li ng-show="results.length == 0" class="empty" style="padding: 24px 6px"> No result</li>
+				<div class="clear"></div>
+			</ul>
+			
+		</div>
+	</div>
+	
+	<!-- popup checklist -->
+	<div class="popover-content popover-width popup-checklist" style="display:none">
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-menu-card" popup-hide='popup-checklist' class="backdefaul">
+				<i class="fa fa-arrow-left"></i>
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Add checklist</span></span></h5>
+			<div class="clearfix"></div>
+		</div>
+		<div class="popup-body">
+			<p>Title</p>
+			<input type="text" class="col-md-12 txtinput" placeholder="Checklist" ng-model="input.name">
+			<button type="button" class="btn btn-addchecklist" ng-click="cardAddChecklists(input.name)">Add</button>
+		</div>
+	</div>
+	
+	<!-- popup label -->
+	<div class="popover-content popover-width popover-label popup-label" style="display:none">
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-menu-card" popup-hide='popup-label' class="backdefaul">
+				<i class="fa fa-arrow-left"></i>
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Label</span></span></h5>
+			<div class="clearfix"></div>
+		</div>
+		<div class="popup-body">
+			<input type="text" class="col-md-12 txtinput" placeholder="Search labels" ng-model="labelSearch.name">
+			<div class="popup-contentedit">
+				<ul class="form-addlabel selectcolorlabel">
+					<li ng-repeat="label in boardPageAssets.labels | filter:labelSearch" >
+						<span ng-click="cardToggleLabel(label)" type-select='multi' class="select-color-label label-color label-color-{{label.color}}">{{label.name}}
+						<span ng-if="card.idLabels.indexOf(label.id) > -1" class='icon-sm'></span>
+						</span>
+						<a  show-hide-popup popup-hide="popup-label" popup-show='popover-create-label' ng-click="cardDetailLabels(label)">
+							<i class="flaticon-pencil91"></i>
+						</a>
+						<div class="clearfix"></div>
+					</li>
+					<div class="clearfix"></div>
+				</ul>
+			</div>
+			<div class='create-enable-color'>
+				<div class='create-enable-color'>
+					<a show-hide-popup popup-hide="popover-label" popup-show='popover-create-label' class="create-label" ng-click="cardDetailLabels()">
+						<span>Create new label</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- popup create label -->
+	<div class="popover-content popover-width popover-create-label popup-child">
+		<div class="form-header">
+			<a class='popup-back' show-hide-popup popup-show=" popover-label" popup-hide='popover-create-label' ><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5 ng-if="isNewRecord"><span class="semi-bold"><span class="bold">Create Label</span></span></h5>
+			<h5 ng-if="!isNewRecord"><span class="semi-bold"><span class="bold">Update Label</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-contentedit">
+			<form class="formlabel" ng-init="colorSelected = ''">
+				<div class="form-group">
+					<label> Name </label>
+					<input type="text" class="form-control" ng-model="model.name">
+				</div>
+				<div  class="form-group selectcolorlabel">
+					<label> select a color </label>
+					<span ng-if="!isNewRecord" ng-repeat="(color, name) in boardPageAssets.labelNames" class="label-color label-color-{{color}}" ng-click="model.colorSelected = color ; model.color = color">
+						<span ng-if="color == model.color"  class='icon-sm'></span>
+					</span>
+					<span ng-if="isNewRecord" ng-repeat="(color, name) in boardPageAssets.labelNames" class="select-color-label label-color label-color-{{color}}" ng-click="model.color = color"></span>
+				</div>
+				<div class="form-group info-nocolor">
+					<span class="label-color label-color-default"></span>
+					<div>
+						<p> No color. </p>
+						<p> This won't show up on the front of cards.</p>
+					</div>
+				</div>
+				<button ng-if="isNewRecord"  show-hide-popup popup-show="popover-label" popup-hide='popover-create-label' class="btn btn-addchecklist" ng-click="cardCreateLabel(model.name, model.color)">Create</button>
+				<button ng-if="!isNewRecord" show-hide-popup popup-show="popover-label" popup-hide='popover-create-label' class="btn btn-edit" ng-click="cardUpdateLabel(model)">Save</button>
+				<button ng-if="!isNewRecord" class="btn btn-delete" show-hide-popup popup-hide="popover-create-label" popup-show='popover-delete-label'>Delete</button>
+			</form>
+		</div>  	
+	</div>
+	<!-- popup delete label -->
+	<div class="popover-content popover-width popover-delete-label popup-child">
+		<div class="form-header">
+			<a class='popup-back' show-hide-popup popup-show="popover-create-label" popup-hide='popover-delete-label' ><i class="fa fa-long-arrow-left"> </i> </a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Create Label</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+		<div class="popup-contentedit">
+			<p>There is no undo. This will remove this label from all cards and destroy its history.</p>
+			<form class="formlabel">
+				<button  ng-click="cardDeleteLabel(model.id)" show-hide-popup popup-show="popover-label" popup-hide='popover-delete-label' class="btn btn-delete btn-full">Delete</button>
+			</form>
+		</div>  	
+	</div>
+	
+	<!-- popup move -->
+	<div class="popover-content popover-width popup-move" style="display:none">
+		<div class="form-header">
+			<a show-hide-popup popup-show="popup-menu-card" popup-hide='popup-move' class="backdefaul">
+				<i class="fa fa-arrow-left"></i>
+			</a>
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Move Card</span></span></h5>
+			<div class="clearfix"></div>
+		</div>
+		<div class="popup-body">
+			<div class="popup-contentcheck copycard">
+				<form  action="">
+					<p> Board </p>
+					<select class="js-select-board form-control" ng-options="board.id as board.displayName group by board.groupName for board in selectBoards" ng-model="model.idBoard" ng-change="getBoardLists();"></select>
+					<div ng-if='boardList.length > 0'>
+						<p> List </p>
+						<select class="js-select-list form-control" ng-model='model.idList' ng-options="list.id as list.name for list in boardList"  ng-change='getPositionCard(model.idList)'></select>
+						<!-- <p> Position </p>
+						<select class="js-select-position form-control" ng-model='model.pos' ng-options="pos as pos for pos in cardPositionCopy()"></select>
+						 --><button ng-click="MoveCard(model)" type="button" class="btn btn-addchecklist"> Move </button>
+					</div>
+					<p ng-if='boardList.length == 0'  class='error'> Please create a list for the board are selected to Move .</p>
+				</form>
+		</div>
+		</div>
+	</div>
+	
+	

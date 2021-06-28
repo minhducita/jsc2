@@ -1,0 +1,12 @@
+<div class="popover" tabindex="-1">
+	<div class="popover-content popover-width">
+		<div class="form-header">
+			<div ng-click="$hide()" class="modal-close">
+				<i class="flaticon-cross-mark1"></i>
+			</div>
+			<h5><span class="semi-bold"><span class="bold">Member</span></span></h5>
+			<div class="clearfix"></div> 
+		</div>
+        <autocomplete ng-model="searchParam" data="organizationMembers" on-search="searchMembers" on-select="addMemberToOrganization" disabled-member-exits="organizationsPageAssets.members"></autocomplete>
+	</div>
+</div>

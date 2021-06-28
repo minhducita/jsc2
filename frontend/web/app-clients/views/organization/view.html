@@ -1,0 +1,73 @@
+<div id="chanel-detail">
+    <div class="tabbed-pane-header">
+        <div class="tabbed-pane-header-wrapper u-clearfix">
+            <a class="tabbed-pane-header-image profile-image is-editable js-change-avatar-profile">
+                <img ng-show="organizationsPageAssets.logo" src="{{organizationsPageAssets.logo}}" alt="{{organizationsPageAssets.displayName}}" title="{{organizationsPageAssets.displayName}}" width="85" height="85">
+                <span ng-show="!organizationsPageAssets.logo" class="profile-image-icon icon-lg icon-b-lg icon-organization"></span>
+                <span ng-if="checkRole()" class="profile-image-change-text" pop-pup open-type="popover" template-url="organization/attact.tpl.html">Change</span>
+            </a>
+            <div class="tabbed-pane-header-details">
+                <div ng-show="!showProfile" class="js-current-details">
+                    <div class="tabbed-pane-header-details-name">
+                        <h1 class="u-inline">{{organizationsPageAssets.displayName}}</h1>
+                        <p class="window-title-extra quiet"><i ng-class="{0:'fa fa-lock', 1: 'fa fa-globe'}[organizationsPageAssets.permission]"></i> {{ {0: 'Private', 1: 'Public'}[organizationsPageAssets.permission]}}</p>
+                    </div>
+                    <div class="tabbed-pane-header-details-content"></div>
+                    <a ng-show="checkRole()" ng-click="editOrganization(true)" class="button-link tabbed-pane-header-details-edit js-edit-profile">
+                        <span class="fa fa-edit"></span> Edit Organization
+                    </a>
+                </div>
+                <form ng-if="checkRole()" ng-show="showProfile" name="DetailBoard"   class="js-profile-form" ng-submit="updateOrganization(formOrganization)">
+					<p class="error js-profile-form-error hide"></p>
+					<div class="form_input">
+						<label>Name</label>
+						<input ng-class="{ 'error-control-input': errors['displayName'] && submitted}" type="text" ng-model="formOrganization.displayName" name="displayName">
+						<span class="help-block error">{{errors.displayName}}</span>
+					</div>
+					<div class="form_input">
+						<label>Short Name</label>
+						<input ng-class="{ 'error-control-input': errors['name'] && submitted}" type="text" ng-model="formOrganization.name" name="name">
+						<span class="help-block error">{{errors.name}}</span>
+					</div>
+                    <div class="form_input">
+						<label>Website</label>
+						<input ng-class="{ 'error-control-input': errors['website'] && submitted}" type="text" ng-model="formOrganization.website" name="website">
+						<span class="help-block error">{{errors.website}}</span>
+					</div>
+					<div class="form_input">
+						<label>Description </label>
+						<textarea ng-class="{ 'error-control-input': errors['desc'] && submitted}" ng-model="formOrganization.desc" name="desc"></textarea>
+						<span class="help-block error">{{errors.desc}}</span>
+					</div>
+					<input  class="primary wide js-submit-profile" type="submit" value="Save">
+                    <input  ng-click="editOrganization(false)" class="js-cancel-edit-profile" type="button" value="Cancel">
+                </form>
+            </div>
+        </div>
+        <div class="tabbed-pane-nav u-clearfix">
+            <ul>
+                <li class="tabbed-pane-nav-item">
+                    <a class="tabbed-pane-nav-item-button js-member-profile" ng-class="{'active':!$stateParams.optionParams}" href="/#/o/{{organizationsPageAssets.name}}">Board</a>
+                </li>
+                <li class="tabbed-pane-nav-item">
+                    <a class="tabbed-pane-nav-item-button js-member-cards" ng-class="{'active':$stateParams.optionParams == '/members'}" href="/#/o/{{organizationsPageAssets.name}}/members">Members</a>
+                </li>
+                <li class="tabbed-pane-nav-item">
+                    <a class="tabbed-pane-nav-item-button js-member-account" ng-class="{'active':$stateParams.optionParams == '/account'}" href="/#/o/{{organizationsPageAssets.name}}/account">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <div class="tabbed-pane-main-col u-clearfix chanel-profile">
+            <div ng-if="!$stateParams.optionParams">
+                <ng-include src="'/app-clients/views/organization/board.html'"></ng-include>
+            </div>
+            <div ng-if="$stateParams.optionParams == '/members'">
+                <ng-include src="'/app-clients/views/organization/members.html'"></ng-include>
+            </div>
+            <div ng-if="$stateParams.optionParams == '/account'">
+                <ng-include src="'/app-clients/views/organization/account.html'"></ng-include>
+            </div>
+        </div><!-- body-->
+    </div>
+    <div class="clearfix"></div>
+</div>
